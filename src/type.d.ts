@@ -11,4 +11,5 @@ export type NavigationProp = {
 export type RouteProp = {
     path: string;
     element: React.ReactNode;
+    children?: RouteProp[];
 };

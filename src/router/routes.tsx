@@ -1,10 +1,10 @@
 import { RouteProp } from "type";
 import { lazy } from "react";
 
-const PageOne = lazy(() => import("pages/page-one"));
-const PageTwo = lazy(() => import("pages/page-two"));
-const PageHome = lazy(() => import("pages/page-home"));
-const PageNotFound = lazy(() => import("pages/page-not-found"));
+const PageOne = lazy(() => import("pages/PageOne"));
+const PageTwo = lazy(() => import("pages/PageTwo"));
+const PageHome = lazy(() => import("pages/Home"));
+const PageNotFound = lazy(() => import("pages/NotFound"));
 
 export const routes: RouteProp[] = [
     {
