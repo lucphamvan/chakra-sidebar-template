@@ -5,7 +5,7 @@ const Content = ({ children }: any) => {
     return (
         <Box ml="60" p={4}>
             <Header />
-            {children}
+            <Box mt="5.5rem">{children}</Box>
         </Box>
     );
 };

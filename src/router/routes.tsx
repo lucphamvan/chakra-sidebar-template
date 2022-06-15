@@ -1,29 +1,31 @@
-import PageOne from "../pages/page-one";
-import PageTwo from "../pages/page-two";
-import PageHome from "../pages/page-home";
-import PageNotFound from "../pages/page-not-found";
+import { RouteProp } from "type";
+import { lazy } from "react";
 
-const routes = [
+const PageOne = lazy(() => import("pages/page-one"));
+const PageTwo = lazy(() => import("pages/page-two"));
+const PageHome = lazy(() => import("pages/page-home"));
+const PageNotFound = lazy(() => import("pages/page-not-found"));
+
+export const routes: RouteProp[] = [
     {
         path: "/",
         element: <PageHome />,
-        navText: "Home",
     },
     {
         path: "/one",
         element: <PageOne />,
-        navText: "Page One",
     },
     {
         path: "/two",
         element: <PageTwo />,
-        navText: "Page Two",
     },
+];
+
+export const noLayoutRoutes: RouteProp[] = [
     {
         path: "*",
         element: <PageNotFound />,
     },
 ];
-
 
 export default routes;
