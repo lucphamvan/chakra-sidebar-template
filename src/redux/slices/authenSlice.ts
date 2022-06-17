@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User } from "model/User";
+import usersService from "services/users.service";
 
 type AuthenState = {
     fetching: boolean;
@@ -7,14 +8,13 @@ type AuthenState = {
     user: User | undefined;
 };
 const initialState: AuthenState = {
-    fetching: false,
+    fetching: true,
     isAuthen: false,
     user: undefined,
 };
 
 export const fetchUser = createAsyncThunk("users/fetch", async () => {
-    const user: User = { id: "1", email: "fake@gmail.com", name: "fake" };
-    return user;
+    return usersService.getUserInfo();
 });
 
 const authenSlice = createSlice({

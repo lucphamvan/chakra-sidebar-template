@@ -1,6 +1,7 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { Button, Checkbox, Input, InputGroup, InputLeftElement, VStack } from "@chakra-ui/react";
+import { Checkbox, Input, InputGroup, InputLeftElement, VStack } from "@chakra-ui/react";
 import { isEmpty } from "@chakra-ui/utils";
+import StyledButton from "core/Button";
 import React, { useEffect, useState } from "react";
 
 interface Option {
@@ -46,6 +47,7 @@ const ListCheckbox = ({ optionData, applyFunc }: ListCheckboxProps) => {
                     key={`option-${index}`}
                     isChecked={checkedValues?.includes(option.value)}
                     value={option.value}
+                    colorScheme="green"
                     onChange={(e) => handleCheckboxChange(e, option)}
                 >
                     {option.text}
@@ -71,9 +73,9 @@ const ListCheckbox = ({ optionData, applyFunc }: ListCheckboxProps) => {
             </InputGroup>
 
             {renderList()}
-            <Button size="sm" colorScheme="blue" onClick={onApply}>
+            <StyledButton colorScheme="green" onClick={onApply} mode={"primary"}>
                 Apply
-            </Button>
+            </StyledButton>
         </VStack>
     );
 };

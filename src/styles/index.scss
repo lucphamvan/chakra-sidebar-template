@@ -1,0 +1,26 @@
+.chakra-checkbox__control,
+.chakra-checkbox__control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+button:focus {
+    outline: none !important;
+}
+
+button,
+input {
+    border-radius: 0.125rem !important;
+}
+
+body {
+    color: #39424e !important;
+}
+
+* {
+    font-family: "Open Sans", sans-serif;
+}
+
+button {
+    font-family: "Source Code Pro", monospace !important;
+}

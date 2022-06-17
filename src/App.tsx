@@ -1,15 +1,17 @@
-import { ChakraProvider, Spinner, theme } from "@chakra-ui/react";
+import { ChakraProvider, theme } from "@chakra-ui/react";
 import { Suspense } from "react";
 import { Provider } from "react-redux";
 import store from "redux/store";
 import Router from "./router";
+import "styles/index.scss";
+import Loading from "core/Loading";
 
 export const App = () => (
     <Provider store={store}>
-        <Suspense fallback={<Spinner />}>
-            <ChakraProvider theme={theme}>
+        <ChakraProvider theme={theme}>
+            <Suspense fallback={<Loading w="100vw" h="100vh" />}>
                 <Router />
-            </ChakraProvider>
-        </Suspense>
+            </Suspense>
+        </ChakraProvider>
     </Provider>
 );

@@ -5,6 +5,7 @@ const PageOne = lazy(() => import("pages/PageOne"));
 const PageTwo = lazy(() => import("pages/PageTwo"));
 const PageHome = lazy(() => import("pages/Home"));
 const PageNotFound = lazy(() => import("pages/NotFound"));
+const PageLogin = lazy(() => import("pages/Login"));
 
 export const routes: RouteProp[] = [
     {
@@ -22,6 +23,10 @@ export const routes: RouteProp[] = [
 ];
 
 export const noLayoutRoutes: RouteProp[] = [
+    {
+        path: "/login",
+        element: <PageLogin />,
+    },
     {
         path: "*",
         element: <PageNotFound />,
