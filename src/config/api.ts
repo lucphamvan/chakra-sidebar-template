@@ -6,6 +6,7 @@ export const API = {
     USER: {
         users: "users",
         login: "users/login",
+        logout: "users/logout",
         authen: "users/me",
         assignRole: "users/assign-role",
         refreshToken: "users/refresh-token",

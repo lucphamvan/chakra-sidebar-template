@@ -10,6 +10,11 @@ class UtilService {
         return localStorage.getItem("acc");
     }
 
+    public removeToken() {
+        localStorage.removeItem("acc");
+        localStorage.removeItem("ref");
+    }
+
     public saveRefreshToken(token: string) {
         localStorage.setItem("ref", token);
     }

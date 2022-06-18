@@ -1,10 +1,8 @@
-import { Input, Box, Button } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 import ListCheckbox from "component/CheckBoxList";
-import StyledButton from "core/Button";
 import { useEffect, useMemo, useState } from "react";
 
 import rolesService from "services/roles.service";
-import usersService from "services/users.service";
 import Card from "../component/Card";
 
 export default function PageHome() {
@@ -31,21 +29,17 @@ export default function PageHome() {
         await rolesService.createRole(roleName, checkValue);
     };
 
-    const assignRole = async () => {
-        const [userRole, error] = await usersService.setRole("62a49eb350bf52fa5d1a93c0", "62a987aff836e9d6f5290a3e");
-        if (!error) {
-            console.log("user role", userRole);
-        }
-    };
+    // const assignRole = async () => {
+    //     const [userRole, error] = await usersService.setRole("62a49eb350bf52fa5d1a93c0", "62a987aff836e9d6f5290a3e");
+    //     if (!error) {
+    //         console.log("user role", userRole);
+    //     }
+    // };
 
     return (
         <Card>
-            <Box p={4}>
-                <Input size={"sm"} placeholder="Role name" onChange={(event) => setRoleName(event.target.value)} />
-            </Box>
-            <ListCheckbox applyFunc={applyFunc} optionData={options} />
-            <Button onClick={assignRole}>Test Assign Role</Button>
-            <StyledButton mode="primary">Test Assign</StyledButton>
+            <Input size={"sm"} placeholder="Role name" onChange={(event) => setRoleName(event.target.value)} />
+            <ListCheckbox hideSearch mt={4} applyFunc={applyFunc} optionData={options} />
         </Card>
     );
 }

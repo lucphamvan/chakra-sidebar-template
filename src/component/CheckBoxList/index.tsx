@@ -1,5 +1,5 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { Checkbox, Input, InputGroup, InputLeftElement, VStack } from "@chakra-ui/react";
+import { Checkbox, Input, InputGroup, InputLeftElement, StackProps, VStack } from "@chakra-ui/react";
 import { isEmpty } from "@chakra-ui/utils";
 import StyledButton from "core/Button";
 import React, { useEffect, useState } from "react";
@@ -12,9 +12,10 @@ interface Option {
 interface ListCheckboxProps {
     optionData: Option[];
     applyFunc: Function;
+    hideSearch?: boolean;
 }
 
-const ListCheckbox = ({ optionData, applyFunc }: ListCheckboxProps) => {
+const ListCheckbox = ({ optionData, applyFunc, hideSearch, ...props }: ListCheckboxProps & StackProps) => {
     const [checkedValues, setCheckedValues] = useState<string[]>([]);
     const [searchValue, setSearchValues] = useState("");
     const [options, setOptions] = useState<Option[]>([]);
@@ -66,11 +67,13 @@ const ListCheckbox = ({ optionData, applyFunc }: ListCheckboxProps) => {
     };
 
     return (
-        <VStack spacing={2} alignItems="left" m="4">
-            <InputGroup size={"sm"}>
-                <InputLeftElement pointerEvents="none" children={<SearchIcon color="gray.300" />} />
-                <Input type="search" placeholder="Search" value={searchValue} onChange={onSearchChange} />
-            </InputGroup>
+        <VStack spacing={2} alignItems="left" {...props}>
+            {!hideSearch && (
+                <InputGroup size={"sm"}>
+                    <InputLeftElement pointerEvents="none" children={<SearchIcon color="gray.300" />} />
+                    <Input type="search" placeholder="Search" value={searchValue} onChange={onSearchChange} />
+                </InputGroup>
+            )}
 
             {renderList()}
             <StyledButton colorScheme="green" onClick={onApply} mode={"primary"}>

@@ -37,6 +37,18 @@ class UserService {
         return response.data;
     }
 
+    public async logout() {
+        const acc = utilService.getAccToken();
+        const ref = utilService.getRefreshToken();
+        const data = { acc, ref };
+        await http.post(API.USER.logout, data, {
+            headers: {
+                Authorization: `bearer ${acc}`,
+            },
+        });
+        utilService.removeToken();
+    }
+
     public async refreshToken(token: string) {
         const data = { token };
         const response = await http.post(API.USER.refreshToken, data);

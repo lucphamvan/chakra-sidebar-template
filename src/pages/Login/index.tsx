@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import Card from "component/Card";
-import { InputForm } from "core/Form";
 import StyledButton from "core/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
@@ -10,6 +9,8 @@ import { useAppDispatch, useAppSelector } from "redux/store";
 import { fetchUser } from "redux/slices/authenSlice";
 import { useEffect, useRef } from "react";
 import utilService from "services/util.service";
+import InputEmailForm from "component/Form/input-email";
+import InputPassword from "component/Form/input-password";
 
 const Link = styled(NavLink)`
     color: #097bbf;
@@ -57,23 +58,19 @@ const LoginPage = () => {
                 Template
             </Heading>
             <Card p="8">
-                <Box fontFamily={`"Source Code Pro", monospace`} fontWeight="600" fontSize="2rem" mb="4">
-                    LOGIN
-                </Box>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <InputForm
+                <Heading fontFamily={`"Source Code Pro", monospace`} fontSize="2rem" fontWeight="bold" mb={4}>
+                    Login
+                </Heading>
+                <form onSubmit={handleSubmit(onSubmit)} style={{ minWidth: "25rem" }}>
+                    <InputEmailForm
                         name="email"
-                        label="Email"
-                        type="email"
                         register={register}
                         errors={errors}
                         placeholder="Email"
                         required="This field is required"
                     />
-                    <InputForm
+                    <InputPassword
                         name="password"
-                        type="password"
-                        label="Password"
                         placeholder="Password"
                         register={register}
                         errors={errors}
@@ -85,10 +82,11 @@ const LoginPage = () => {
                         mode="primary"
                         isLoading={isSubmitting}
                         type="submit"
-                        display="block"
+                        display="flex"
                         width="100%"
+                        loadingText="Login..."
                     >
-                        Submit
+                        Login
                     </StyledButton>
                 </form>
             </Card>

@@ -41,7 +41,7 @@ const StyledButton = styled(Button)((props: StyledButtonProp) => {
         font-weight: ${props.fontWeight ?? 600};
         font-family: "Source Code Pro", monospace;
         :hover {
-            background-color: ${styled.bgHoverColor};
+            background-color: ${styled.bgHoverColor} !important;
         }
         :active {
             box-shadow: none !important;

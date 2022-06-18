@@ -8,13 +8,17 @@ type AuthenState = {
     user: User | undefined;
 };
 const initialState: AuthenState = {
-    fetching: true,
+    fetching: false,
     isAuthen: false,
     user: undefined,
 };
 
 export const fetchUser = createAsyncThunk("users/fetch", async () => {
     return usersService.getUserInfo();
+});
+
+export const logout = createAsyncThunk("users/logout", async () => {
+    return usersService.logout();
 });
 
 const authenSlice = createSlice({
@@ -34,6 +38,10 @@ const authenSlice = createSlice({
             .addCase(fetchUser.rejected, (state) => {
                 state.fetching = false;
                 state.isAuthen = false;
+            })
+            .addCase(logout.fulfilled, (state, action) => {
+                state.isAuthen = false;
+                state.user = undefined;
             });
     },
 });
