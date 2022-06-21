@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Divider, Heading, HStack, VStack, Box, useToast } from "@chakra-ui/react";
 import Card from "component/Card";
 import StyledButton from "core/Button";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import { useEffect, useRef } from "react";
 import utilService from "services/util.service";
 import InputEmailForm from "component/Form/input-email";
 import InputPassword from "component/Form/input-password";
+import { notifyError } from "component/Toast";
 
 const Link = styled(NavLink)`
     color: #097bbf;
@@ -29,6 +30,10 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const { isAuthen } = useAppSelector((state) => state.authen);
     const timeoutRefresh = useRef();
+    const toast = useToast({
+        duration: 3000,
+        position: "top-right",
+    });
 
     useEffect(() => {
         if (isAuthen) {
@@ -47,21 +52,22 @@ const LoginPage = () => {
 
             // navigate to homepage
             navigate("/", { replace: true });
-        } catch (error) {
-            console.log("Invalid login or password");
+        } catch (error: any) {
+            console.log("failed to login", error.message);
+            notifyError(toast, "INVALID USER NAME OR PASSOWRD");
         }
     };
 
     return (
-        <Flex width="100vw" height="100vh" alignItems="center" flexDirection="column" justifyContent="center" gap="8">
+        <VStack height="100%" justifyContent="center" spacing={8}>
             <Heading fontFamily={`"Source Code Pro", monospace`} fontSize="3rem" fontWeight="black">
                 Template
             </Heading>
-            <Card p="8">
+            <Card p="8" minWidth={{ sm: "20rem", md: "25rem" }}>
                 <Heading fontFamily={`"Source Code Pro", monospace`} fontSize="2rem" fontWeight="bold" mb={4}>
                     Login
                 </Heading>
-                <form onSubmit={handleSubmit(onSubmit)} style={{ minWidth: "25rem" }}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <InputEmailForm
                         name="email"
                         register={register}
@@ -89,8 +95,14 @@ const LoginPage = () => {
                         Login
                     </StyledButton>
                 </form>
+
+                <Divider mt={6} mb={4} />
+                <HStack justify={"center"}>
+                    <Box fontSize="0.85rem">Don't have account</Box>
+                    <Link to={"/sign-up"}>Create your account</Link>
+                </HStack>
             </Card>
-        </Flex>
+        </VStack>
     );
 };
 export default LoginPage;

@@ -6,8 +6,9 @@ const Color = {
     primaryActive: "#1BA94C",
     boxShadow: "rgba(34, 41, 47, 0.05)",
     cardShadow: "rgba(34,41,47,0.1)",
+    errorColor: "red.400",
 };
 
-const Title = "Template";
+const Title = "TEMPLATE";
 
 export { Color, Title };

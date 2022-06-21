@@ -1,21 +1,20 @@
 import { Box, Input, InputGroup, InputLeftElement, Stack } from "@chakra-ui/react";
-import { Mail } from "react-feather";
 import { FieldValues, UseFormRegister } from "react-hook-form";
-import usersService from "services/users.service";
 
-interface InputEmailFormProp {
+interface InputProp {
     register: UseFormRegister<FieldValues>;
     errors: Record<string, any>;
     required: any;
     placeholder: string;
     name: string;
-    signup?: boolean;
+    leftIcon: React.ReactNode;
+    type?: React.HTMLInputTypeAttribute;
 }
-const InputEmailForm = ({ register, name, required, placeholder, errors, signup }: InputEmailFormProp) => {
+const InputForm = ({ register, name, required, placeholder, errors, leftIcon, type }: InputProp) => {
     return (
         <Stack mb={4}>
             <InputGroup size="lg">
-                <InputLeftElement children={<Mail color="#738F93" />} />
+                <InputLeftElement children={leftIcon} />
                 <Input
                     fontSize="1rem"
                     bg="#EDF2F7"
@@ -23,19 +22,14 @@ const InputEmailForm = ({ register, name, required, placeholder, errors, signup 
                     _placeholder={{ fontSize: "1rem" }}
                     {...register(name, {
                         required,
-                        validate: async (value) => {
-                            const regex = /^[^\s@]+@[^\s@]+$/;
-                            if (!regex.test(value)) {
-                                return "Incorrect email format";
+                        validate: (value) => {
+                            if (type === "email") {
+                                const regex = /^[^\s@]+@[^\s@]+$/;
+                                return regex.test(value) || "Incorrect email format";
                             }
-                            let isValid = true;
-                            if (signup) {
-                                isValid = await usersService.checkUserEmail(value);
-                            }
-                            return isValid || "Email was used by another person";
+                            return undefined;
                         },
                     })}
-                    type="email"
                     placeholder={placeholder}
                 />
             </InputGroup>
@@ -46,4 +40,4 @@ const InputEmailForm = ({ register, name, required, placeholder, errors, signup 
     );
 };
 
-export default InputEmailForm;
+export default InputForm;

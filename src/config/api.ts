@@ -10,5 +10,6 @@ export const API = {
         authen: "users/me",
         assignRole: "users/assign-role",
         refreshToken: "users/refresh-token",
+        checkEmail: "users/check"
     },
 };

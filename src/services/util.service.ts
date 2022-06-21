@@ -41,8 +41,12 @@ class UtilService {
             }
             // set timeout to refresh token
             timeoutRef.current = setTimeout(async () => {
-                await usersService.refreshToken(refToken);
-                this.setupRefreshToken(timeoutRef);
+                try {
+                    await usersService.refreshToken();
+                    this.setupRefreshToken(timeoutRef);
+                } catch (e) {
+                    console.log("failed to setup refresh token");
+                }
             }, timeout);
         }
     }

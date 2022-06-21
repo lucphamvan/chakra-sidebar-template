@@ -1,10 +1,10 @@
 import { Heading } from "@chakra-ui/react";
 import Card from "../component/Card";
 
-export default function PageHome() {
+export default function UserPage() {
     return (
-        <Card width={"initial"}>
-            <Heading>Home Page</Heading>
+        <Card width="initial">
+            <Heading>User Page</Heading>
         </Card>
     );
 }

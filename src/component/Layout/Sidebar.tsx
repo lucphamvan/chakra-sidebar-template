@@ -12,8 +12,8 @@ const SideBar = React.memo(() => {
         <Box bg="white" w="60" pos="fixed" h="100vh" overflow="auto" boxShadow={`0 0 15px 0 ${Color.boxShadow}`}>
             {/* // Logo + Brand */}
             <HStack p="1.5rem 1rem">
-                <MoonIcon cursor="pointer" color={Color.primary} w="8" h="8" onClick={() => navigate("/")} />
-                <Heading fontSize="2xl" color={Color.primary}>
+                <MoonIcon cursor="pointer" color="#39424E" w="8" h="8" onClick={() => navigate("/")} />
+                <Heading className="special-font" fontSize="2xl" color="#39424E">
                     {Title}
                 </Heading>
             </HStack>

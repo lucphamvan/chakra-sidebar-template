@@ -12,10 +12,7 @@ const useAuthen = () => {
         const init = async () => {
             try {
                 // refresh token when enter page
-                const refreshToken = utilService.getRefreshToken();
-                if (refreshToken) {
-                    await usersService.refreshToken(refreshToken);
-                }
+                await usersService.refreshToken();
                 // get user information to know authenticate or not
                 await dispatch(fetchUser());
             } catch (error: any) {

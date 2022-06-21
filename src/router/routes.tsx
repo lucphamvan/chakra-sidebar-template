@@ -1,35 +1,40 @@
 import { RouteProp } from "type";
 import { lazy } from "react";
 
-const PageOne = lazy(() => import("pages/PageOne"));
-const PageTwo = lazy(() => import("pages/PageTwo"));
-const PageHome = lazy(() => import("pages/Home"));
-const PageNotFound = lazy(() => import("pages/NotFound"));
-const PageLogin = lazy(() => import("pages/Login"));
+const SettingPage = lazy(() => import("pages/SettingPage"));
+const UserPage = lazy(() => import("pages/UserPage"));
+const HomePage = lazy(() => import("pages/Home"));
+const NotFoundPage = lazy(() => import("pages/NotFound"));
+const LoginPage = lazy(() => import("pages/Login"));
+const SignupPage = lazy(() => import("pages/sign-up"));
 
 export const routes: RouteProp[] = [
     {
         path: "/",
-        element: <PageHome />,
+        element: <HomePage />,
     },
     {
-        path: "/one",
-        element: <PageOne />,
+        path: "/setting",
+        element: <SettingPage />,
     },
     {
-        path: "/two",
-        element: <PageTwo />,
+        path: "/users",
+        element: <UserPage />,
     },
 ];
 
 export const noLayoutRoutes: RouteProp[] = [
     {
         path: "/login",
-        element: <PageLogin />,
+        element: <LoginPage />,
+    },
+    {
+        path: "/sign-up",
+        element: <SignupPage />,
     },
     {
         path: "*",
-        element: <PageNotFound />,
+        element: <NotFoundPage />,
     },
 ];
 
