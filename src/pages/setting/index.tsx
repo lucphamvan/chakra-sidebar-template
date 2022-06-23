@@ -94,7 +94,6 @@ export default function SettingPage() {
                                             <Button
                                                 isLoading={isSubmitting}
                                                 type="submit"
-                                                mode="primary"
                                                 loadingText="Saving changes..."
                                             >
                                                 Save changes

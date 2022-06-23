@@ -16,6 +16,8 @@ const useAuthen = () => {
                 // get user information to know authenticate or not
                 await dispatch(fetchUser());
             } catch (error: any) {
+                // prevent first time loading forever
+                await dispatch(fetchUser());
                 console.log(error.message);
             }
         };
