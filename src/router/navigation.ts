@@ -4,7 +4,7 @@ import { NavigationProp } from "type";
 const navigation: NavigationProp[] = [
     {
         path: "/",
-        navText: "Home Page",
+        navText: "Home",
         icon: FaHome,
     },
     {

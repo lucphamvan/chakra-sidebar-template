@@ -7,6 +7,8 @@ const Color = {
     boxShadow: "rgba(34, 41, 47, 0.05)",
     cardShadow: "rgba(34,41,47,0.1)",
     errorColor: "red.400",
+    shadow: "0 0 10px 1px #add6bc",
+    secondary: "#fff",
 };
 
 const Title = "TEMPLATE";

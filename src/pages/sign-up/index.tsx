@@ -4,7 +4,7 @@ import InputEmailForm from "component/Form/input-email";
 import InputForm from "component/Form/input-form";
 import InputPassword from "component/Form/input-password-signup";
 import { notifyError, notifySuccess } from "component/Toast";
-import StyledButton from "core/Button";
+import Button from "core/Button";
 import { User } from "react-feather";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -69,7 +69,7 @@ const SignupPage = () => {
                         required="This field is required"
                         watch={watch}
                     />
-                    <StyledButton
+                    <Button
                         mt={4}
                         mode="primary"
                         type="submit"
@@ -79,7 +79,7 @@ const SignupPage = () => {
                         loadingText="Login..."
                     >
                         Sign up
-                    </StyledButton>
+                    </Button>
                 </form>
             </Card>
             ;

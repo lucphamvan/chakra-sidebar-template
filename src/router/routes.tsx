@@ -1,7 +1,7 @@
 import { RouteProp } from "type";
 import { lazy } from "react";
 
-const SettingPage = lazy(() => import("pages/SettingPage"));
+const SettingPage = lazy(() => import("pages/setting"));
 const UserPage = lazy(() => import("pages/UserPage"));
 const HomePage = lazy(() => import("pages/Home"));
 const NotFoundPage = lazy(() => import("pages/NotFound"));

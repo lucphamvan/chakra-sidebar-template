@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Divider, Heading, HStack, VStack, Box, useToast } from "@chakra-ui/react";
 import Card from "component/Card";
-import StyledButton from "core/Button";
+import Button from "core/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import usersService from "services/users.service";
@@ -83,7 +83,7 @@ const LoginPage = () => {
                         required="This field is required"
                     />
                     <Link to={"/forgot_password"}>Forgot your password?</Link>
-                    <StyledButton
+                    <Button
                         mt={4}
                         mode="primary"
                         isLoading={isSubmitting}
@@ -93,7 +93,7 @@ const LoginPage = () => {
                         loadingText="Login..."
                     >
                         Login
-                    </StyledButton>
+                    </Button>
                 </form>
 
                 <Divider mt={6} mb={4} />

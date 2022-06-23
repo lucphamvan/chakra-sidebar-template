@@ -1,7 +1,7 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Checkbox, Input, InputGroup, InputLeftElement, StackProps, VStack } from "@chakra-ui/react";
 import { isEmpty } from "@chakra-ui/utils";
-import StyledButton from "core/Button";
+import Button from "core/Button";
 import React, { useEffect, useState } from "react";
 
 interface Option {
@@ -76,9 +76,9 @@ const ListCheckbox = ({ optionData, applyFunc, hideSearch, ...props }: ListCheck
             )}
 
             {renderList()}
-            <StyledButton colorScheme="green" onClick={onApply} mode={"primary"}>
+            <Button colorScheme="green" onClick={onApply} mode={"primary"}>
                 Apply
-            </StyledButton>
+            </Button>
         </VStack>
     );
 };

@@ -8,7 +8,7 @@ type AuthenState = {
     user: User | undefined;
 };
 const initialState: AuthenState = {
-    fetching: false,
+    fetching: true,
     isAuthen: false,
     user: undefined,
 };
