@@ -9,16 +9,30 @@ interface InputFormProp {
     required?: string;
     register: UseFormRegister<FieldValues>;
     type?: React.HTMLInputTypeAttribute;
+    disabled?: boolean;
+    defaultValue?: string;
 }
-export const InputFormLabel = ({ name, label, placeholder, required, errors, register, type }: InputFormProp) => {
+export const InputFormLabel = ({
+    name,
+    label,
+    placeholder,
+    required,
+    errors,
+    register,
+    type,
+    disabled = false,
+    defaultValue = "",
+}: InputFormProp) => {
     return (
         <FormControl isInvalid={errors[name]}>
             <FormLabel fontSize="sm" display="grid" alignItems="center" htmlFor={name}>
                 {label}
             </FormLabel>
             <Input
+                defaultValue={defaultValue}
                 type={type || "text"}
                 id={name}
+                disabled={disabled}
                 placeholder={placeholder ?? ""}
                 {...register(name, {
                     required,

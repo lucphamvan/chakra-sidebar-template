@@ -63,6 +63,12 @@ class UserService {
         }
         return result;
     }
+
+    public async updateUser(name: string) {
+        const data = { name };
+        const response = await http.put(API.USER.users, data);
+        return response.data;
+    }
 }
 
 export default new UserService();
