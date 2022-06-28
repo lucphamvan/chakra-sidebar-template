@@ -1,7 +1,7 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Checkbox, Input, InputGroup, InputLeftElement, StackProps, VStack } from "@chakra-ui/react";
 import { isEmpty } from "@chakra-ui/utils";
-import Button from "core/Button";
+import Button from "component/Button";
 import React, { useEffect, useState } from "react";
 
 interface Option {

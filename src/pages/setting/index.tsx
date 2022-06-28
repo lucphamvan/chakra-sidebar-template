@@ -1,6 +1,6 @@
 import { Heading, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import TabList from "./TabList";
-import AccountSetting from "./tabs/AccountSetting";
+import TabList from "./tab-list";
+import AccountSetting from "./tabs/account-setting";
 
 export default function SettingPage() {
     return (

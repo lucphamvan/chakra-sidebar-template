@@ -1,15 +1,18 @@
 export const API = {
-    permissions: "/permissions",
+    PERMISSION: "/permissions",
     ROLE: {
-        roles: "roles",
+        ROLES: "roles",
     },
     USER: {
-        users: "users",
-        login: "users/login",
-        logout: "users/logout",
-        authen: "users/me",
-        assignRole: "users/assign-role",
-        refreshToken: "users/refresh-token",
-        checkEmail: "users/check"
+        USERS: "users",
+        LOGIN: "users/login",
+        LOGOUT: "users/logout",
+        AUTHEN: "users/me",
+        ASSIGN_ROLE: "users/assign-role",
+        REFRESH_TOKEN: "users/refresh-token",
+        CHECK_EMAIL: "users/check",
+    },
+    PRODUCT: {
+        PRODUCTS: "products",
     },
 };

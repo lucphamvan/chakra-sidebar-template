@@ -1,4 +1,5 @@
-import { FaHome, FaShieldAlt, FaUser } from "react-icons/fa";
+import { FaHome, FaShieldAlt, FaUser, FaProductHunt } from "react-icons/fa";
+import { Circle } from "react-feather";
 import { NavigationProp } from "type";
 
 const navigation: NavigationProp[] = [
@@ -11,6 +12,19 @@ const navigation: NavigationProp[] = [
         path: "/users",
         navText: "Users",
         icon: FaUser,
+    },
+    {
+        path: "",
+        navText: "Products",
+        icon: FaProductHunt,
+        children: [
+            {
+                path: "/products",
+                navText: "List",
+                icon: Circle,
+                size: "0.615rem",
+            },
+        ],
     },
     {
         path: "/setting",

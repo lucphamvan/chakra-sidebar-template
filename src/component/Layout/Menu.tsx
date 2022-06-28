@@ -73,7 +73,9 @@ const MenuItem = ({ nav, level }: MenuItemProp) => {
     return (
         <ListItem>
             <LinkItem style={{ marginLeft: `${level}rem` }} to={nav.path}>
-                {nav.icon ? <ListIcon as={nav.icon} /> : null}
+                {nav.icon ? (
+                    <ListIcon as={nav.icon} style={nav.size ? { width: nav.size, height: nav.size } : {}} />
+                ) : null}
                 <chakra.span noOfLines={1}>{nav.navText}</chakra.span>
             </LinkItem>
         </ListItem>
@@ -105,7 +107,9 @@ const MenuItemWithChildren = ({ nav, level }: MenuItemWithChildProp) => {
             <ListItem onClick={handleClick}>
                 <NormalItem style={{ marginLeft: `${level}rem` }}>
                     <HStack alignItems="center">
-                        {nav.icon ? <ListIcon as={nav.icon} /> : null}
+                        {nav.icon ? (
+                            <ListIcon as={nav.icon} style={nav.size ? { width: nav.size, height: nav.size } : {}} />
+                        ) : null}
                         <chakra.span noOfLines={1}>{nav.navText}</chakra.span>
                     </HStack>
                     <chakra.div ref={ref} transition="transform 0.25s">

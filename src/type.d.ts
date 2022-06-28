@@ -1,11 +1,13 @@
 import React from "react";
+import { Icon } from "react-feather";
 import { IconType } from "react-icons";
 
 export type NavigationProp = {
     path: string;
     navText: string;
-    icon?: IconType;
+    icon?: IconType | Icon;
     children?: NavigationProp[];
+    size?: string | number;
 };
 
 export type RouteProp = {

@@ -1,7 +1,7 @@
-import { Heading, Popover, PopoverBody, PopoverContent, PopoverTrigger } from "@chakra-ui/react";
-import Button from "core/Button";
+import { Heading } from "@chakra-ui/react";
+import Button from "component/Button";
 
-import Card from "../component/Card";
+import Card from "component/Card";
 
 export default function PageHome() {
     return (

@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "redux/store";
 import Router from "./router";
 import "styles/index.scss";
-import Loading from "core/Loading";
+import Loading from "component/Loading";
 
 const theme = extendTheme({
     colors: {

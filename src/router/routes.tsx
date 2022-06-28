@@ -5,8 +5,9 @@ const SettingPage = lazy(() => import("pages/setting"));
 const UserPage = lazy(() => import("pages/UserPage"));
 const HomePage = lazy(() => import("pages/Home"));
 const NotFoundPage = lazy(() => import("pages/NotFound"));
-const LoginPage = lazy(() => import("pages/Login"));
+const LoginPage = lazy(() => import("pages/login"));
 const SignupPage = lazy(() => import("pages/sign-up"));
+const ProductPage = lazy(() => import("pages/product"));
 
 export const routes: RouteProp[] = [
     {
@@ -20,6 +21,10 @@ export const routes: RouteProp[] = [
     {
         path: "/users",
         element: <UserPage />,
+    },
+    {
+        path: "/products",
+        element: <ProductPage />,
     },
 ];
 

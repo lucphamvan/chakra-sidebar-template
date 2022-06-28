@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Divider, Heading, HStack, VStack, Box, useToast } from "@chakra-ui/react";
 import Card from "component/Card";
-import Button from "core/Button";
+import Button from "component/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import usersService from "services/users.service";

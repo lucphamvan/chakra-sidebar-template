@@ -4,7 +4,7 @@ import InputEmailForm from "component/Form/input-email";
 import InputForm from "component/Form/input-form";
 import InputPassword from "component/Form/input-password-signup";
 import { notifyError, notifySuccess } from "component/Toast";
-import Button from "core/Button";
+import Button from "component/Button";
 import { User } from "react-feather";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";

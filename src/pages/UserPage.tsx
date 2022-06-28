@@ -1,5 +1,5 @@
 import { Heading } from "@chakra-ui/react";
-import Card from "../component/Card";
+import Card from "component/Card";
 
 export default function UserPage() {
     return (
