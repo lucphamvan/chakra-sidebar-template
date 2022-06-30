@@ -18,7 +18,7 @@ const Layout = () => {
     }
 
     return (
-        <Box minH="100vh" bg={Color.background}>
+        <Box h="100vh" bg={Color.background} display="flex" flexDir="column">
             <SideBar />
             <Content>
                 <Outlet />

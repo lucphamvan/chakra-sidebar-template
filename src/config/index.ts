@@ -1,7 +1,7 @@
 const Color = {
     background: "#F3F7F7",
     primary: "#1BA94C",
-    primaryBgHover: "#08a840",
+    primaryBgHover: "#1BA94C",
     primaryShadow: "#add6bc",
     primaryActive: "#1BA94C",
     boxShadow: "rgba(34, 41, 47, 0.05)",

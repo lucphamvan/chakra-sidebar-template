@@ -13,5 +13,14 @@ export type NavigationProp = {
 export type RouteProp = {
     path: string;
     element: React.ReactNode;
+    isAuthRoute?: boolean;
     children?: RouteProp[];
 };
+
+export type OrderBy = Record<string, "desc" | "asc">;
+
+export interface QueryParam {
+    limit: number;
+    page: number;
+    orderBy?: OrderBy[];
+}

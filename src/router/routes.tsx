@@ -9,7 +9,7 @@ const LoginPage = lazy(() => import("pages/login"));
 const SignupPage = lazy(() => import("pages/sign-up"));
 const ProductPage = lazy(() => import("pages/product"));
 
-export const routes: RouteProp[] = [
+export const authLayoutRoutes: RouteProp[] = [
     {
         path: "/",
         element: <HomePage />,
@@ -28,6 +28,8 @@ export const routes: RouteProp[] = [
     },
 ];
 
+export const authNoLayoutRoutes: RouteProp[] = [];
+
 export const noLayoutRoutes: RouteProp[] = [
     {
         path: "/login",
@@ -43,4 +45,4 @@ export const noLayoutRoutes: RouteProp[] = [
     },
 ];
 
-export default routes;
+export default authLayoutRoutes;
