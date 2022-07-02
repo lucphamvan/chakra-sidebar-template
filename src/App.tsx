@@ -6,6 +6,7 @@ import Router from "./router";
 import "styles/index.scss";
 import Loading from "component/Loading";
 
+console.log("hello every body");
 const theme = extendTheme({
     colors: {
         primary: {
