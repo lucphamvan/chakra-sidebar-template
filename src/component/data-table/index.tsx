@@ -1,5 +1,5 @@
 import { useTable, useSortBy, Column, usePagination, useRowSelect } from "react-table";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PaginationProp } from "./type";
 import Pagination from "./pagination";
 import TableUI from "./table";
@@ -14,7 +14,7 @@ const IndeterminateCheckbox = React.forwardRef(({ indeterminate, checked, ...res
         resolvedRef.current.indeterminate = indeterminate;
     }, [resolvedRef, indeterminate]);
 
-    return <Checkbox isChecked={checked} ref={resolvedRef} {...rest} />;
+    return <Checkbox colorScheme="primary" isChecked={checked} ref={resolvedRef} {...rest} />;
 });
 
 export type DataTableProps<T extends object> = {
@@ -66,11 +66,16 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
                         <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
                     ),
                     Cell: ({ row }: any) => <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />,
+                    width: "1%",
+                    minWidth: 70,
+                    maxWidth: 80,
                 },
                 ...columns,
             ]);
         }
     );
+
+    const [loading, setLoading] = useState(true);
 
     const paginationProps: PaginationProp = {
         canPreviousPage,
@@ -91,11 +96,14 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
         headerGroups,
         prepareRow,
         page,
+        loading,
     };
 
     useEffect(() => {
-        getData(pageIndex, pageSize, sortBy);
-    }, [pageIndex, pageSize, getData, sortBy]);
+        setLoading(true);
+        getData(pageIndex, pageSize, sortBy).finally(() => setLoading(false));
+        // eslint-disable-next-line
+    }, [pageIndex, pageSize, sortBy]);
 
     return (
         <>

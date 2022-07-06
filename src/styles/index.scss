@@ -18,7 +18,7 @@ body {
 .chakra-checkbox__control,
 .chakra-checkbox__control:focus {
     outline: none !important;
-    box-shadow: 0 0 15px #a1a1a1 !important;
+    box-shadow: 0 0 15px #c1c4c4 !important;
 }
 
 button {
@@ -41,4 +41,24 @@ select:focus {
 
 .special-font {
     font-family: "Source Code Pro", monospace !important;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
 }

@@ -16,11 +16,18 @@ export const columns: Column<Product>[] = [
         accessor: "description",
     },
     {
+        Header: "Price",
+        accessor: "price",
+        Cell: (props) => {
+            return props.value + "$";
+        },
+    },
+    {
         Header: "Sold",
         accessor: "sold",
         disableSortBy: true,
         Cell: (props) => {
-            return props.value ? <CheckIcon color={Color.primary} /> : null;
+            return !props.value ? <CheckIcon color={Color.primary} /> : null;
         },
     },
 ];

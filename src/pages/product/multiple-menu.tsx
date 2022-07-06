@@ -28,7 +28,7 @@ const MultipleSelectedMenu = <T extends object>({
     }
 
     return (
-        <Center p={4} fontWeight={500} gap={4}>
+        <Center p={4} fontWeight={700} gap={4}>
             <Box>{selectedFlatRows.length} select</Box>
             <Button mode="primary" onClick={handleDelete}>
                 Delete

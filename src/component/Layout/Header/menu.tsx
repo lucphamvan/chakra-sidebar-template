@@ -29,7 +29,13 @@ const Menu = () => {
                     <Box className="special-font" fontWeight="bold" textTransform={"uppercase"}>
                         {user?.name}
                     </Box>
-                    <Avatar name={user?.name} bg={Color.primary} size="sm" color="white" className="special-font" />
+                    <Avatar
+                        name={user?.name}
+                        backgroundColor="primary"
+                        size="sm"
+                        color="white"
+                        className="special-font"
+                    />
                 </HStack>
             </MenuButton>
             <StyledMenuList width={"max-content"}>

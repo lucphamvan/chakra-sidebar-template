@@ -25,6 +25,7 @@ const ProductPage = () => {
             setPageCount(Math.ceil(response.data.count / pageSize));
         } catch (error: any) {
             console.log("failed to get list product", error.message);
+        } finally {
         }
     }, []);
 
