@@ -5,12 +5,12 @@ import { BsCheckCircle } from "react-icons/bs";
 import { Status } from "./type";
 
 interface UploadedFileProp {
-    status: Status;
+    processingUploadFiles: Status;
     allUploadedFiles: string[];
 }
 
-const UploadedFile = ({ status, allUploadedFiles }: UploadedFileProp) => {
-    const processingItemFiles = status?.files.map((info, index) => {
+const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileProp) => {
+    const processingItemFiles = processingUploadFiles?.files.map((info, index) => {
         const cancelAxios = () => {
             info.controller.abort();
         };

@@ -31,7 +31,7 @@ import ErrorFile from "./ErrorFile";
 const FilePage = () => {
     const { isOpen, onToggle, onClose } = useDisclosure();
 
-    const [successUploadFiles, setSuccessUploadFiles] = useState<Status>({ files: [] }); // store information of processing upload files
+    const [processingUploadFiles, setProcessingUploadFiles] = useState<Status>({ files: [] }); // store information of processing upload files
 
     const [failedUploadFiles, setFailedUploadFiles] = useState<string[]>([]);
     const [failedSizeFiles, setFailedSizeFiles] = useState<string[]>([]);
@@ -73,7 +73,7 @@ const FilePage = () => {
             setFailedSizeFiles((files) => [...files, ...invalidSizeFiles]);
             setFailedTypeFiles((files) => [...files, ...invalidTypeFiles]);
 
-            setSuccessUploadFiles({ files: [] });
+            setProcessingUploadFiles({ files: [] });
             uploadFiles(acceptedFiles);
         },
     });
@@ -100,7 +100,7 @@ const FilePage = () => {
                         // filter processing files
                         const notFailedFiles = processingFiles.filter((status) => status.percent !== 0);
                         // update status
-                        setSuccessUploadFiles({ files: notFailedFiles });
+                        setProcessingUploadFiles({ files: notFailedFiles });
                     },
                     (processingFiles[i] as StatusFile).controller
                 );
@@ -112,7 +112,7 @@ const FilePage = () => {
                 // remove failed files of list processing
                 (processingFiles[i] as StatusFile).percent = 0;
                 const notFailedFiles = processingFiles.filter((file) => file.percent !== 0);
-                setSuccessUploadFiles({ files: notFailedFiles });
+                setProcessingUploadFiles({ files: notFailedFiles });
 
                 // add failed files to failed list
                 setFailedUploadFiles((files) => [file.name, ...files]);
@@ -121,9 +121,21 @@ const FilePage = () => {
 
         Promise.all(uploadPromises)
             .then(() => {
-                setSuccessUploadFiles({ files: [] });
+                setProcessingUploadFiles({ files: [] });
             })
             .finally(() => setDisabled(false));
+    };
+
+    const cancelAll = () => {
+        processingUploadFiles.files.forEach((file) => {
+            file.controller.abort();
+        });
+        setAllUploadedFiles([]);
+        setFailedSizeFiles([]);
+        setFailedTypeFiles([]);
+        setFailedUploadFiles([]);
+        setProcessingUploadFiles({ files: [] });
+        onToggle();
     };
 
     return (
@@ -148,6 +160,7 @@ const FilePage = () => {
                                     <Flex position="absolute" top={2} right={4}>
                                         {/* minimize button */}
                                         <IconButton
+                                            onClick={onToggle}
                                             variant="ghost"
                                             size="sm"
                                             _focus={{ outline: "none" }}
@@ -156,7 +169,7 @@ const FilePage = () => {
                                         />
                                         {/* close button */}
                                         <IconButton
-                                            onClick={onToggle}
+                                            onClick={cancelAll}
                                             variant="ghost"
                                             size="sm"
                                             _focus={{ outline: "none" }}
@@ -205,7 +218,7 @@ const FilePage = () => {
                                     <Grid templateColumns="repeat(2, minmax(0, 1fr))" gap={4} fontSize="0.875rem">
                                         <GridItem height={"100%"}>
                                             <UploadedFile
-                                                status={successUploadFiles}
+                                                processingUploadFiles={processingUploadFiles}
                                                 allUploadedFiles={allUploadedFiles}
                                             />
                                         </GridItem>
