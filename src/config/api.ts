@@ -15,4 +15,8 @@ export const API = {
     PRODUCT: {
         PRODUCTS: "products",
     },
+    FILE: {
+        FILES: "files",
+        UPLOAD: "files/upload",
+    },
 };
