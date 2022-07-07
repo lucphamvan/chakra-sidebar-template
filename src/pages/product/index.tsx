@@ -1,4 +1,3 @@
-import { Heading } from "@chakra-ui/react";
 import Card from "component/Card";
 import { Product } from "model/Product";
 import { useCallback, useState } from "react";
@@ -8,6 +7,7 @@ import { columns } from "./columns";
 import { DataTable } from "component/data-table";
 import { buildOrderByQuery } from "./helper";
 import MultipleSelectedMenu from "./multiple-menu";
+import PageHeading from "component/page-heading";
 
 const ProductPage = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -20,12 +20,11 @@ const ProductPage = () => {
     const getProducts = useCallback(async (pageIndex: number, pageSize: number, sortBy?: SortingRule<Product>[]) => {
         const orderBy = buildOrderByQuery(sortBy);
         try {
-            const response = await productService.getProducts(pageIndex, pageSize, orderBy);
-            setProducts(response.data.products);
-            setPageCount(Math.ceil(response.data.count / pageSize));
+            const { items, count } = await productService.getProducts(pageIndex, pageSize, orderBy);
+            setProducts(items);
+            setPageCount(Math.ceil(count / pageSize));
         } catch (error: any) {
             console.log("failed to get list product", error.message);
-        } finally {
         }
     }, []);
 
@@ -38,7 +37,7 @@ const ProductPage = () => {
 
     return (
         <>
-            <Heading>Product Page</Heading>
+            <PageHeading>Product Page</PageHeading>
             <Card width={"initial"} mt={4} flex={1} display="flex" flexDir="column" overflow="auto">
                 <DataTable
                     getData={getProducts}

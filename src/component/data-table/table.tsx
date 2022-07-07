@@ -48,7 +48,7 @@ const TableUI = <T extends object>(props: TableUIProps<T>) => {
                 {loading ? (
                     <Tbody>
                         <Tr>
-                            <Td colSpan={4} height={ref?.current?.clientHeight}>
+                            <Td colSpan={headerGroups[0]?.headers.length ?? 0} height={ref?.current?.clientHeight}>
                                 <Loading height="100%" w="100%" />
                             </Td>
                         </Tr>

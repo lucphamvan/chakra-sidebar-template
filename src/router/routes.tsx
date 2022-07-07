@@ -8,6 +8,8 @@ const NotFoundPage = lazy(() => import("pages/NotFound"));
 const LoginPage = lazy(() => import("pages/login"));
 const SignupPage = lazy(() => import("pages/sign-up"));
 const ProductPage = lazy(() => import("pages/product"));
+const NewProductPage = lazy(() => import("pages/product/new-product"));
+const FilePage = lazy(() => import("pages/file"));
 
 export const authLayoutRoutes: RouteProp[] = [
     {
@@ -23,8 +25,16 @@ export const authLayoutRoutes: RouteProp[] = [
         element: <UserPage />,
     },
     {
+        path: "/products/new",
+        element: <NewProductPage />,
+    },
+    {
         path: "/products",
         element: <ProductPage />,
+    },
+    {
+        path: "/files",
+        element: <FilePage />,
     },
 ];
 

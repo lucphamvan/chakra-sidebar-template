@@ -72,7 +72,7 @@ interface MenuItemProp {
 const MenuItem = ({ nav, level }: MenuItemProp) => {
     return (
         <ListItem>
-            <LinkItem style={{ marginLeft: `${level}rem` }} to={nav.path}>
+            <LinkItem style={{ marginLeft: `${level}rem` }} to={nav.path} end>
                 {nav.icon ? (
                     <ListIcon as={nav.icon} style={nav.size ? { width: nav.size, height: nav.size } : {}} />
                 ) : null}
