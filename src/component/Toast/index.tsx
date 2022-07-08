@@ -1,6 +1,6 @@
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import { Box, HStack, Icon } from "@chakra-ui/react";
-import { Color } from "config";
+import { COLOR } from "config";
 import { FaCheckCircle } from "react-icons/fa";
 
 interface ToastProp {
@@ -18,7 +18,7 @@ const Toast = ({ title, onClose, bg }: ToastProp) => {
             position="relative"
             alignItems="center"
             paddingRight="1.5rem"
-            boxShadow={`0 0 10px 1px ${Color.primaryShadow}`}
+            boxShadow={`0 0 10px 1px ${COLOR.primaryShadow}`}
         >
             <Icon as={FaCheckCircle} color="white" w={"1.125rem"} h={"1.125rem"} />
             <Box color="white" fontWeight={500} fontSize="sm" className="special-font">
@@ -41,13 +41,13 @@ const Toast = ({ title, onClose, bg }: ToastProp) => {
 
 export const notifySuccess = (toast: any, title: string) => {
     toast({
-        render: (props: any) => <Toast title={title} onClose={props.onClose} bg={Color.primary} />,
+        render: (props: any) => <Toast title={title} onClose={props.onClose} bg={COLOR.primary} />,
     });
 };
 
 export const notifyError = (toast: any, title: string) => {
     toast({
-        render: (props: any) => <Toast title={title} onClose={props.onClose} bg={Color.errorColor} />,
+        render: (props: any) => <Toast title={title} onClose={props.onClose} bg={COLOR.errorColor} />,
     });
 };
 

@@ -9,7 +9,6 @@ import {
     ModalContent,
     ModalOverlay,
     Box,
-    Divider,
     Center,
     chakra,
     Text,
@@ -23,6 +22,8 @@ import fileService from "services/file.service";
 import { Status, StatusFile } from "./type";
 import ListUploadedFile from "./ListUploadedFile";
 import ListErrorFile from "./ListErrorFile";
+import { COLOR } from "config";
+import ResumeMenu from "./ResumeMenu";
 
 interface UploadModalProp {
     isOpen: boolean;
@@ -141,10 +142,10 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
             file.controller.abort();
         });
         onToggle();
-        // need trigger timeout here to wait axios do all job then reset value
+        // need trigger timeout here to wait axios do all job before reset value
         setTimeout(() => {
             reset();
-        }, 300);
+        }, 100);
     };
 
     return (
@@ -152,13 +153,13 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
             {/* modal upload */}
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
                 <ModalOverlay />
-                <ModalContent minW="50rem" maxW="70rem">
-                    <ModalBody py={8}>
-                        <Flex flexDir="column" gap={8}>
+                <ModalContent minW="40rem" maxW="50rem">
+                    <ModalBody py={6}>
+                        <Flex flexDir="column" gap={6}>
                             {/*Header section */}
                             <HStack justifyContent="space-evenly">
-                                <Box className="special-font" fontSize="1.5rem" fontWeight="bold">
-                                    Upload documents
+                                <Box className="special-font" color={COLOR.primary} fontSize="1.5rem" fontWeight="bold">
+                                    UPLOAD YOUR FILE
                                 </Box>
 
                                 <Flex position="absolute" top={2} right={4}>
@@ -182,13 +183,9 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                                     />
                                 </Flex>
                             </HStack>
-                            <Divider userSelect="none" />
 
                             {/* Drop-Drag section */}
                             <Flex flexDir="column" gap={6}>
-                                <Box textAlign="center" className="special-font">
-                                    Healcheck OCR Workflow
-                                </Box>
                                 <Center
                                     {...getRootProps()}
                                     border="2px dashed"
@@ -201,15 +198,15 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                                     opacity={disabled ? 0.7 : 1}
                                 >
                                     <chakra.input {...getInputProps()} />
-                                    <Icon as={FaFolderOpen} width={24} height={24} color="blue.400" />
+                                    <Icon as={FaFolderOpen} width={24} height={24} color={COLOR.primary} />
                                     {isDragActive ? (
-                                        <Text className="special-font" userSelect="none">
+                                        <Text className="special-font" userSelect="none" fontWeight="bold">
                                             Drop the files here ...
                                         </Text>
                                     ) : (
                                         <Box userSelect="none" className="special-font" fontWeight="bold">
                                             Drag and drop your files, or
-                                            <chakra.span color="blue.400" className="special-font">
+                                            <chakra.span color={COLOR.primary} className="special-font">
                                                 {" "}
                                                 Browse
                                             </chakra.span>
@@ -240,6 +237,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                     </ModalBody>
                 </ModalContent>
             </Modal>
+            <ResumeMenu />
         </>
     );
 };

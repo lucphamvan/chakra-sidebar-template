@@ -1,5 +1,5 @@
 import { MenuButton, HStack, Avatar, MenuItem, chakra, Menu as ChakraMenu, Box, MenuList } from "@chakra-ui/react";
-import { Color } from "config";
+import { COLOR } from "config";
 import { Settings, LogOut } from "react-feather";
 import { logout } from "redux/slices/authenSlice";
 import { useAppDispatch, useAppSelector } from "redux/store";
@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 
 const StyledMenuList = styled(MenuList)`
     border: none;
-    box-shadow: 0px 0px 14px 0 ${Color.cardShadow};
+    box-shadow: ${COLOR.shadowCard};
     padding: 1rem 0;
     border-radius: 0.125rem;
 `;

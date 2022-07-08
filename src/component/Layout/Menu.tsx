@@ -10,7 +10,7 @@ import {
     ListIcon,
 } from "@chakra-ui/react";
 
-import { Color } from "config";
+import { COLOR } from "config";
 import { useRef } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
@@ -39,8 +39,8 @@ const LinkItem = styled(NavLink)`
         border-radius: 0.125rem;
     }
     &.active {
-        background-color: ${Color.primary};
-        box-shadow: 0 0 10px 1px ${Color.primaryShadow};
+        background-color: ${COLOR.primary};
+        box-shadow: 0 0 10px 1px ${COLOR.primaryShadow};
         color: #fff;
         border-radius: 0.125rem;
     }

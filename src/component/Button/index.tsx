@@ -1,7 +1,7 @@
 import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Color } from "config";
+import { COLOR } from "config";
 
 type StyledButtonProp = ButtonProps & {
     mode?: "primary" | "secondary";
@@ -13,11 +13,12 @@ type CSSProp = {
     boxShadow: string;
     color: string;
 };
+
 const buildStyledButton = (bgColor: string, bgHoverColor: string, boxShadow: string, color: string): CSSProp => {
     return {
         bgColor,
         bgHoverColor,
-        boxShadow: boxShadow,
+        boxShadow,
         color,
     };
 };
@@ -26,16 +27,15 @@ const Button = styled(ChakraButton)(({ mode = "primary", ...props }: StyledButto
     let styled: CSSProp;
     switch (mode) {
         case "primary":
-            styled = buildStyledButton(Color.primary, Color.primaryBgHover, Color.shadow, "#fff");
+            styled = buildStyledButton(COLOR.primary, COLOR.primaryBgHover, COLOR.shadowBtn, "#fff");
             break;
         case "secondary":
-            styled = buildStyledButton(Color.secondary, Color.secondary, Color.shadow, Color.primary);
+            styled = buildStyledButton(COLOR.secondary, COLOR.secondary, COLOR.shadowBtn, COLOR.primary);
             break;
         default:
-            styled = buildStyledButton(Color.primary, Color.primaryBgHover, Color.shadow, "#fff");
+            styled = buildStyledButton(COLOR.primary, COLOR.primaryBgHover, COLOR.shadowBtn, "#fff");
             break;
     }
-
     return css`
         background-color: ${styled.bgColor};
         color: ${styled.color};
@@ -44,7 +44,7 @@ const Button = styled(ChakraButton)(({ mode = "primary", ...props }: StyledButto
         font-family: "Source Code Pro", monospace;
 
         border-radius: 0.125rem;
-        border: 2px solid ${Color.primary};
+        border: 2px solid ${COLOR.primary};
 
         box-shadow: ${styled.boxShadow};
 

@@ -1,5 +1,5 @@
 import { CheckIcon } from "@chakra-ui/icons";
-import { Color } from "config";
+import { COLOR } from "config";
 import { Product } from "model/Product";
 import { Column } from "react-table";
 
@@ -43,7 +43,7 @@ export const columns: Column<Product>[] = [
         disableSortBy: true,
         width: "10%",
         Cell: (props) => {
-            return !props.value ? <CheckIcon color={Color.primary} /> : null;
+            return !props.value ? <CheckIcon color={COLOR.primary} /> : null;
         },
     },
 ];

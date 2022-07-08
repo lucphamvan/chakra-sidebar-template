@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { ReactComponent as XCircleIcon } from "assets/x-circle.svg";
 import { FaCheckCircle } from "react-icons/fa";
 import { Status } from "./type";
+import { COLOR } from "config";
 
 const FinishIcon = () => (
     <IconButton
@@ -74,12 +75,6 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
         );
     });
 
-    const isDisplay = processingUploadFiles?.files?.length || allUploadedFiles?.length;
-
-    if (!isDisplay) {
-        return null;
-    }
-
     return (
         <chakra.fieldset
             height="100%"
@@ -89,7 +84,7 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
             maxH="15rem"
             overflow="auto"
         >
-            <chakra.legend color="green.400" fontWeight="bold" ml={4} px={4}>
+            <chakra.legend color={COLOR.primary} fontWeight="bold" ml={4} px={4}>
                 Uploaded files
             </chakra.legend>
             <Grid templateColumns="minmax(0, 1fr) minmax(0, 1fr)" alignItems="center" columnGap={12} rowGap={4} p={4}>

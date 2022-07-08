@@ -1,6 +1,6 @@
 import { chakra, HStack } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { Color } from "../../../config";
+import { COLOR } from "../../../config";
 import Menu from "./menu";
 
 const Wrapper = styled(chakra.header)`
@@ -21,8 +21,8 @@ const HeaderWrapper = styled(chakra.header)`
     height: 4rem;
     padding: 1rem;
     border-radius: 0.125rem;
-    background: ${Color.background};
-    box-shadow: 10px 4px 24px 0 ${Color.boxShadow};
+    background: ${COLOR.background};
+    box-shadow: ${COLOR.shadowCard};
     align-items: center;
     background: #fff;
     display: flex;

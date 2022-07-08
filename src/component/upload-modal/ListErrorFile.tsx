@@ -45,11 +45,6 @@ const ErrorFile = ({ failedUploadFiles, failedSizeFiles, failedTypeFiles }: Erro
         </Fragment>
     );
 
-    const isDisplay = failedUploadFiles?.length || failedSizeFiles?.length || failedTypeFiles?.length;
-    if (!isDisplay) {
-        return null;
-    }
-
     return (
         <chakra.fieldset
             height="100%"

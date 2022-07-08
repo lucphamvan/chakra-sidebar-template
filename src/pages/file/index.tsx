@@ -2,7 +2,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import Button from "component/Button";
 import Card from "component/Card";
 import PageHeading from "component/page-heading";
-import UploadModal from "./UploadModal";
+import UploadModal from "component/upload-modal";
 
 const FilePage = () => {
     const { isOpen, onToggle, onClose } = useDisclosure();

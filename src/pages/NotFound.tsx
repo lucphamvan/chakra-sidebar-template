@@ -1,5 +1,5 @@
 import { Box, Heading, HStack, Text, VStack } from "@chakra-ui/react";
-import { Color } from "config";
+import { COLOR } from "config";
 import { NavLink } from "react-router-dom";
 
 export default function PageHome() {
@@ -11,7 +11,7 @@ export default function PageHome() {
                 <Text>This page could not be found</Text>
             </HStack>
             <NavLink to="/">
-                <Heading color={Color.primary} textDecor="underline">
+                <Heading color={COLOR.primary} textDecor="underline">
                     Go Home
                 </Heading>
             </NavLink>
