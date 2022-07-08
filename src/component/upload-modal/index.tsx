@@ -54,9 +54,9 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
     });
     // hook dropzone
     const { getInputProps, getRootProps, isDragActive } = useDropzone({
-        accept: {
-            "application/pdf": [".pdf"]
-        },
+        // accept: {
+        //     "application/pdf": [".pdf"]
+        // },
         maxSize: 20000000, // limit 20Mb
         disabled: isUploading,
         // occur when drop files to upload
