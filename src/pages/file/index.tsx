@@ -11,7 +11,11 @@ const FilePage = () => {
             <PageHeading>File Managment</PageHeading>
             <Card w="100%" mt={4}>
                 <Button onClick={onToggle}>Upload File</Button>
-                <UploadModal isOpen={isOpen} onToggle={onToggle} onClose={onClose} />
+                <UploadModal
+                    isOpen={isOpen}
+                    onToggle={onToggle}
+                    onClose={onClose}
+                />
             </Card>
         </>
     );

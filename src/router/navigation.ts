@@ -1,4 +1,10 @@
-import { FaHome, FaShieldAlt, FaUser, FaProductHunt, FaFile } from "react-icons/fa";
+import {
+    FaHome,
+    FaShieldAlt,
+    FaUser,
+    FaProductHunt,
+    FaFile
+} from "react-icons/fa";
 import { Circle } from "react-feather";
 import { NavigationProp } from "type";
 
@@ -6,12 +12,12 @@ const navigation: NavigationProp[] = [
     {
         path: "/",
         navText: "Home",
-        icon: FaHome,
+        icon: FaHome
     },
     {
         path: "/users",
         navText: "Users",
-        icon: FaUser,
+        icon: FaUser
     },
     {
         path: "",
@@ -22,26 +28,26 @@ const navigation: NavigationProp[] = [
                 path: "/products",
                 navText: "List",
                 icon: Circle,
-                size: "0.615rem",
+                size: "0.615rem"
             },
             {
                 path: "/products/new",
                 navText: "Create",
                 icon: Circle,
-                size: "0.615rem",
-            },
-        ],
+                size: "0.615rem"
+            }
+        ]
     },
     {
         path: "/files",
         navText: "File",
-        icon: FaFile,
+        icon: FaFile
     },
     {
         path: "/setting",
         navText: "Setting",
-        icon: FaShieldAlt,
-    },
+        icon: FaShieldAlt
+    }
 ];
 
 export default navigation;

@@ -7,8 +7,8 @@ class RoleService {
         try {
             const response = await http.get(API.PERMISSION, {
                 headers: {
-                    Authorization: "Bearer " + utilService.getAccToken(),
-                },
+                    Authorization: "Bearer " + utilService.getAccToken()
+                }
             });
             const permissions = response.data;
             return [permissions, undefined];

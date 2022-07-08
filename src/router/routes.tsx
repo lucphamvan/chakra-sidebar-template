@@ -14,28 +14,28 @@ const FilePage = lazy(() => import("pages/file"));
 export const authLayoutRoutes: RouteProp[] = [
     {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage />
     },
     {
         path: "/setting",
-        element: <SettingPage />,
+        element: <SettingPage />
     },
     {
         path: "/users",
-        element: <UserPage />,
+        element: <UserPage />
     },
     {
         path: "/products/new",
-        element: <NewProductPage />,
+        element: <NewProductPage />
     },
     {
         path: "/products",
-        element: <ProductPage />,
+        element: <ProductPage />
     },
     {
         path: "/files",
-        element: <FilePage />,
-    },
+        element: <FilePage />
+    }
 ];
 
 export const authNoLayoutRoutes: RouteProp[] = [];
@@ -43,16 +43,16 @@ export const authNoLayoutRoutes: RouteProp[] = [];
 export const noLayoutRoutes: RouteProp[] = [
     {
         path: "/login",
-        element: <LoginPage />,
+        element: <LoginPage />
     },
     {
         path: "/sign-up",
-        element: <SignupPage />,
+        element: <SignupPage />
     },
     {
         path: "*",
-        element: <NotFoundPage />,
-    },
+        element: <NotFoundPage />
+    }
 ];
 
 export default authLayoutRoutes;

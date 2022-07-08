@@ -1,4 +1,9 @@
-import { ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import {
+    ArrowLeftIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    ArrowRightIcon
+} from "@chakra-ui/icons";
 import {
     Flex,
     Tooltip,
@@ -9,7 +14,7 @@ import {
     NumberIncrementStepper,
     NumberDecrementStepper,
     Select,
-    Text,
+    Text
 } from "@chakra-ui/react";
 import { PaginationProp } from "./type";
 
@@ -24,7 +29,7 @@ const Pagination = (props: PaginationProp) => {
         previousPage,
         setPageSize,
         pageIndex,
-        pageSize,
+        pageSize
     } = props;
     return (
         <Flex m={4} alignItems="center" gap={4} d="inline-flex" flexWrap="wrap">

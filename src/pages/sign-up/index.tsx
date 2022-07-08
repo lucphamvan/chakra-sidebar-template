@@ -15,12 +15,12 @@ const SignupPage = () => {
         handleSubmit,
         register,
         formState: { errors, isSubmitting },
-        watch,
+        watch
     } = useForm();
 
     const toast = useToast({
         duration: 3000,
-        position: "top-right",
+        position: "top-right"
     });
     const navigate = useNavigate();
 
@@ -30,18 +30,30 @@ const SignupPage = () => {
             navigate("/");
             notifySuccess(toast, "CREATE ACCOUNT SUCCESSFULL. PLEASE LOGIN !");
         } catch (error: any) {
-            notifyError(toast, "FAILED TO CREATE ACCOUNT. CHECK YOUR INFORMATION OR TRY AGAIN LATER !");
+            notifyError(
+                toast,
+                "FAILED TO CREATE ACCOUNT. CHECK YOUR INFORMATION OR TRY AGAIN LATER !"
+            );
             console.log("failed to create user", error.message);
         }
     };
 
     return (
         <VStack height="100%" justifyContent="center" spacing={8}>
-            <Heading className="special-font" fontSize="3rem" fontWeight="black">
+            <Heading
+                className="special-font"
+                fontSize="3rem"
+                fontWeight="black"
+            >
                 Template
             </Heading>
             <Card p={8} minWidth={{ sm: "20rem", md: "25rem" }}>
-                <Heading className="special-font" fontSize="2rem" fontWeight="bold" mb={4}>
+                <Heading
+                    className="special-font"
+                    fontSize="2rem"
+                    fontWeight="bold"
+                    mb={4}
+                >
                     Sign Up
                 </Heading>
                 <form onSubmit={handleSubmit(onSubmit)}>

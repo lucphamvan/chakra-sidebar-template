@@ -5,7 +5,7 @@ import { OrderBy } from "type";
 const ORDER_MAP: Record<string, string> = {
     name: "name",
     description: "description",
-    price: "price",
+    price: "price"
 };
 
 // function to build "orderBy" query params

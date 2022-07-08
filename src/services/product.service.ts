@@ -10,7 +10,7 @@ class ProductService {
             params.orderBy = orderBy;
         }
         const response = await http.get(API.PRODUCT.PRODUCTS, {
-            params,
+            params
         });
         const items = response.data.items as Product[];
         items.forEach((item, index) => (item.no = page * limit + index + 1));

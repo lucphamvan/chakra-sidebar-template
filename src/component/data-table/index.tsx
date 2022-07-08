@@ -1,4 +1,10 @@
-import { useTable, useSortBy, Column, usePagination, useRowSelect } from "react-table";
+import {
+    useTable,
+    useSortBy,
+    Column,
+    usePagination,
+    useRowSelect
+} from "react-table";
 import { useEffect, useState } from "react";
 import { PaginationProp } from "./type";
 import Pagination from "./pagination";
@@ -6,16 +12,25 @@ import TableUI from "./table";
 import React from "react";
 import { Checkbox, Flex } from "@chakra-ui/react";
 
-const IndeterminateCheckbox = React.forwardRef(({ indeterminate, checked, ...rest }: any, ref) => {
-    const defaultRef = React.useRef();
-    const resolvedRef: any = ref || defaultRef;
+const IndeterminateCheckbox = React.forwardRef(
+    ({ indeterminate, checked, ...rest }: any, ref) => {
+        const defaultRef = React.useRef();
+        const resolvedRef: any = ref || defaultRef;
 
-    React.useEffect(() => {
-        resolvedRef.current.indeterminate = indeterminate;
-    }, [resolvedRef, indeterminate]);
+        React.useEffect(() => {
+            resolvedRef.current.indeterminate = indeterminate;
+        }, [resolvedRef, indeterminate]);
 
-    return <Checkbox colorScheme="primary" isChecked={checked} ref={resolvedRef} {...rest} />;
-});
+        return (
+            <Checkbox
+                colorScheme="primary"
+                isChecked={checked}
+                ref={resolvedRef}
+                {...rest}
+            />
+        );
+    }
+);
 
 export type DataTableProps<T extends object> = {
     data: T[];
@@ -25,7 +40,13 @@ export type DataTableProps<T extends object> = {
     multipleMenu?: (...params: any) => React.ReactNode;
 };
 
-export const DataTable = <T extends object>({ data, columns, getData, totalPage, multipleMenu }: DataTableProps<T>) => {
+export const DataTable = <T extends object>({
+    data,
+    columns,
+    getData,
+    totalPage,
+    multipleMenu
+}: DataTableProps<T>) => {
     const {
         getTableProps,
         getTableBodyProps,
@@ -42,7 +63,7 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
         setPageSize,
         selectedFlatRows,
         toggleAllRowsSelected,
-        state: { pageIndex, pageSize, sortBy },
+        state: { pageIndex, pageSize, sortBy }
     } = useTable(
         {
             columns,
@@ -53,7 +74,7 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
             autoResetPage: false,
             autoResetSortBy: false,
             autoResetRowState: false,
-            pageCount: totalPage,
+            pageCount: totalPage
         },
         useSortBy,
         usePagination,
@@ -63,14 +84,20 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
                 {
                     id: "selection",
                     Header: ({ getToggleAllPageRowsSelectedProps }) => (
-                        <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
+                        <IndeterminateCheckbox
+                            {...getToggleAllPageRowsSelectedProps()}
+                        />
                     ),
-                    Cell: ({ row }: any) => <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />,
+                    Cell: ({ row }: any) => (
+                        <IndeterminateCheckbox
+                            {...row.getToggleRowSelectedProps()}
+                        />
+                    ),
                     width: "1%",
                     minWidth: 70,
-                    maxWidth: 80,
+                    maxWidth: 80
                 },
-                ...columns,
+                ...columns
             ]);
         }
     );
@@ -87,7 +114,7 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
         previousPage,
         setPageSize,
         pageIndex,
-        pageSize,
+        pageSize
     };
 
     const tableUIProps = {
@@ -96,7 +123,7 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
         headerGroups,
         prepareRow,
         page,
-        loading,
+        loading
     };
 
     useEffect(() => {
@@ -108,9 +135,14 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
     return (
         <>
             <TableUI {...tableUIProps} />
-            <Flex alignItems="center" justifyContent="space-between" flexWrap="wrap">
+            <Flex
+                alignItems="center"
+                justifyContent="space-between"
+                flexWrap="wrap"
+            >
                 <Pagination {...paginationProps} />
-                {multipleMenu && multipleMenu(selectedFlatRows, toggleAllRowsSelected)}
+                {multipleMenu &&
+                    multipleMenu(selectedFlatRows, toggleAllRowsSelected)}
             </Flex>
         </>
     );

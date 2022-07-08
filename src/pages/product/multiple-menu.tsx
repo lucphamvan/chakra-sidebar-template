@@ -12,7 +12,7 @@ type MultipleSelectedMenuProp<T extends object> = {
 
 const MultipleSelectedMenu = <T extends object>({
     selectedFlatRows,
-    toggleAllRowsSelected,
+    toggleAllRowsSelected
 }: MultipleSelectedMenuProp<T>) => {
     // function handle delete row select
     const handleDelete = () => {
@@ -33,7 +33,10 @@ const MultipleSelectedMenu = <T extends object>({
             <Button mode="primary" onClick={handleDelete}>
                 Delete
             </Button>
-            <Button mode="secondary" onClick={() => toggleAllRowsSelected(false)}>
+            <Button
+                mode="secondary"
+                onClick={() => toggleAllRowsSelected(false)}
+            >
                 Cancel
             </Button>
         </Center>

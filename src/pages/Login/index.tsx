@@ -1,5 +1,12 @@
 import { useForm } from "react-hook-form";
-import { Divider, Heading, HStack, VStack, Box, useToast } from "@chakra-ui/react";
+import {
+    Divider,
+    Heading,
+    HStack,
+    VStack,
+    Box,
+    useToast
+} from "@chakra-ui/react";
 import Card from "component/Card";
 import Button from "component/Button";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -23,7 +30,7 @@ const LoginPage = () => {
     const {
         handleSubmit,
         register,
-        formState: { errors, isSubmitting },
+        formState: { errors, isSubmitting }
     } = useForm();
 
     const dispatch = useAppDispatch();
@@ -32,7 +39,7 @@ const LoginPage = () => {
     const timeoutRefresh = useRef();
     const toast = useToast({
         duration: 3000,
-        position: "top-right",
+        position: "top-right"
     });
 
     useEffect(() => {
@@ -60,11 +67,20 @@ const LoginPage = () => {
 
     return (
         <VStack height="100%" justifyContent="center" spacing={8}>
-            <Heading fontFamily={`"Source Code Pro", monospace`} fontSize="3rem" fontWeight="black">
+            <Heading
+                fontFamily={`"Source Code Pro", monospace`}
+                fontSize="3rem"
+                fontWeight="black"
+            >
                 Template
             </Heading>
             <Card p="8" minWidth={{ sm: "20rem", md: "25rem" }}>
-                <Heading fontFamily={`"Source Code Pro", monospace`} fontSize="2rem" fontWeight="bold" mb={4}>
+                <Heading
+                    fontFamily={`"Source Code Pro", monospace`}
+                    fontSize="2rem"
+                    fontWeight="bold"
+                    mb={4}
+                >
                     Login
                 </Heading>
                 <form onSubmit={handleSubmit(onSubmit)}>
