@@ -72,6 +72,11 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
             setFailedSizeFiles((files) => [...files, ...invalidSizeFiles]);
             setFailedTypeFiles((files) => [...files, ...invalidTypeFiles]);
 
+            // this step keep state of all success uploaded files
+            const prevUploadedFile = Array.from(processingUploadFiles.files).map((file) => file.name);
+            setAllUploadedFiles((files) => [...prevUploadedFile, ...files]);
+
+            // reset processingUploadFiles and start upload files
             setProcessingUploadFiles({ files: [] });
             uploadFiles(acceptedFiles);
         },
@@ -80,7 +85,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
     const uploadFiles = (acceptedFiles: File[]) => {
         // init status upload info
         const initProcessingFiles = acceptedFiles.map((file) => {
-            return { name: file.name, percent: 0, controller: new AbortController() } as StatusFile;
+            return { name: file.name, percent: 0, controller: new AbortController(), finished: false } as StatusFile;
         });
         statusRef.current = {
             files: initProcessingFiles,
@@ -88,7 +93,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
 
         // define handler when upload files
         const uploadPromises = acceptedFiles.map(async (file, i) => {
-            const processingFiles = [...statusRef.current.files];
+            const processingFiles: StatusFile[] = [...statusRef.current.files];
             try {
                 // upload file
                 await fileService.upload(
@@ -97,30 +102,30 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                         // update percent of upload files
                         (processingFiles[i] as StatusFile).percent = Math.round((100 * event.loaded) / event.total);
                         // filter processing files
-                        const notFailedFiles = processingFiles.filter(
-                            (status, index) => status.percent !== 0 
-                        );
-                        // update status
+                        const notFailedFiles = processingFiles.filter((status) => status.percent !== 0);
+                        // update state of processing files
                         setProcessingUploadFiles({ files: notFailedFiles });
                     },
                     (processingFiles[i] as StatusFile).controller
                 );
                 // upload done
-                setAllUploadedFiles((files) => [file.name, ...files]);
+                // mark files finished uploaded to render icon finished
+                processingFiles[i].finished = true;
             } catch (error) {
-                // upload failed
+                // handle upload file failed
+
                 // remove failed files of list processing
                 (processingFiles[i] as StatusFile).percent = 0;
                 const notFailedFiles = processingFiles.filter((file) => file.percent !== 0);
                 setProcessingUploadFiles({ files: notFailedFiles });
+
                 // add failed files to failed list
                 setFailedUploadFiles((files) => [file.name, ...files]);
             }
         });
 
-        Promise.all(uploadPromises)
-            .then(() => setProcessingUploadFiles({ files: [] }))
-            .finally(() => setDisabled(false));
+        // enable upload modal again
+        Promise.all(uploadPromises).finally(() => setDisabled(false));
     };
 
     const reset = () => {
@@ -144,7 +149,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
 
     return (
         <>
-            {/* modal upload */}(
+            {/* modal upload */}
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
                 <ModalOverlay />
                 <ModalContent minW="50rem" maxW="70rem">

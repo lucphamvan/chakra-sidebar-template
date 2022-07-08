@@ -4,6 +4,20 @@ import { ReactComponent as XCircleIcon } from "assets/x-circle.svg";
 import { FaCheckCircle } from "react-icons/fa";
 import { Status } from "./type";
 
+const FinishIcon = () => (
+    <IconButton
+        aria-label="finished"
+        fontSize="22px"
+        color="green.400"
+        cursor="default"
+        icon={<FaCheckCircle />}
+        variant="ghost"
+        _focus={{ boxShadow: "none" }}
+        _hover={{ background: "none" }}
+        _active={{ background: "none" }}
+    />
+);
+
 interface UploadedFileProp {
     processingUploadFiles: Status;
     allUploadedFiles: string[];
@@ -15,6 +29,20 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
             info.controller.abort();
         };
 
+        const icon = info.finished ? (
+            <FinishIcon />
+        ) : (
+            <IconButton
+                onClick={cancelAxios}
+                aria-label="cancel"
+                fontSize="24px"
+                color="blue.400"
+                icon={<XCircleIcon />}
+                variant="ghost"
+                _focus={{ boxShadow: "none" }}
+            />
+        );
+
         return (
             <Fragment key={`fr-${index}`}>
                 <GridItem alignItems="center" className="special-font" noOfLines={1}>
@@ -23,15 +51,7 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
                 <GridItem alignItems="center">
                     <Flex alignItems="center" width="100%" gap={4}>
                         <Progress width="100%" rounded="full" value={info.percent} />
-                        <IconButton
-                            onClick={cancelAxios}
-                            aria-label="cancel"
-                            fontSize="24px"
-                            color="blue.400"
-                            icon={<XCircleIcon />}
-                            variant="ghost"
-                            _focus={{ boxShadow: "none" }}
-                        />
+                        {icon}
                     </Flex>
                 </GridItem>
             </Fragment>
@@ -47,14 +67,7 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
                 <GridItem alignItems="center">
                     <Flex alignItems="center" width="100%" gap={4}>
                         <Progress width="100%" rounded="full" value={100} />
-                        <IconButton
-                            aria-label="cancel"
-                            fontSize="22px"
-                            color="green.400"
-                            icon={<FaCheckCircle />}
-                            variant="ghost"
-                            _focus={{ boxShadow: "none" }}
-                        />
+                        <FinishIcon />
                     </Flex>
                 </GridItem>
             </Fragment>
