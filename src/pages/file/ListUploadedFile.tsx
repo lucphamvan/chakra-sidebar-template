@@ -1,7 +1,7 @@
 import { Grid, GridItem, Flex, Progress, IconButton, chakra } from "@chakra-ui/react";
 import { Fragment } from "react";
 import { ReactComponent as XCircleIcon } from "assets/x-circle.svg";
-import { BsCheckCircle } from "react-icons/bs";
+import { FaCheckCircle } from "react-icons/fa";
 import { Status } from "./type";
 
 interface UploadedFileProp {
@@ -49,9 +49,9 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
                         <Progress width="100%" rounded="full" value={100} />
                         <IconButton
                             aria-label="cancel"
-                            fontSize="24px"
-                            color="blue.400"
-                            icon={<BsCheckCircle />}
+                            fontSize="22px"
+                            color="green.400"
+                            icon={<FaCheckCircle />}
                             variant="ghost"
                             _focus={{ boxShadow: "none" }}
                         />
@@ -60,6 +60,12 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
             </Fragment>
         );
     });
+
+    const isDisplay = processingUploadFiles?.files?.length || allUploadedFiles?.length;
+
+    if (!isDisplay) {
+        return null;
+    }
 
     return (
         <chakra.fieldset

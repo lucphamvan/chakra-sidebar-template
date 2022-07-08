@@ -11,7 +11,7 @@ const ErrorItem = ({ name }: { name: string }) => {
             <GridItem alignItems="center">
                 <Flex alignItems="center" width="100%" gap={4}>
                     <Progress width="100%" colorScheme="red" rounded="full" value={100} />
-                    <Icon fontSize="24px" color="red.400" as={WarningIcon} />
+                    <Icon fontSize="22px" color="red.400" as={WarningIcon} />
                 </Flex>
             </GridItem>
         </Fragment>
