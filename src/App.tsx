@@ -1,10 +1,11 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import Loading from "component/Loading";
 import { Suspense } from "react";
 import { Provider } from "react-redux";
 import store from "redux/store";
-import Router from "./router";
 import "styles/index.scss";
-import Loading from "component/Loading";
+
+import Router from "./router";
 
 const theme = extendTheme({
     colors: {

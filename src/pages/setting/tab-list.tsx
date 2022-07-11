@@ -1,6 +1,6 @@
 import { TabList as ChakraTabList, HStack, Icon, Text } from "@chakra-ui/react";
 import Tab from "component/Tab";
-import { User, Lock } from "react-feather";
+import { Lock, User } from "react-feather";
 
 const TabList = () => {
     return (

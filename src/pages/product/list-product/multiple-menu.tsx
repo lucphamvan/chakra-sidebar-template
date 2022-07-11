@@ -1,13 +1,13 @@
-import { Row } from "react-table";
 import { Box, Center } from "@chakra-ui/react";
 import Button from "component/Button";
 import React from "react";
+import { Row } from "react-table";
 
 const genericMemo: <T>(component: T) => T = React.memo;
 
 type MultipleSelectedMenuProp<T extends object> = {
-    selectedFlatRows: Row<T>[];
-    toggleAllRowsSelected: (value?: boolean | undefined) => void;
+    selectedFlatRows: Row<T>[]; // list selected row
+    toggleAllRowsSelected: (value?: boolean | undefined) => void; // function to toggle selected row
 };
 
 const MultipleSelectedMenu = <T extends object>({
@@ -27,16 +27,14 @@ const MultipleSelectedMenu = <T extends object>({
         return null;
     }
 
+    // render
     return (
         <Center p={4} fontWeight={700} gap={4}>
             <Box>{selectedFlatRows.length} select</Box>
             <Button mode="primary" onClick={handleDelete}>
                 Delete
             </Button>
-            <Button
-                mode="secondary"
-                onClick={() => toggleAllRowsSelected(false)}
-            >
+            <Button mode="secondary" onClick={() => toggleAllRowsSelected(false)}>
                 Cancel
             </Button>
         </Center>

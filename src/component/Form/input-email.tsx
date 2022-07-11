@@ -1,15 +1,9 @@
-import {
-    Box,
-    Input,
-    InputGroup,
-    InputLeftElement,
-    Stack
-} from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputLeftElement, Stack } from "@chakra-ui/react";
 import { Mail } from "react-feather";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 import usersService from "services/users.service";
 
-interface InputEmailFormProp {
+interface InputEmailProp {
     register: UseFormRegister<FieldValues>;
     errors: Record<string, any>;
     required: any;
@@ -17,14 +11,8 @@ interface InputEmailFormProp {
     name: string;
     signup?: boolean;
 }
-const InputEmailForm = ({
-    register,
-    name,
-    required,
-    placeholder,
-    errors,
-    signup
-}: InputEmailFormProp) => {
+
+const InputEmail = ({ register, name, required, placeholder, errors, signup }: InputEmailProp) => {
     return (
         <Stack mb={4}>
             <InputGroup size="lg">
@@ -43,13 +31,9 @@ const InputEmailForm = ({
                             }
                             let isValid = true;
                             if (signup) {
-                                isValid = await usersService.checkUserEmail(
-                                    value
-                                );
+                                isValid = await usersService.checkUserEmail(value);
                             }
-                            return (
-                                isValid || "Email was used by another person"
-                            );
+                            return isValid || "Email was used by another person";
                         }
                     })}
                     type="email"
@@ -63,4 +47,4 @@ const InputEmailForm = ({
     );
 };
 
-export default InputEmailForm;
+export default InputEmail;

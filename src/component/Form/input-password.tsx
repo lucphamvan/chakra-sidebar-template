@@ -1,11 +1,4 @@
-import {
-    Box,
-    Input,
-    InputGroup,
-    InputLeftElement,
-    InputRightElement,
-    Stack
-} from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputLeftElement, InputRightElement, Stack } from "@chakra-ui/react";
 import { useState } from "react";
 import { Eye, EyeOff, Key } from "react-feather";
 import { FieldValues, UseFormRegister } from "react-hook-form";
@@ -17,13 +10,7 @@ interface InputPasswordProp {
     placeholder: string;
     name: string;
 }
-const InputPassword = ({
-    register,
-    name,
-    required,
-    placeholder,
-    errors
-}: InputPasswordProp) => {
+const InputPassword = ({ register, name, required, placeholder, errors }: InputPasswordProp) => {
     const [show, setShow] = useState(false);
 
     const toggleShow = () => {
@@ -51,13 +38,7 @@ const InputPassword = ({
                 <InputRightElement
                     onClick={toggleShow}
                     cursor="pointer"
-                    children={
-                        show ? (
-                            <EyeOff size="1rem" color="#738F93" />
-                        ) : (
-                            <Eye size="1rem" color="#738F93" />
-                        )
-                    }
+                    children={show ? <EyeOff size="1rem" color="#738F93" /> : <Eye size="1rem" color="#738F93" />}
                 />
             </InputGroup>
             <Box color="red.400" fontSize="sm">

@@ -1,10 +1,10 @@
-import { Heading, useToast, VStack } from "@chakra-ui/react";
+import { Heading, VStack, useToast } from "@chakra-ui/react";
+import Button from "component/Button";
 import Card from "component/Card";
-import InputEmailForm from "component/Form/input-email";
+import InputEmail from "component/Form/input-email";
 import InputForm from "component/Form/input-form";
 import InputPassword from "component/Form/input-password-signup";
 import { notifyError, notifySuccess } from "component/Toast";
-import Button from "component/Button";
 import { User } from "react-feather";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -30,30 +30,18 @@ const SignupPage = () => {
             navigate("/");
             notifySuccess(toast, "CREATE ACCOUNT SUCCESSFULL. PLEASE LOGIN !");
         } catch (error: any) {
-            notifyError(
-                toast,
-                "FAILED TO CREATE ACCOUNT. CHECK YOUR INFORMATION OR TRY AGAIN LATER !"
-            );
+            notifyError(toast, "FAILED TO CREATE ACCOUNT. CHECK YOUR INFORMATION OR TRY AGAIN LATER !");
             console.log("failed to create user", error.message);
         }
     };
 
     return (
         <VStack height="100%" justifyContent="center" spacing={8}>
-            <Heading
-                className="special-font"
-                fontSize="3rem"
-                fontWeight="black"
-            >
+            <Heading className="special-font" fontSize="3rem" fontWeight="black">
                 Template
             </Heading>
             <Card p={8} minWidth={{ sm: "20rem", md: "25rem" }}>
-                <Heading
-                    className="special-font"
-                    fontSize="2rem"
-                    fontWeight="bold"
-                    mb={4}
-                >
+                <Heading className="special-font" fontSize="2rem" fontWeight="bold" mb={4}>
                     Sign Up
                 </Heading>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -65,7 +53,7 @@ const SignupPage = () => {
                         required="This field is required"
                         leftIcon={<User color="#738F93" />}
                     />
-                    <InputEmailForm
+                    <InputEmail
                         name="email"
                         errors={errors}
                         placeholder="Email"

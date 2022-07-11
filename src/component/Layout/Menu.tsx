@@ -1,22 +1,21 @@
 import {
-    chakra,
+    Icon as ChakraIcon,
     Collapse,
     HStack,
-    List,
-    useDisclosure,
-    Icon as ChakraIcon,
     ListItem as Item,
-    useId,
-    ListIcon
+    List,
+    ListIcon,
+    chakra,
+    useDisclosure,
+    useId
 } from "@chakra-ui/react";
-
+import styled from "@emotion/styled";
 import { STYLE } from "config";
 import { useRef } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import navigation from "router/navigation";
 import { NavigationProp } from "type";
-import styled from "@emotion/styled";
 
 const Icon = styled(ChakraIcon)`
     display: flex;
@@ -74,14 +73,7 @@ const MenuItem = ({ nav, level }: MenuItemProp) => {
         <ListItem>
             <LinkItem style={{ marginLeft: `${level}rem` }} to={nav.path} end>
                 {nav.icon ? (
-                    <ListIcon
-                        as={nav.icon}
-                        style={
-                            nav.size
-                                ? { width: nav.size, height: nav.size }
-                                : {}
-                        }
-                    />
+                    <ListIcon as={nav.icon} style={nav.size ? { width: nav.size, height: nav.size } : {}} />
                 ) : null}
                 <chakra.span noOfLines={1}>{nav.navText}</chakra.span>
             </LinkItem>
@@ -115,23 +107,12 @@ const MenuItemWithChildren = ({ nav, level }: MenuItemWithChildProp) => {
                 <NormalItem style={{ marginLeft: `${level}rem` }}>
                     <HStack alignItems="center">
                         {nav.icon ? (
-                            <ListIcon
-                                as={nav.icon}
-                                style={
-                                    nav.size
-                                        ? { width: nav.size, height: nav.size }
-                                        : {}
-                                }
-                            />
+                            <ListIcon as={nav.icon} style={nav.size ? { width: nav.size, height: nav.size } : {}} />
                         ) : null}
                         <chakra.span noOfLines={1}>{nav.navText}</chakra.span>
                     </HStack>
                     <chakra.div ref={ref} transition="transform 0.25s">
-                        <Icon
-                            as={FaChevronRight}
-                            display="flex"
-                            alignItems="center"
-                        />
+                        <Icon as={FaChevronRight} display="flex" alignItems="center" />
                     </chakra.div>
                 </NormalItem>
             </ListItem>
@@ -139,21 +120,9 @@ const MenuItemWithChildren = ({ nav, level }: MenuItemWithChildProp) => {
                 <List>
                     {nav?.children?.map((n, index) => {
                         if (!n.children || !n.children.length) {
-                            return (
-                                <MenuItem
-                                    level={level + 1}
-                                    key={`ns-${index}`}
-                                    nav={n}
-                                />
-                            );
+                            return <MenuItem level={level + 1} key={`ns-${index}`} nav={n} />;
                         }
-                        return (
-                            <MenuItemWithChildren
-                                key={`${menuKey}-${index}`}
-                                nav={n}
-                                level={level + 1}
-                            />
-                        );
+                        return <MenuItemWithChildren key={`${menuKey}-${index}`} nav={n} level={level + 1} />;
                     })}
                 </List>
             </Collapse>
@@ -168,21 +137,9 @@ const Menu = () => {
         <List>
             {navigation.map((nav, index) => {
                 if (!nav.children || !nav.children.length) {
-                    return (
-                        <MenuItem
-                            level={0}
-                            key={`${itemKey}-${index}`}
-                            nav={nav}
-                        />
-                    );
+                    return <MenuItem level={0} key={`${itemKey}-${index}`} nav={nav} />;
                 }
-                return (
-                    <MenuItemWithChildren
-                        key={`${itemWithChildKey}-${index}`}
-                        nav={nav}
-                        level={0}
-                    />
-                );
+                return <MenuItemWithChildren key={`${itemWithChildKey}-${index}`} nav={nav} level={0} />;
             })}
         </List>
     );

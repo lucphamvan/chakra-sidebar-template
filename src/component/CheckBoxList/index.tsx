@@ -1,12 +1,5 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import {
-    Checkbox,
-    Input,
-    InputGroup,
-    InputLeftElement,
-    StackProps,
-    VStack
-} from "@chakra-ui/react";
+import { Checkbox, Input, InputGroup, InputLeftElement, StackProps, VStack } from "@chakra-ui/react";
 import { isEmpty } from "@chakra-ui/utils";
 import Button from "component/Button";
 import React, { useEffect, useState } from "react";
@@ -22,12 +15,7 @@ interface ListCheckboxProps {
     hideSearch?: boolean;
 }
 
-const ListCheckbox = ({
-    optionData,
-    applyFunc,
-    hideSearch,
-    ...props
-}: ListCheckboxProps & StackProps) => {
+const ListCheckbox = ({ optionData, applyFunc, hideSearch, ...props }: ListCheckboxProps & StackProps) => {
     const [checkedValues, setCheckedValues] = useState<string[]>([]);
     const [searchValue, setSearchValues] = useState("");
     const [options, setOptions] = useState<Option[]>([]);
@@ -38,17 +26,12 @@ const ListCheckbox = ({
         }
         let defaultOptions = [...optionData];
         if (searchValue) {
-            defaultOptions = defaultOptions.filter((option) =>
-                option.text.includes(searchValue)
-            );
+            defaultOptions = defaultOptions.filter((option) => option.text.includes(searchValue));
         }
         setOptions(defaultOptions);
     }, [optionData, searchValue]);
 
-    const handleCheckboxChange = (
-        e: React.ChangeEvent<HTMLInputElement>,
-        option: any
-    ) => {
+    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, option: any) => {
         if (e.target.checked) {
             setCheckedValues((values) => [...values, option.value]);
         } else {
@@ -87,16 +70,8 @@ const ListCheckbox = ({
         <VStack spacing={2} alignItems="left" {...props}>
             {!hideSearch && (
                 <InputGroup size={"sm"}>
-                    <InputLeftElement
-                        pointerEvents="none"
-                        children={<SearchIcon color="gray.300" />}
-                    />
-                    <Input
-                        type="search"
-                        placeholder="Search"
-                        value={searchValue}
-                        onChange={onSearchChange}
-                    />
+                    <InputLeftElement pointerEvents="none" children={<SearchIcon color="gray.300" />} />
+                    <Input type="search" placeholder="Search" value={searchValue} onChange={onSearchChange} />
                 </InputGroup>
             )}
 

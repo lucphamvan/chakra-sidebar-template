@@ -1,5 +1,6 @@
-import { Grid, GridItem, chakra, Box, Divider } from "@chakra-ui/react";
+import { Box, Divider, Grid, GridItem, chakra } from "@chakra-ui/react";
 import { Fragment } from "react";
+
 import ErrorItem from "./ErrorItem";
 
 const ErrorTypeItem = ({ name }: { name: string }) => (
@@ -17,16 +18,10 @@ interface ErrorFileProp {
     failedTypeFiles?: string[];
 }
 
-const ErrorFile = ({
-    failedUploadFiles,
-    failedSizeFiles,
-    failedTypeFiles
-}: ErrorFileProp) => {
+const ErrorFile = ({ failedUploadFiles, failedSizeFiles, failedTypeFiles }: ErrorFileProp) => {
     const failedUploadItems = (
         <Fragment>
-            {failedUploadFiles && failedUploadFiles?.length > 0 && (
-                <ErrorTypeItem name="File upload failed" />
-            )}
+            {failedUploadFiles && failedUploadFiles?.length > 0 && <ErrorTypeItem name="File upload failed" />}
             {failedUploadFiles?.map((file, index) => (
                 <ErrorItem name={file} key={`err-${index}`} />
             ))}
@@ -35,9 +30,7 @@ const ErrorFile = ({
 
     const failedSizeItems = (
         <Fragment>
-            {failedSizeFiles && failedSizeFiles.length > 0 && (
-                <ErrorTypeItem name="File size is over 20MB" />
-            )}
+            {failedSizeFiles && failedSizeFiles.length > 0 && <ErrorTypeItem name="File size is over 20MB" />}
             {failedSizeFiles?.map((name, index) => (
                 <ErrorItem name={name} key={`errs-${index}`} />
             ))}
@@ -46,9 +39,7 @@ const ErrorFile = ({
 
     const failedTypeItems = (
         <Fragment>
-            {failedTypeFiles && failedTypeFiles.length > 0 && (
-                <ErrorTypeItem name="File not receiving format" />
-            )}
+            {failedTypeFiles && failedTypeFiles.length > 0 && <ErrorTypeItem name="File not receiving format" />}
             {failedTypeFiles?.map((name, index) => (
                 <ErrorItem name={name} key={`errt-${index}`} />
             ))}
@@ -67,13 +58,7 @@ const ErrorFile = ({
             <chakra.legend color="red.400" fontWeight="bold" ml={4} px={4}>
                 Error files
             </chakra.legend>
-            <Grid
-                templateColumns="minmax(0, 1fr) minmax(0, 1fr)"
-                alignItems="center"
-                columnGap={12}
-                rowGap={4}
-                p={4}
-            >
+            <Grid templateColumns="minmax(0, 1fr) minmax(0, 1fr)" alignItems="center" columnGap={12} rowGap={4} p={4}>
                 {failedUploadItems}
                 {failedSizeItems}
                 {failedTypeItems}

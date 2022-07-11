@@ -1,14 +1,7 @@
-import { FaCheckCircle } from "react-icons/fa";
-import {
-    Box,
-    Flex,
-    Icon as ChakraIcon,
-    Spinner,
-    chakra,
-    Link
-} from "@chakra-ui/react";
+import { Box, Icon as ChakraIcon, Flex, Link, Spinner, chakra } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { STYLE } from "config";
+import { FaCheckCircle } from "react-icons/fa";
 
 const Container = styled(Box)`
     position: absolute;
@@ -26,20 +19,11 @@ interface ResumeMenuProp {
     resumeFunc: () => void;
 }
 
-const ResumeMenu = ({
-    isUploading,
-    numError = 0,
-    resumeFunc
-}: ResumeMenuProp) => {
+const ResumeMenu = ({ isUploading, numError = 0, resumeFunc }: ResumeMenuProp) => {
     const Icon = isUploading ? (
         <Spinner w="1.5rem" h="1.5rem" color={STYLE.primaryColor} />
     ) : (
-        <ChakraIcon
-            as={FaCheckCircle}
-            color={STYLE.primaryColor}
-            w="1.5rem"
-            h="1.5rem"
-        />
+        <ChakraIcon as={FaCheckCircle} color={STYLE.primaryColor} w="1.5rem" h="1.5rem" />
     );
 
     const Text = isUploading ? (

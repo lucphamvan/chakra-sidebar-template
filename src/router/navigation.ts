@@ -1,11 +1,5 @@
-import {
-    FaHome,
-    FaShieldAlt,
-    FaUser,
-    FaProductHunt,
-    FaFile
-} from "react-icons/fa";
 import { Circle } from "react-feather";
+import { FaFile, FaHome, FaProductHunt, FaShieldAlt, FaUser } from "react-icons/fa";
 import { NavigationProp } from "type";
 
 const navigation: NavigationProp[] = [

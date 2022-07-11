@@ -1,21 +1,12 @@
-import {
-    Heading,
-    Divider,
-    chakra,
-    GridItem,
-    Wrap,
-    Grid,
-    useToast
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import Card from "component/Card";
+import { Divider, Grid, GridItem, Heading, Wrap, chakra, useToast } from "@chakra-ui/react";
 import Button from "component/Button";
+import Card from "component/Card";
 import InputFormLabel from "component/Form/input-form-label";
-import { useAppDispatch, useAppSelector } from "redux/store";
-import { fetchUser } from "redux/slices/authenSlice";
-
-import usersService from "services/users.service";
 import { notifySuccess } from "component/Toast";
+import { useForm } from "react-hook-form";
+import { fetchUser } from "redux/slices/authenSlice";
+import { useAppDispatch, useAppSelector } from "redux/store";
+import usersService from "services/users.service";
 
 const AccountSetting = () => {
     const {
@@ -55,15 +46,7 @@ const AccountSetting = () => {
             </Heading>
             <Divider my={4} />
             <chakra.form onSubmit={handleSubmit(onSubmit)}>
-                <Grid
-                    templateColumns={[
-                        "repeat(1, 1fr)",
-                        "repeat(1, 1fr)",
-                        "repeat(2, 1fr)"
-                    ]}
-                    gap={8}
-                    rowGap={4}
-                >
+                <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={8} rowGap={4}>
                     <GridItem>
                         <InputFormLabel
                             defaultValue={user?.name}
@@ -93,20 +76,11 @@ const AccountSetting = () => {
                         />
                     </GridItem>
                     <GridItem>
-                        <InputFormLabel
-                            name="address"
-                            label="Address"
-                            errors={errors}
-                            register={register}
-                        />
+                        <InputFormLabel name="address" label="Address" errors={errors} register={register} />
                     </GridItem>
                     <GridItem>
                         <Wrap gap={4} spacing={4}>
-                            <Button
-                                isLoading={isSubmitting}
-                                type="submit"
-                                loadingText="Saving changes..."
-                            >
+                            <Button isLoading={isSubmitting} type="submit" loadingText="Saving changes...">
                                 Save changes
                             </Button>
                             <Button mode="secondary" onClick={discardChange}>

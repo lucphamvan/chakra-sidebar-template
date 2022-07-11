@@ -1,13 +1,17 @@
 import { API } from "config/api";
 import http from "config/http";
-import { Product } from "model/Product";
+import { isEmpty } from "lodash";
+import { Product, ProductCreateInput } from "model/Product";
 import { OrderBy, QueryParam } from "type";
 
 class ProductService {
     public async getProducts(page: number, limit: number, orderBy?: OrderBy[]) {
         const params: QueryParam = { page, limit };
-        if (orderBy) {
+
+        if (!isEmpty(orderBy)) {
             params.orderBy = orderBy;
+        } else {
+            params.orderBy = [{ createdAt: "desc" }];
         }
         const response = await http.get(API.PRODUCT.PRODUCTS, {
             params
@@ -19,6 +23,10 @@ class ProductService {
 
     public count() {
         return http.get(API.PRODUCT.PRODUCTS + "/count");
+    }
+
+    public async createProducts(data: ProductCreateInput) {
+        return http.post(API.PRODUCT.PRODUCTS, data);
     }
 }
 export default new ProductService();

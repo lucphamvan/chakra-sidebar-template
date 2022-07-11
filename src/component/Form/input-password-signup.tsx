@@ -1,11 +1,4 @@
-import {
-    Box,
-    Input,
-    InputGroup,
-    InputLeftElement,
-    InputRightElement,
-    Stack
-} from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputLeftElement, InputRightElement, Stack } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { Eye, EyeOff, Key } from "react-feather";
 import { FieldValues, UseFormRegister, UseFormWatch } from "react-hook-form";
@@ -18,14 +11,7 @@ interface InputPasswordProp {
     name: string;
     watch?: UseFormWatch<FieldValues>;
 }
-const InputPassword = ({
-    register,
-    name,
-    required,
-    placeholder,
-    errors,
-    watch
-}: InputPasswordProp) => {
+const InputPassword = ({ register, name, required, placeholder, errors, watch }: InputPasswordProp) => {
     const [show, setShow] = useState(false);
     const [showRepeat, setShowRepeat] = useState(false);
 
@@ -52,8 +38,7 @@ const InputPassword = ({
                     {...register(name, {
                         required,
                         validate: (value) => {
-                            const regex =
-                                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+                            const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
                             return (
                                 regex.test(value) ||
                                 "Minimum eight characters, at least one upercase, one lowercase and one number"
@@ -66,13 +51,7 @@ const InputPassword = ({
                 <InputRightElement
                     onClick={toggleShow}
                     cursor="pointer"
-                    children={
-                        show ? (
-                            <EyeOff size="1rem" color="#738F93" />
-                        ) : (
-                            <Eye size="1rem" color="#738F93" />
-                        )
-                    }
+                    children={show ? <EyeOff size="1rem" color="#738F93" /> : <Eye size="1rem" color="#738F93" />}
                 />
             </InputGroup>
             <Box color="red.400" fontSize="sm">
@@ -89,10 +68,7 @@ const InputPassword = ({
                     {...register("password_repeat", {
                         required,
                         validate: (value) => {
-                            return (
-                                value === password.current ||
-                                "The password does not match"
-                            );
+                            return value === password.current || "The password does not match";
                         }
                     })}
                     type={showRepeat ? "text" : "password"}
@@ -101,13 +77,7 @@ const InputPassword = ({
                 <InputRightElement
                     onClick={toggleShowRepeat}
                     cursor="pointer"
-                    children={
-                        showRepeat ? (
-                            <EyeOff size="1rem" color="#738F93" />
-                        ) : (
-                            <Eye size="1rem" color="#738F93" />
-                        )
-                    }
+                    children={showRepeat ? <EyeOff size="1rem" color="#738F93" /> : <Eye size="1rem" color="#738F93" />}
                 />
             </InputGroup>
             <Box color="red.400" fontSize="sm">

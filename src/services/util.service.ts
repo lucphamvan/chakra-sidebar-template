@@ -1,4 +1,5 @@
 import jwtDecode from "jwt-decode";
+
 import usersService from "./users.service";
 
 class UtilService {

@@ -1,10 +1,4 @@
-import {
-    Box,
-    Input,
-    InputGroup,
-    InputLeftElement,
-    Stack
-} from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputLeftElement, Stack } from "@chakra-ui/react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputProp {
@@ -16,15 +10,7 @@ interface InputProp {
     leftIcon: React.ReactNode;
     type?: React.HTMLInputTypeAttribute;
 }
-const InputForm = ({
-    register,
-    name,
-    required,
-    placeholder,
-    errors,
-    leftIcon,
-    type
-}: InputProp) => {
+const InputForm = ({ register, name, required, placeholder, errors, leftIcon, type }: InputProp) => {
     return (
         <Stack mb={4}>
             <InputGroup size="lg">
@@ -39,10 +25,7 @@ const InputForm = ({
                         validate: (value) => {
                             if (type === "email") {
                                 const regex = /^[^\s@]+@[^\s@]+$/;
-                                return (
-                                    regex.test(value) ||
-                                    "Incorrect email format"
-                                );
+                                return regex.test(value) || "Incorrect email format";
                             }
                             return undefined;
                         }

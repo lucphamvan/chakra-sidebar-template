@@ -1,10 +1,5 @@
-import {
-    FormControl,
-    FormLabel,
-    Input,
-    FormErrorMessage
-} from "@chakra-ui/react";
-import { UseFormRegister, FieldValues } from "react-hook-form";
+import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputFormProp {
     name: string;
@@ -30,12 +25,7 @@ export const InputFormLabel = ({
 }: InputFormProp) => {
     return (
         <FormControl isInvalid={errors[name]}>
-            <FormLabel
-                fontSize="sm"
-                display="grid"
-                alignItems="center"
-                htmlFor={name}
-            >
+            <FormLabel fontSize="sm" display="grid" alignItems="center" htmlFor={name}>
                 {label}
             </FormLabel>
             <Input
@@ -49,17 +39,13 @@ export const InputFormLabel = ({
                     validate: (value) => {
                         if (type === "email") {
                             const regex = /^[^\s@]+@[^\s@]+$/;
-                            return (
-                                regex.test(value) || "Incorrect email format"
-                            );
+                            return regex.test(value) || "Incorrect email format";
                         }
                         return undefined;
                     }
                 })}
             />
-            <FormErrorMessage>
-                {errors[name] && errors[name].message}
-            </FormErrorMessage>
+            <FormErrorMessage>{errors[name] && errors[name].message}</FormErrorMessage>
         </FormControl>
     );
 };

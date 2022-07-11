@@ -44,12 +44,7 @@ const Toast = ({
             boxShadow={boxShadow}
         >
             <Icon as={IconToast} color={color} w={"1.125rem"} h={"1.125rem"} />
-            <Box
-                fontWeight={700}
-                fontSize="sm"
-                color={color}
-                className="special-font"
-            >
+            <Box fontWeight={700} fontSize="sm" color={color} className="special-font">
                 {title}
             </Box>
             <Icon

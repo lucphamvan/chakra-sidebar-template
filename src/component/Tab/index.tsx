@@ -1,4 +1,4 @@
-import { TabProps, Tab as ChakraTab } from "@chakra-ui/react";
+import { Tab as ChakraTab, TabProps } from "@chakra-ui/react";
 import { STYLE } from "config";
 
 const Tab = ({ children, ...props }: TabProps) => {

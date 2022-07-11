@@ -1,32 +1,33 @@
-import { useRef, useState } from "react";
-import { ErrorCode, FileRejection, useDropzone } from "react-dropzone";
+import { CloseIcon, MinusIcon } from "@chakra-ui/icons";
 import {
+    Box,
+    Center,
     Flex,
+    Grid,
+    GridItem,
     HStack,
+    Icon,
     IconButton,
     Modal,
     ModalBody,
     ModalContent,
     ModalOverlay,
-    Box,
-    Center,
-    chakra,
     Text,
-    Icon,
-    GridItem,
-    Grid,
     Tooltip,
+    chakra,
     useToast
 } from "@chakra-ui/react";
-import { CloseIcon, MinusIcon } from "@chakra-ui/icons";
+import { notifySuccess } from "component/Toast";
+import { STYLE } from "config";
+import { useRef, useState } from "react";
+import { ErrorCode, FileRejection, useDropzone } from "react-dropzone";
 import { FaFolderOpen } from "react-icons/fa";
 import fileService from "services/file.service";
-import { Status, StatusFile } from "./type";
-import ListUploadedFile from "./ListUploadedFile";
+
 import ListErrorFile from "./ListErrorFile";
-import { STYLE } from "config";
+import ListUploadedFile from "./ListUploadedFile";
 import ResumeMenu from "./ResumeMenu";
-import { notifySuccess } from "component/Toast";
+import { Status, StatusFile } from "./type";
 
 interface UploadModalProp {
     isOpen: boolean;
@@ -84,9 +85,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
             setFailedTypeFiles((files) => [...files, ...invalidTypeFiles]);
 
             // this step keep state of all success uploaded files
-            const prevUploadedFile = Array.from(
-                processingUploadFiles.files
-            ).map((file) => file.name);
+            const prevUploadedFile = Array.from(processingUploadFiles.files).map((file) => file.name);
             setAllUploadedFiles((files) => [...prevUploadedFile, ...files]);
 
             // reset processingUploadFiles and start upload files
@@ -119,13 +118,9 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                     file,
                     (event) => {
                         // update percent of upload files
-                        (processingFiles[i] as StatusFile).percent = Math.round(
-                            (100 * event.loaded) / event.total
-                        );
+                        (processingFiles[i] as StatusFile).percent = Math.round((100 * event.loaded) / event.total);
                         // filter processing files
-                        const notFailedFiles = processingFiles.filter(
-                            (status) => status.percent !== 0
-                        );
+                        const notFailedFiles = processingFiles.filter((status) => status.percent !== 0);
                         // update state of processing files
                         setProcessingUploadFiles({ files: notFailedFiles });
                     },
@@ -140,9 +135,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
 
                 // remove failed files of list processing
                 (processingFiles[i] as StatusFile).percent = 0;
-                const notFailedFiles = processingFiles.filter(
-                    (file) => file.percent !== 0
-                );
+                const notFailedFiles = processingFiles.filter((file) => file.percent !== 0);
                 setProcessingUploadFiles({ files: notFailedFiles });
 
                 // add failed files to failed list
@@ -174,10 +167,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
         }, 100);
     };
 
-    const numberError =
-        failedUploadFiles.length +
-        failedSizeFiles.length +
-        failedTypeFiles.length;
+    const numberError = failedUploadFiles.length + failedSizeFiles.length + failedTypeFiles.length;
 
     return (
         <>
@@ -189,11 +179,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                         <Flex flexDir="column" gap={6}>
                             {/*Header section */}
                             <HStack justifyContent="space-evenly">
-                                <Box
-                                    className="special-font"
-                                    fontSize="1.5rem"
-                                    fontWeight="black"
-                                >
+                                <Box className="special-font" fontSize="1.5rem" fontWeight="black">
                                     UPLOAD YOUR FILE
                                 </Box>
 
@@ -211,10 +197,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                                     />
 
                                     {/* close button */}
-                                    <Tooltip
-                                        placement="top"
-                                        label="Close popup and cancel all uploading files"
-                                    >
+                                    <Tooltip placement="top" label="Close popup and cancel all uploading files">
                                         <IconButton
                                             onClick={abortUpload}
                                             variant="ghost"
@@ -235,40 +218,22 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                                     border="2px dashed"
                                     borderColor="gray.300"
                                     rounded="lg"
-                                    cursor={
-                                        isUploading ? "not-allowed" : "pointer"
-                                    }
+                                    cursor={isUploading ? "not-allowed" : "pointer"}
                                     flexDir="column"
                                     gap={4}
                                     py={6}
                                     opacity={isUploading ? 0.7 : 1}
                                 >
                                     <chakra.input {...getInputProps()} />
-                                    <Icon
-                                        as={FaFolderOpen}
-                                        width={24}
-                                        height={24}
-                                        color={STYLE.infoColor}
-                                    />
+                                    <Icon as={FaFolderOpen} width={24} height={24} color={STYLE.infoColor} />
                                     {isDragActive ? (
-                                        <Text
-                                            className="special-font"
-                                            userSelect="none"
-                                            fontWeight="bold"
-                                        >
+                                        <Text className="special-font" userSelect="none" fontWeight="bold">
                                             Drop the files here ...
                                         </Text>
                                     ) : (
-                                        <Box
-                                            userSelect="none"
-                                            className="special-font"
-                                            fontWeight="bold"
-                                        >
+                                        <Box userSelect="none" className="special-font" fontWeight="bold">
                                             Drag and drop your files, or
-                                            <chakra.span
-                                                color={STYLE.infoColor}
-                                                className="special-font"
-                                            >
+                                            <chakra.span color={STYLE.infoColor} className="special-font">
                                                 {" "}
                                                 Browse
                                             </chakra.span>
@@ -278,16 +243,10 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                             </Flex>
 
                             {/* Status section */}
-                            <Grid
-                                templateColumns="repeat(2, minmax(0, 1fr))"
-                                gap={4}
-                                fontSize="0.875rem"
-                            >
+                            <Grid templateColumns="repeat(2, minmax(0, 1fr))" gap={4} fontSize="0.875rem">
                                 <GridItem height={"100%"}>
                                     <ListUploadedFile
-                                        processingUploadFiles={
-                                            processingUploadFiles
-                                        }
+                                        processingUploadFiles={processingUploadFiles}
                                         allUploadedFiles={allUploadedFiles}
                                     />
                                 </GridItem>
@@ -304,11 +263,7 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
                 </ModalContent>
             </Modal>
             {!isOpen && isStartedUpload && (
-                <ResumeMenu
-                    resumeFunc={onToggle}
-                    isUploading={isUploading}
-                    numError={numberError}
-                />
+                <ResumeMenu resumeFunc={onToggle} isUploading={isUploading} numError={numberError} />
             )}
         </>
     );

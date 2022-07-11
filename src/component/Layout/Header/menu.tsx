@@ -1,19 +1,10 @@
-import {
-    MenuButton,
-    HStack,
-    Avatar,
-    MenuItem,
-    chakra,
-    Menu as ChakraMenu,
-    Box,
-    MenuList
-} from "@chakra-ui/react";
+import { Avatar, Box, Menu as ChakraMenu, HStack, MenuButton, MenuItem, MenuList, chakra } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 import { STYLE } from "config";
-import { Settings, LogOut } from "react-feather";
+import { LogOut, Settings } from "react-feather";
+import { NavLink } from "react-router-dom";
 import { logout } from "redux/slices/authenSlice";
 import { useAppDispatch, useAppSelector } from "redux/store";
-import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
 
 const StyledMenuList = styled(MenuList)`
     border: none;
@@ -35,11 +26,7 @@ const Menu = () => {
         <ChakraMenu>
             <MenuButton>
                 <HStack spacing={4}>
-                    <Box
-                        className="special-font"
-                        fontWeight="bold"
-                        textTransform={"uppercase"}
-                    >
+                    <Box className="special-font" fontWeight="bold" textTransform={"uppercase"}>
                         {user?.name}
                     </Box>
                     <Avatar

@@ -1,5 +1,6 @@
 import { TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import PageHeading from "component/page-heading";
+
 import TabList from "./tab-list";
 import AccountSetting from "./tabs/account-setting";
 

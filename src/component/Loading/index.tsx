@@ -7,8 +7,8 @@ const Loading = ({ ...props }: StackProps) => {
             <Spinner
                 width={40}
                 height={40}
-                thickness="6px"
-                speed="0.65s"
+                thickness="8px"
+                speed="0.45s"
                 emptyColor="gray.200"
                 color={STYLE.primaryColor}
             />
