@@ -20,7 +20,7 @@ const TableUI = <T extends object>(props: TableUIProps<T>) => {
     return (
         <Box ref={ref} flex={1} overflow="auto" userSelect="none">
             <Table variant="simple" {...getTableProps()}>
-                <Thead>
+                <Thead position="sticky" top={0} zIndex={99}>
                     {headerGroups.map((headerGroup) => (
                         <Tr {...headerGroup.getHeaderGroupProps()} bg="#F3F7F7">
                             {headerGroup.headers.map((column) => (

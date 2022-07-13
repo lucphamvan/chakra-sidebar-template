@@ -21,6 +21,13 @@ const theme = extendTheme({
             800: "#044224",
             900: "#001809"
         }
+    },
+    styles: {
+        global: {
+            "html, body": {
+                fontSize: "15px"
+            }
+        }
     }
 });
 

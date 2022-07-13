@@ -11,7 +11,9 @@ import {
     Tooltip
 } from "@chakra-ui/react";
 import IconButton from "component/IconButton";
+import React from "react";
 
+import { SIZE_OPTION } from "./config";
 import { PaginationProp } from "./type";
 
 const Pagination = (props: PaginationProp) => {
@@ -27,6 +29,11 @@ const Pagination = (props: PaginationProp) => {
         pageIndex,
         pageSize
     } = props;
+
+    const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setPageSize(Number(e.target.value));
+    };
+
     return (
         <Flex m={4} alignItems="center" gap={4} d="inline-flex" flexWrap="wrap">
             <Flex>
@@ -79,14 +86,8 @@ const Pagination = (props: PaginationProp) => {
                         <NumberDecrementStepper />
                     </NumberInputStepper>
                 </NumberInput>
-                <Select
-                    w={32}
-                    value={pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
+                <Select w={32} value={pageSize} onChange={handlePageSizeChange}>
+                    {SIZE_OPTION.map((pageSize) => (
                         <option key={pageSize} value={pageSize}>
                             Show {pageSize}
                         </option>

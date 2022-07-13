@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { Column, usePagination, useRowSelect, useSortBy, useTable } from "react-table";
 
+import { SIZE_OPTION } from "./config";
 import Pagination from "./pagination";
 import TableUI from "./table";
 import { PaginationProp } from "./type";
@@ -48,7 +49,7 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
         {
             columns,
             data,
-            initialState: { pageIndex: 0 }, // Pass our hoisted table state
+            initialState: { pageIndex: 0, pageSize: SIZE_OPTION[0] }, // Pass our hoisted table state
             manualPagination: true, // Tell the usePagination
             manualSortBy: true, // Tell the sortby
             autoResetPage: false,
