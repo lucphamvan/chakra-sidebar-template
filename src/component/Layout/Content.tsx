@@ -1,12 +1,13 @@
 import { Box } from "@chakra-ui/react";
+import { STYLE } from "config";
 
 import Header from "./Header";
 
 const Content = ({ children }: any) => {
     return (
-        <Box ml="60" p={4} flex={1} display="flex" flexDir="column" overflow={"auto"}>
+        <Box ml="60" p={4} flex={1} display="flex" flexDir="column">
             <Header />
-            <Box mt="5.5rem" flex={1} display="flex" flexDir="column" overflow={"auto"}>
+            <Box mt="5.5rem" height="100%">
                 {children}
             </Box>
         </Box>

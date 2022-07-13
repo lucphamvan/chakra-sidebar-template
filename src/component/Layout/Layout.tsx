@@ -19,7 +19,7 @@ const Layout = () => {
     }
 
     return (
-        <Box h="100vh" bg={STYLE.background} display="flex" flexDir="column">
+        <Box height="100%" display="flex" flexDir="column">
             <SideBar />
             <Content>
                 <Outlet />

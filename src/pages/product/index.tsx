@@ -9,9 +9,7 @@ const ProductPage = () => {
     return (
         <>
             <PageHeading>Product Page</PageHeading>
-            <Card width="initial" mt={4} flex={1} display="flex" flexDir="column" overflow="auto" gap={4}>
-                <ProductGrid />
-            </Card>
+            <ProductGrid />
         </>
     );
 };

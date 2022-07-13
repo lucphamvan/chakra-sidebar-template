@@ -26,7 +26,7 @@ const NewProductPage = () => {
                 price: Number(data.price),
                 sold: false,
                 description: data.desc,
-                amount: data.amount
+                amount: Number(data.amount)
             });
             reset({
                 name: null,

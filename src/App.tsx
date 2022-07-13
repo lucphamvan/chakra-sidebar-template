@@ -1,5 +1,7 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider, background, extendTheme } from "@chakra-ui/react";
+import "animate.css";
 import Loading from "component/Loading";
+import { STYLE } from "config";
 import { Suspense } from "react";
 import { Provider } from "react-redux";
 import store from "redux/store";
@@ -24,8 +26,11 @@ const theme = extendTheme({
     },
     styles: {
         global: {
-            "html, body": {
-                fontSize: "15px"
+            "html, body, #root": {
+                height: "100%",
+                color: "#39424e",
+                fontSize: "15px",
+                background: STYLE.background
             }
         }
     }
