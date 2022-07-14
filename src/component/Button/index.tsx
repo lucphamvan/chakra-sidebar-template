@@ -3,18 +3,13 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { STYLE } from "config";
 
-type StyledButtonProp = ButtonProps & {
-    mode?: "primary" | "secondary";
-};
-
-type CSSProp = {
+type CssProps = {
     bgColor: string;
     bgHoverColor: string;
     boxShadow: string;
     color: string;
 };
-
-const buildStyledButton = (bgColor: string, bgHoverColor: string, boxShadow: string, color: string): CSSProp => {
+const buildStyledButton = (bgColor: string, bgHoverColor: string, boxShadow: string, color: string): CssProps => {
     return {
         bgColor,
         bgHoverColor,
@@ -23,8 +18,11 @@ const buildStyledButton = (bgColor: string, bgHoverColor: string, boxShadow: str
     };
 };
 
-const Button = styled(ChakraButton)(({ mode = "primary", ...props }: StyledButtonProp) => {
-    let styled: CSSProp;
+type Props = ButtonProps & {
+    mode?: "primary" | "secondary";
+};
+const Button = styled(ChakraButton)(({ mode = "primary", ...props }: Props) => {
+    let styled: CssProps;
     switch (mode) {
         case "primary":
             styled = buildStyledButton(STYLE.primaryColor, STYLE.primaryBgHover, STYLE.shadowBtn, "#fff");

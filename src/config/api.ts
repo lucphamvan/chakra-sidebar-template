@@ -17,6 +17,7 @@ export const API = {
     },
     FILE: {
         FILES: "files",
-        UPLOAD: "files/upload"
+        UPLOAD: "files/upload",
+        DOWNLOAD: "files/download/"
     }
 };

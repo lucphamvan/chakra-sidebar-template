@@ -2,6 +2,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "animate.css";
 import Loading from "component/Loading";
 import { STYLE } from "config";
+import { ModalProvider } from "context/modal-provider";
 import { Suspense } from "react";
 import { Provider } from "react-redux";
 import store from "redux/store";
@@ -40,7 +41,9 @@ export const App = () => (
     <Provider store={store}>
         <ChakraProvider theme={theme}>
             <Suspense fallback={<Loading w="100vw" h="100vh" />}>
-                <Router />
+                <ModalProvider>
+                    <Router />
+                </ModalProvider>
             </Suspense>
         </ChakraProvider>
     </Provider>

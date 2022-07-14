@@ -5,6 +5,7 @@ import Card from "component/Card";
 import InputEmail from "component/Form/input-email";
 import InputPassword from "component/Form/input-password";
 import { notifyError } from "component/Toast";
+import { SPECIAL_FONT } from "config";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -60,11 +61,11 @@ const LoginPage = () => {
 
     return (
         <VStack height="100%" justifyContent="center" spacing={8}>
-            <Heading fontFamily={`"Source Code Pro", monospace`} fontSize="3rem" fontWeight="black">
+            <Heading className={SPECIAL_FONT} fontSize="3rem" fontWeight="black">
                 Template
             </Heading>
             <Card p="8" minWidth={{ sm: "20rem", md: "25rem" }}>
-                <Heading fontFamily={`"Source Code Pro", monospace`} fontSize="2rem" fontWeight="bold" mb={4}>
+                <Heading className={SPECIAL_FONT} fontSize="2rem" fontWeight="bold" mb={4}>
                     Login
                 </Heading>
                 <form onSubmit={handleSubmit(onSubmit)}>

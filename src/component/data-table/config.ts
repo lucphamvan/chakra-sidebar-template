@@ -1,1 +1,1 @@
-export const SIZE_OPTION = [15, 30, 45, 60];
+export const SIZE_OPTION = [10, 30, 60, 90];

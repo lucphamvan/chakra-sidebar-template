@@ -20,7 +20,7 @@ export type RouteProp = {
 export type OrderBy = Record<string, "desc" | "asc">;
 
 export interface QueryParam {
-    limit: number;
-    page: number;
+    limit?: number;
+    page?: number;
     orderBy?: OrderBy[];
 }

@@ -33,8 +33,9 @@ interface UploadModalProp {
     isOpen: boolean;
     onToggle: () => void;
     onClose: () => void;
+    reload: () => void;
 }
-const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
+const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => {
     const [processingUploadFiles, setProcessingUploadFiles] = useState<Status>({
         files: []
     }); // store information of processing upload files
@@ -144,7 +145,10 @@ const UploadModal = ({ isOpen, onToggle, onClose }: UploadModalProp) => {
         });
 
         // enable upload modal again
-        Promise.all(uploadPromises).finally(() => setIsUploading(false));
+        Promise.all(uploadPromises).finally(() => {
+            reload();
+            setIsUploading(false);
+        });
     };
 
     const reset = () => {

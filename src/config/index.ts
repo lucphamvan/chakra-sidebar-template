@@ -24,4 +24,6 @@ enum BREAKPOINT {
 
 const TITLE = "TEMPLATE";
 
-export { STYLE, TITLE, BREAKPOINT };
+const SPECIAL_FONT = "special_font";
+
+export { STYLE, TITLE, BREAKPOINT, SPECIAL_FONT };

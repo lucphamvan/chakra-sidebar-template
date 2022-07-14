@@ -25,9 +25,17 @@ export type DataTableProps<T extends object> = {
     getData: Function;
     totalPage: number;
     multipleMenu?: (...params: any) => React.ReactNode;
+    isRefresh?: boolean;
 };
 
-export const DataTable = <T extends object>({ data, columns, getData, totalPage, multipleMenu }: DataTableProps<T>) => {
+export const DataTable = <T extends object>({
+    data,
+    columns,
+    getData,
+    totalPage,
+    multipleMenu,
+    isRefresh
+}: DataTableProps<T>) => {
     const {
         getTableProps,
         getTableBodyProps,
@@ -105,7 +113,7 @@ export const DataTable = <T extends object>({ data, columns, getData, totalPage,
         setLoading(true);
         getData(pageIndex, pageSize, sortBy).finally(() => setLoading(false));
         // eslint-disable-next-line
-    }, [pageIndex, pageSize, sortBy]);
+    }, [pageIndex, pageSize, sortBy, isRefresh]);
 
     return (
         <>

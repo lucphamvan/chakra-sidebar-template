@@ -24,12 +24,14 @@ const NewProductPage = () => {
     const [file, setFile] = useState<File | null>(null);
     const [img, setImg] = useState<any>(null);
 
-    const handleFileChange = (event: any) => {
+    // handle change product image
+    const handleImgChange = (event: any) => {
         if (event.target.files && event.target.files[0]) {
             setImg(URL.createObjectURL(event.target.files[0]));
             setFile(event.target.files[0]);
         }
     };
+
     // handle submit
     const onSubmit = async (data: any) => {
         try {
@@ -74,7 +76,7 @@ const NewProductPage = () => {
                         <Input
                             type="file"
                             accept="image/*"
-                            onChange={handleFileChange}
+                            onChange={handleImgChange}
                             opacity={0}
                             position="absolute"
                             height="100%"
