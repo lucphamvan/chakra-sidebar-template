@@ -4,12 +4,22 @@ const STYLE = {
     primaryBgHover: "#1BA94C",
     primaryShadow: "#add6bc",
     primaryActive: "#1BA94C",
-    errorColor: "red.400",
-    infoColor: "#097BBF",
+
+    errorColor: "#EA5455",
+    infoColor: "#00cfe8",
+    warningColor: "#ff9f43",
+
     shadowBtn: "0 0 10px 1px #add6bc",
     shadowCard: "0 4px 24px 0 rgba(34, 41, 47, 0.1)",
-    shadowErr: "0 0 10px 1px #e28686",
-    shadowInfo: "0 0 10px 1px #097BBF",
+    shadowErr: "0 0 10px 1px #eac2c2",
+    shadowInfo: "0 0 10px 1px #c6d9dc",
+    shadowWarning: "0 0 10px 1px #eedcba",
+
+    bgSuccess: "#E5F8ED",
+    bgError: "#FCEAEA",
+    bgInfo: "#E0F9FC",
+    bgWarning: "#FFF3E8",
+
     secondary: "#ffffff",
     borderRadius: "0.125rem"
 };

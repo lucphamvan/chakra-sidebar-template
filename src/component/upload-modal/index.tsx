@@ -52,7 +52,7 @@ const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => 
     const toast = useToast({
         duration: 3000,
         isClosable: true,
-        position: "top"
+        position: "top-right"
     });
     // hook dropzone
     const { getInputProps, getRootProps, isDragActive } = useDropzone({
@@ -96,6 +96,7 @@ const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => 
         }
     });
 
+    // handle upload file
     const uploadFiles = (acceptedFiles: File[]) => {
         // init status upload info
         const initProcessingFiles = acceptedFiles.map((file) => {
@@ -130,7 +131,13 @@ const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => 
                 // upload done
                 // mark files finished uploaded to render icon finished
                 processingFiles[i].finished = true;
-                notifySuccess(toast, `Upload file ${file.name} successfull`);
+                // notify success
+                const message = (
+                    <Box>
+                        Upload file <chakra.span fontWeight="extrabold">{file.name}</chakra.span> successfull
+                    </Box>
+                );
+                notifySuccess(toast, message);
             } catch (error) {
                 // handle upload file failed
 
@@ -151,6 +158,7 @@ const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => 
         });
     };
 
+    // reset all
     const reset = () => {
         setAllUploadedFiles([]);
         setFailedSizeFiles([]);
@@ -159,6 +167,7 @@ const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => 
         setProcessingUploadFiles({ files: [] });
     };
 
+    // cancel all uploading
     const abortUpload = () => {
         processingUploadFiles.files.forEach((file) => {
             file.controller.abort();

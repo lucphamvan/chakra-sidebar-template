@@ -4,7 +4,7 @@ import { Column } from "react-table";
 
 import ActionButtons from "./action-buttons";
 
-export const columns: Column<File>[] = [
+export const generateColumn = (reload: () => void): Column<File>[] => [
     {
         Header: "Name",
         accessor: "orginalName"
@@ -36,7 +36,7 @@ export const columns: Column<File>[] = [
         ),
         accessor: (row) => row,
         Cell: ({ value }: { value: File }) => {
-            return <ActionButtons file={value} />;
+            return <ActionButtons file={value} reload={reload} />;
         }
     }
 ];

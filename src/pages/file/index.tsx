@@ -10,7 +10,7 @@ import { MdFileUpload } from "react-icons/md";
 import { SortingRule } from "react-table";
 import fileService from "services/file.service";
 
-import { columns } from "./column";
+import { generateColumn } from "./column";
 import { buildOrderByQuery } from "./helper";
 
 const FilePage = () => {
@@ -46,7 +46,7 @@ const FilePage = () => {
                     <DataTable
                         isRefresh={isRefresh}
                         data={files}
-                        columns={columns}
+                        columns={generateColumn(toggleRefresh)}
                         getData={getFiles}
                         totalPage={totalPage}
                     />
