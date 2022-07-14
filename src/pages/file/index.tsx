@@ -1,4 +1,4 @@
-import { HStack, Input, InputGroup, useDisclosure } from "@chakra-ui/react";
+import { HStack, useDisclosure } from "@chakra-ui/react";
 import Button from "component/Button";
 import Card from "component/Card";
 import PageHeading from "component/page-heading";
@@ -11,9 +11,6 @@ const FilePage = () => {
             <PageHeading>File Managment</PageHeading>
             <Card w="100%" mt={4}>
                 <HStack>
-                    <InputGroup>
-                        <Input type="search" />
-                    </InputGroup>
                     <Button onClick={onToggle}>Upload File</Button>
                 </HStack>
                 {/* <DataTable data={} /> */}

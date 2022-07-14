@@ -1,7 +1,6 @@
-import Card from "component/Card";
 import PageHeading from "component/page-heading";
 
-import ProductGrid from "./list-product/product-grid";
+import ProductGrid from "./gird-product";
 
 // import ProductList from "./list-product/product-list";
 

@@ -14,6 +14,14 @@ const STYLE = {
     borderRadius: "0.125rem"
 };
 
+enum BREAKPOINT {
+    sm = "30em",
+    md = "48em",
+    lg = "62em",
+    xl = "80em",
+    "2xl" = "96em"
+}
+
 const TITLE = "TEMPLATE";
 
-export { STYLE, TITLE };
+export { STYLE, TITLE, BREAKPOINT };

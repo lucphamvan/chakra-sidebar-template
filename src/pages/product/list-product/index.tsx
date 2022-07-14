@@ -8,7 +8,7 @@ import { Row, SortingRule } from "react-table";
 import productService from "services/product.service";
 
 import { buildOrderByQuery } from "../helper";
-import { columns } from "./columns";
+import { columns } from "./column";
 import MultipleSelectedMenu from "./multiple-menu";
 
 const ProductList = () => {

@@ -1,4 +1,4 @@
-import { ChakraProvider, background, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "animate.css";
 import Loading from "component/Loading";
 import { STYLE } from "config";

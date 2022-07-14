@@ -35,7 +35,7 @@ const InputNumber = ({
             <chakra.label fontSize="sm" htmlFor={name}>
                 {label}
             </chakra.label>
-            <NumberInput defaultValue={0} allowMouseWheel {...props}>
+            <NumberInput allowMouseWheel {...props}>
                 <NumberInputField
                     {...register(name, {
                         required,
