@@ -1,4 +1,5 @@
-import { Box, HStack, useDisclosure } from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
+import { Box, HStack, Input, InputGroup, InputLeftElement, useDisclosure } from "@chakra-ui/react";
 import Button from "component/Button";
 import Card from "component/Card";
 import { DataTable } from "component/data-table";
@@ -12,6 +13,7 @@ import fileService from "services/file.service";
 
 import { generateColumn } from "./column";
 import { buildOrderByQuery } from "./helper";
+import MultipleMenu from "./multiple-menu";
 
 const FilePage = () => {
     const { isOpen, onToggle, onClose } = useDisclosure();
@@ -33,22 +35,38 @@ const FilePage = () => {
         setIsRefresh((value) => !value);
     };
 
+    const multipleMenu = (selectedFlatRows: any, toggleAllRowsSelected: any) => {
+        return (
+            <MultipleMenu
+                selectedFlatRows={selectedFlatRows}
+                toggleAllRowsSelected={toggleAllRowsSelected}
+                reload={toggleRefresh}
+            />
+        );
+    };
+
     return (
         <>
             <PageHeading>File Managment</PageHeading>
-            <Card w="100%" px={0} mt={4}>
-                <HStack p={4} mb={4} justifyContent="space-between">
+            <Card w="100%" p={0} mt={4}>
+                <HStack p={4} justifyContent="flex-end" spacing={4}>
+                    <InputGroup w="60">
+                        <InputLeftElement children={<SearchIcon />} />
+                        <Input placeholder="Search" type="search" />
+                    </InputGroup>
+
                     <Button leftIcon={<MdFileUpload />} onClick={onToggle}>
-                        Upload
+                        Upload File
                     </Button>
                 </HStack>
-                <Box h="41rem" display="flex" flexDir="column" overflow="auto">
+                <Box h="calc(100vh - 16.5rem)" display="flex" flexDir="column" overflow="auto">
                     <DataTable
                         isRefresh={isRefresh}
                         data={files}
                         columns={generateColumn(toggleRefresh)}
                         getData={getFiles}
                         totalPage={totalPage}
+                        multipleMenu={multipleMenu}
                     />
                 </Box>
                 <UploadModal reload={toggleRefresh} isOpen={isOpen} onToggle={onToggle} onClose={onClose} />

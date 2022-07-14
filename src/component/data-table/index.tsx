@@ -16,7 +16,7 @@ const IndeterminateCheckbox = React.forwardRef(({ indeterminate, checked, ...res
         resolvedRef.current.indeterminate = indeterminate;
     }, [resolvedRef, indeterminate]);
 
-    return <Checkbox colorScheme="primary" isChecked={checked} ref={resolvedRef} {...rest} />;
+    return <Checkbox mt="2px" colorScheme="primary" isChecked={checked} ref={resolvedRef} {...rest} />;
 });
 
 export type DataTableProps<T extends object> = {
@@ -118,7 +118,7 @@ export const DataTable = <T extends object>({
     return (
         <>
             <TableUI {...tableUIProps} />
-            <Flex alignItems="center" justifyContent="space-between" flexWrap="wrap">
+            <Flex alignItems="center" justifyContent="space-between" flexWrap="wrap" mt={4}>
                 <Pagination {...paginationProps} />
                 {multipleMenu && multipleMenu(selectedFlatRows, toggleAllRowsSelected)}
             </Flex>
