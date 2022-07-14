@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 
-import Header from "./Header";
+import Header from "../Header";
 
 const Content = ({ children }: any) => {
     return (
