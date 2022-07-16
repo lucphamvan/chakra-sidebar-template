@@ -1,6 +1,7 @@
 import { Box, Center, useToast } from "@chakra-ui/react";
 import Button from "component/Button";
 import { notifyError, notifySuccess } from "component/Toast";
+import useModals from "context/modal-provider";
 import { File } from "model/File";
 import React from "react";
 import { Row } from "react-table";
@@ -20,6 +21,7 @@ const MultipleSelectedMenu = <T extends object>({
     reload
 }: MultipleSelectedMenuProp<T>) => {
     const toast = useToast({ duration: 3000, position: "top-right" });
+    const { confirm } = useModals();
     // delete single file
     const deleteFile = async (file: File) => {
         try {
@@ -33,6 +35,10 @@ const MultipleSelectedMenu = <T extends object>({
 
     // function handle delete row select
     const handleDelete = async () => {
+        const ok = await confirm(`Are you sure to delete ${selectedFlatRows.length} files ?`);
+        if (!ok) {
+            return;
+        }
         const promiseList: Promise<any>[] = [];
         selectedFlatRows.forEach((row) => {
             const promise = deleteFile(row.original as File);

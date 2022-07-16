@@ -39,7 +39,7 @@ const Button = styled(ChakraButton)(({ mode = "primary", ...props }: Props) => {
         color: ${styled.color};
 
         font-weight: ${props.fontWeight ?? 600};
-        font-family: "Source Code Pro", monospace;
+        /* font-family: "Source Code Pro", monospace; */
 
         border-radius: 0.125rem;
         border: 2px solid ${STYLE.primaryColor};

@@ -13,7 +13,7 @@
 
 button {
     border-radius: 0.125rem !important;
-    font-family: "Source Code Pro", monospace !important;
+    // font-family: "Source Code Pro", monospace !important;
 }
 button:focus {
     outline: none !important;
@@ -29,9 +29,9 @@ select:focus {
     border: 1px solid #1ba94c !important;
 }
 
-.special-font {
-    font-family: "Source Code Pro", monospace !important;
-}
+// .special-font {
+//     // font-family: "Source Code Pro", monospace !important;
+// }
 
 /* custom scrollbar */
 ::-webkit-scrollbar {

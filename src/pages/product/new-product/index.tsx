@@ -1,4 +1,4 @@
-import { Box, Grid, Icon, Image, Input, chakra, useToast } from "@chakra-ui/react";
+import { Box, Flex, Grid, Image, chakra, useToast } from "@chakra-ui/react";
 import Button from "component/Button";
 import Card from "component/Card";
 import InputFormLabel from "component/Form/input-form-label";
@@ -6,11 +6,15 @@ import InputNumber from "component/Form/input-number";
 import { notifyError } from "component/Toast";
 import PageHeading from "component/page-heading";
 import { ERROR } from "config/error";
-import { useState } from "react";
+import useModals from "context/modal-provider";
+import { useMemo, useState } from "react";
+import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
-import { MdFileUpload } from "react-icons/md";
 import fileService from "services/file.service";
 import productService from "services/product.service";
+
+import { CloseIcon } from "./index.styled";
+import UploadBox from "./upload-box";
 
 const NewProductPage = () => {
     const {
@@ -19,37 +23,90 @@ const NewProductPage = () => {
         handleSubmit,
         reset
     } = useForm();
+    const { alert } = useModals();
     const toast = useToast({ duration: 3000 });
 
-    const [file, setFile] = useState<File | null>(null);
-    const [img, setImg] = useState<any>(null);
+    const [files, setFiles] = useState<File[]>([]); // state handle list files upload
+    const [imgSrcList, setImgSrcList] = useState<any[]>([]); // state handle list img src created from upload files
+
+    // ondrop
+    const { getRootProps, getInputProps } = useDropzone({
+        accept: {
+            "image/*": [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".tif", ".tiff"]
+        },
+        onDrop: (acceptedFiles, rejectFiles, event) => {
+            handleImgChange(acceptedFiles);
+        }
+    });
+
+    // remove image
+    const handleRemoveImg = (index: number) => {
+        setImgSrcList((value) => {
+            const copy = [...value];
+            copy.splice(index, 1);
+            return copy;
+        });
+        setFiles((value) => {
+            const copy = [...value];
+            copy.splice(index, 1);
+            return copy;
+        });
+    };
+
+    // render list image upload
+    const ImageList = useMemo(() => {
+        if (!imgSrcList?.length) {
+            return null;
+        }
+
+        return imgSrcList?.map((src, index) => (
+            <Box key={`img-${index}`} position="relative">
+                <Image bg="gray.100" src={src} objectFit="scale-down" boxSize="40" />
+                <CloseIcon onClick={() => handleRemoveImg(index)} aria-label="close" variant="ghost" />
+            </Box>
+        ));
+    }, [imgSrcList]);
 
     // handle change product image
-    const handleImgChange = (event: any) => {
-        if (event.target.files && event.target.files[0]) {
-            setImg(URL.createObjectURL(event.target.files[0]));
-            setFile(event.target.files[0]);
+    const handleImgChange = (uploadedFileList: File[]) => {
+        // limit 10 files
+        if (imgSrcList.length + uploadedFileList.length >= 10) {
+            alert(<Box fontWeight="semibold">Cannot upload more than 10 images</Box>);
+            return;
         }
+
+        const _imgSrcList: any[] = [];
+        const _files: File[] = [];
+        if (uploadedFileList) {
+            uploadedFileList.forEach((file) => {
+                _imgSrcList.push(URL.createObjectURL(file as any));
+                _files.push(file);
+            });
+        }
+        setImgSrcList([...imgSrcList, ..._imgSrcList]);
+        setFiles([...files, ..._files]);
     };
 
     // handle submit
     const onSubmit = async (data: any) => {
         try {
-            let url;
-            if (file) {
-                const response = await fileService.upload(file);
-                url = response.data.url;
-            }
+            const promiseList = files?.map((file) => {
+                return fileService.upload(file);
+            });
+            const responseList = await Promise.all(promiseList);
+            const fileIdList = responseList.map((res) => res.data.id);
+
             await productService.createProducts({
                 name: data.name,
                 price: Number(data.price),
                 sold: false,
                 description: data.desc,
                 amount: Number(data.amount),
-                imgUrl: url
+                fileId: fileIdList
             });
-            setImg(null);
-            setFile(null);
+
+            setImgSrcList([]);
+            setFiles([]);
             reset();
         } catch (error: any) {
             console.log("failed create product", error.message);
@@ -63,33 +120,11 @@ const NewProductPage = () => {
             <PageHeading>New Product Page</PageHeading>
             <Card width="100%" mt={4}>
                 <chakra.form onSubmit={handleSubmit(onSubmit)}>
-                    <Box
-                        w={60}
-                        h={60}
-                        mb={4}
-                        backgroundColor="#F3F7F7"
-                        display="flex"
-                        position="relative"
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                        <Input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImgChange}
-                            opacity={0}
-                            position="absolute"
-                            height="100%"
-                        />
-                        {!img && (
-                            <Box>
-                                <Icon as={MdFileUpload} w="4rem" h="4rem" />
-                            </Box>
-                        )}
-                        {!!img && <Image src={img} objectFit="cover" boxSize="100%" />}
-                    </Box>
-
-                    <Grid templateColumns="repeat(2, 1fr)" gap={4} mb={4}>
+                    <Flex flexDir="row" flexWrap="wrap" gap={4} alignItems="center">
+                        <UploadBox getInputProps={getInputProps} getRootProps={getRootProps} />
+                        {ImageList}
+                    </Flex>
+                    <Grid templateColumns="repeat(2, 1fr)" gap={4} my={4}>
                         <InputFormLabel
                             name="name"
                             label="Name"

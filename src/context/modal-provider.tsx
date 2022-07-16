@@ -19,9 +19,9 @@ enum ModalType {
 }
 
 export interface Modals {
-    alert: (message: string) => Promise<any>;
+    alert: (message: any) => Promise<any>;
     confirm: (message: any) => Promise<any>;
-    prompt: (message: string, defaultValue?: string) => Promise<any>;
+    prompt: (message: any, defaultValue?: string) => Promise<any>;
 }
 
 const defaultContext: Modals = {

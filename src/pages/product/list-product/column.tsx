@@ -30,7 +30,7 @@ export const columns: Column<Product>[] = [
     },
     {
         Header: "Created By",
-        accessor: "User",
+        accessor: "user",
         Cell: (row) => row.value?.name,
         width: "20%"
     },

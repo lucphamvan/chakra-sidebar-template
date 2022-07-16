@@ -33,7 +33,7 @@ const ProductItem = ({ item }: Props) => {
             <Box fontWeight="14px" color="gray.500" noOfLines={1}>
                 {item.description}
             </Box>
-            <Image src={item.imgUrl} boxSize="10rem" objectFit="cover" userSelect="none" />
+            <Image src={item.files?.at(0)?.url} boxSize="10rem" objectFit="cover" userSelect="none" />
             <Box>
                 Amount :{" "}
                 <chakra.span fontWeight="semibold" color={STYLE.primaryColor}>
@@ -46,7 +46,7 @@ const ProductItem = ({ item }: Props) => {
                     {item.price}$
                 </chakra.span>
             </Box>
-            <Box>{item.User?.name}</Box>
+            <Box>{item.user?.name}</Box>
         </ItemWrapper>
     );
 };

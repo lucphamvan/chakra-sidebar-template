@@ -1,3 +1,4 @@
+import { File } from "./File";
 import { User } from "./User";
 
 export interface Product {
@@ -9,9 +10,12 @@ export interface Product {
     description?: string;
     userId?: string;
     imgUrl?: string;
-    User?: User;
+    user?: User;
+    files?: File[];
     no?: number;
     createdAt?: string;
 }
 
-export type ProductCreateInput = Omit<Product, "id">;
+export interface ProductCreateInput extends Omit<Product, "id"> {
+    fileId?: string | string[];
+}
