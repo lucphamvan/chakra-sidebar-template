@@ -1,7 +1,9 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { HStack, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Box, HStack, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import Card from "component/Card";
 import { DataTable } from "component/data-table";
-import { STYLE } from "config";
+import PageHeading from "component/page-heading";
+import { STYLE, TABLE_HEIGHT } from "config";
 import { Product } from "model/Product";
 import { useCallback, useState } from "react";
 import { Row, SortingRule } from "react-table";
@@ -39,20 +41,25 @@ const ProductList = () => {
 
     return (
         <>
-            <HStack>
-                <InputGroup maxW={60}>
-                    <InputLeftElement children={<SearchIcon color={STYLE.primaryColor} />} />
-                    <Input />
-                </InputGroup>
-            </HStack>
-            <DataTable
-                getData={getProducts}
-                totalPage={pageCount}
-                columns={columns}
-                data={products}
-                /** this component will inject to DataTable */
-                multipleMenu={renderMultipleMenu}
-            />
+            <PageHeading>Product Management Page</PageHeading>
+            <Card width={"100%"} p={0} mt={4}>
+                <HStack p={4}>
+                    <InputGroup maxW={60}>
+                        <InputLeftElement children={<SearchIcon color={STYLE.primaryColor} />} />
+                        <Input />
+                    </InputGroup>
+                </HStack>
+                <Box h={TABLE_HEIGHT} display="flex" flexDir="column" overflow="auto">
+                    <DataTable
+                        getData={getProducts}
+                        totalPage={pageCount}
+                        columns={columns(() => {})}
+                        data={products}
+                        /** this component will inject to DataTable */
+                        multipleMenu={renderMultipleMenu}
+                    />
+                </Box>
+            </Card>
         </>
     );
 };

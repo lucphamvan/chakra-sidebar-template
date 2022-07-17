@@ -1,4 +1,4 @@
-const STYLE = {
+export const STYLE = {
     background: "#F3F7F7",
     primaryColor: "#1BA94C",
     primaryBgHover: "#1BA94C",
@@ -24,7 +24,7 @@ const STYLE = {
     borderRadius: "0.125rem"
 };
 
-enum BREAKPOINT {
+export enum BREAKPOINT {
     sm = "30em",
     md = "48em",
     lg = "62em",
@@ -32,8 +32,8 @@ enum BREAKPOINT {
     "2xl" = "96em"
 }
 
-const TITLE = "TEMPLATE";
+export const TITLE = "TEMPLATE";
 
-const SPECIAL_FONT = "special_font";
+export const SPECIAL_FONT = "special_font";
 
-export { STYLE, TITLE, BREAKPOINT, SPECIAL_FONT };
+export const TABLE_HEIGHT = "calc(100vh - 16.5rem)";

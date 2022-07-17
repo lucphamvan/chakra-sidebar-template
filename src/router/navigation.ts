@@ -9,11 +9,6 @@ const navigation: NavigationProp[] = [
         icon: FaHome
     },
     {
-        path: "/users",
-        navText: "Users",
-        icon: FaUser
-    },
-    {
         path: "",
         navText: "Products",
         icon: FaProductHunt,
@@ -29,13 +24,25 @@ const navigation: NavigationProp[] = [
                 navText: "Create",
                 icon: Circle,
                 size: "0.615rem"
+            },
+            {
+                path: "/products/manage",
+                navText: "Manage",
+                icon: Circle,
+                size: "0.615rem"
             }
         ]
     },
+
     {
         path: "/files",
         navText: "File",
         icon: FaFile
+    },
+    {
+        path: "/users",
+        navText: "Users",
+        icon: FaUser
     },
     {
         path: "/setting",

@@ -5,6 +5,7 @@ import Card from "component/Card";
 import { DataTable } from "component/data-table";
 import PageHeading from "component/page-heading";
 import UploadModal from "component/upload-modal";
+import { TABLE_HEIGHT } from "config";
 import { File } from "model/File";
 import { useCallback, useState } from "react";
 import { MdFileUpload } from "react-icons/md";
@@ -59,7 +60,7 @@ const FilePage = () => {
                         Upload File
                     </Button>
                 </HStack>
-                <Box h="calc(100vh - 16.5rem)" display="flex" flexDir="column" overflow="auto">
+                <Box h={TABLE_HEIGHT} display="flex" flexDir="column" overflow="auto">
                     <DataTable
                         isRefresh={isRefresh}
                         data={files}

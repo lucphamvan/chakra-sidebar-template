@@ -1,10 +1,11 @@
-import { CheckIcon } from "@chakra-ui/icons";
-import { STYLE } from "config";
+import { Box } from "@chakra-ui/react";
 import { Product } from "model/Product";
 import moment from "moment";
 import { Column } from "react-table";
 
-export const columns: Column<Product>[] = [
+import ActionButtons from "./action-buttons";
+
+export const columns = (reload: () => void): Column<Product>[] => [
     {
         Header: "No.",
         accessor: "no",
@@ -42,12 +43,15 @@ export const columns: Column<Product>[] = [
         }
     },
     {
-        Header: "Sold",
-        accessor: "sold",
-        disableSortBy: true,
-        width: "10%",
-        Cell: (props) => {
-            return !props.value ? <CheckIcon color={STYLE.primaryColor} /> : null;
+        id: "actions",
+        Header: () => (
+            <Box pl={6} display="inline">
+                Actions
+            </Box>
+        ),
+        accessor: (row) => row,
+        Cell: ({ value }: { value: Product }) => {
+            return <ActionButtons product={value} reload={reload} />;
         }
     }
 ];

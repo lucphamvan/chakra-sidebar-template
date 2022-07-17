@@ -8,12 +8,12 @@ const Wrapper = styled(chakra.header)`
     min-height: 4rem;
     height: 4rem;
     background: #f1f1f1;
-    padding: 1rem;
+    padding: 1rem 2rem;
     align-items: center;
-    position: fixed;
-    width: calc(100% - 15rem);
-    margin-left: -1rem;
-    margin-top: -1rem;
+    position: absolute;
+    width: calc(100%);
+    left: 0;
+    top: 0;
     z-index: 99;
 `;
 

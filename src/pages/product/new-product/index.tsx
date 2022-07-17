@@ -7,13 +7,13 @@ import { notifyError } from "component/Toast";
 import PageHeading from "component/page-heading";
 import { ERROR } from "config/error";
 import useModals from "context/modal-provider";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
 import fileService from "services/file.service";
 import productService from "services/product.service";
 
-import { CloseIcon } from "./index.styled";
+import { CloseBtn, ImgBox, PrimaryBtn } from "./index.styled";
 import UploadBox from "./upload-box";
 
 const NewProductPage = () => {
@@ -28,6 +28,7 @@ const NewProductPage = () => {
 
     const [files, setFiles] = useState<File[]>([]); // state handle list files upload
     const [imgSrcList, setImgSrcList] = useState<any[]>([]); // state handle list img src created from upload files
+    const [primaryImgIndex, setPrimaryImgIndex] = useState(0);
 
     // ondrop
     const { getRootProps, getInputProps } = useDropzone({
@@ -40,17 +41,31 @@ const NewProductPage = () => {
     });
 
     // remove image
-    const handleRemoveImg = (index: number) => {
-        setImgSrcList((value) => {
-            const copy = [...value];
-            copy.splice(index, 1);
-            return copy;
-        });
-        setFiles((value) => {
-            const copy = [...value];
-            copy.splice(index, 1);
-            return copy;
-        });
+    const handleRemoveImg = useCallback(
+        (index: number) => {
+            setImgSrcList((value) => {
+                const copy = [...value];
+                copy.splice(index, 1);
+                return copy;
+            });
+            setFiles((value) => {
+                const copy = [...value];
+                copy.splice(index, 1);
+                return copy;
+            });
+            // re-calculate primary index
+            // if remove index less than current primary index => descrease primary index by 1
+            if (index < primaryImgIndex) {
+                setPrimaryImgIndex((value) => value - 1);
+            } else if (index === primaryImgIndex) {
+                setPrimaryImgIndex(0);
+            }
+        },
+        [primaryImgIndex]
+    );
+
+    const handleSetPrimaryImg = (index: number) => {
+        setPrimaryImgIndex(index);
     };
 
     // render list image upload
@@ -60,12 +75,17 @@ const NewProductPage = () => {
         }
 
         return imgSrcList?.map((src, index) => (
-            <Box key={`img-${index}`} position="relative">
+            <ImgBox key={`img-${index}`}>
                 <Image bg="gray.100" src={src} objectFit="scale-down" boxSize="40" />
-                <CloseIcon onClick={() => handleRemoveImg(index)} aria-label="close" variant="ghost" />
-            </Box>
+                <CloseBtn aria-label="close" onClick={() => handleRemoveImg(index)} />
+                <PrimaryBtn
+                    aria-label="primary product image"
+                    style={{ visibility: index === primaryImgIndex ? "visible" : "hidden" }}
+                    onClick={() => handleSetPrimaryImg(index)}
+                />
+            </ImgBox>
         ));
-    }, [imgSrcList]);
+    }, [imgSrcList, primaryImgIndex, handleRemoveImg]);
 
     // handle change product image
     const handleImgChange = (uploadedFileList: File[]) => {
@@ -102,7 +122,8 @@ const NewProductPage = () => {
                 sold: false,
                 description: data.desc,
                 amount: Number(data.amount),
-                fileId: fileIdList
+                fileId: fileIdList,
+                imgUrl: responseList.at(primaryImgIndex)?.data.url
             });
 
             setImgSrcList([]);

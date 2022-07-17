@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { File } from "model/File";
+import moment from "moment";
 import { Column } from "react-table";
 
 import ActionButtons from "./action-buttons";
@@ -25,7 +26,10 @@ export const generateColumn = (reload: () => void): Column<File>[] => [
     },
     {
         Header: "Uploaded At",
-        accessor: "createdAt"
+        accessor: "createdAt",
+        Cell: (props) => {
+            return moment(props.value).format("MMMM Do YYYY, HH:mm:ss");
+        }
     },
     {
         id: "actions",
