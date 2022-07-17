@@ -5,8 +5,8 @@ import { Product, ProductCreateInput } from "model/Product";
 import { OrderBy, QueryParam } from "type";
 
 class ProductService {
-    public async getProducts(page: number, limit: number, orderBy?: OrderBy[]) {
-        const params: QueryParam = { page, limit };
+    public async getProducts(page: number, limit: number, orderBy?: OrderBy[], search?: string) {
+        const params: QueryParam = { page, limit, search };
 
         if (!isEmpty(orderBy)) {
             params.orderBy = orderBy;
@@ -31,6 +31,14 @@ class ProductService {
 
     public async delete(product: Product) {
         return http.delete(API.PRODUCT.PRODUCTS + "/" + product.id);
+    }
+
+    public async generateProducts() {
+        return http.post("/products/generate");
+    }
+
+    public async deleteAllProducts() {
+        return http.delete("/products/delete-all");
     }
 }
 export default new ProductService();

@@ -22,5 +22,6 @@ export type OrderBy = Record<string, "desc" | "asc">;
 export interface QueryParam {
     limit?: number;
     page?: number;
+    search?: string;
     orderBy?: OrderBy[];
 }

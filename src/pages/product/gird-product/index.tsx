@@ -17,6 +17,7 @@ const ListContainer = styled(Box)`
     gap: 2rem;
     background-color: ${STYLE.background};
     margin-top: 1rem;
+    padding: 0 2rem;
     grid-template-columns: repeat(1, minmax(0, 1fr));
 
     @media (min-width: ${BREAKPOINT.sm}) {

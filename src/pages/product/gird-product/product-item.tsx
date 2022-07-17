@@ -16,6 +16,11 @@ const ItemWrapper = styled(Box)`
     &:hover {
         transform: translateY(-10px);
     }
+    aspect-ratio: 5/4; // important to keep ratio and specify height based on width
+`;
+
+const StyledImage = styled(Image)`
+    aspect-ratio: 5/3; // important to keep ratio and specify height based on width
 `;
 
 interface Props {
@@ -24,12 +29,11 @@ interface Props {
 const ProductItem = ({ item }: Props) => {
     const ref = useRef<any>();
     return (
-        <ItemWrapper h={(ref?.current?.clientWidth * 3) / 5 + 90}>
-            <Image
+        <ItemWrapper>
+            <StyledImage
                 ref={ref}
                 src={item.imgUrl}
                 width="100%"
-                h={(ref?.current?.clientWidth * 3) / 5}
                 bg="gray.900"
                 objectFit="scale-down"
                 userSelect="none"
