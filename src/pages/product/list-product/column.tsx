@@ -45,7 +45,7 @@ export const columns = (reload: () => void): Column<Product>[] => [
     {
         id: "actions",
         Header: () => (
-            <Box pl={6} display="inline">
+            <Box pl={3} display="inline">
                 Actions
             </Box>
         ),

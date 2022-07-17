@@ -16,6 +16,11 @@ import MultipleSelectedMenu from "./multiple-menu";
 const ProductList = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [pageCount, setPageCount] = useState(0);
+    const [isRefresh, setIsRefresh] = useState(false);
+
+    const toggleRefresh = () => {
+        setIsRefresh((value) => !value);
+    };
 
     // function get data from server with pagination + sort
     // this function will pass to DataTable and call in it
@@ -53,8 +58,9 @@ const ProductList = () => {
                     <DataTable
                         getData={getProducts}
                         totalPage={pageCount}
-                        columns={columns(() => {})}
+                        columns={columns(toggleRefresh)}
                         data={products}
+                        isRefresh={isRefresh}
                         /** this component will inject to DataTable */
                         multipleMenu={renderMultipleMenu}
                     />

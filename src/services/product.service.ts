@@ -28,5 +28,9 @@ class ProductService {
     public async createProducts(data: ProductCreateInput) {
         return http.post(API.PRODUCT.PRODUCTS, data);
     }
+
+    public async delete(product: Product) {
+        return http.delete(API.PRODUCT.PRODUCTS + "/" + product.id);
+    }
 }
 export default new ProductService();

@@ -44,7 +44,7 @@ export const CloseBtn = ({ ...props }: IconButtonProps) => {
             className="primary-img-btn"
             fontSize={16}
             variant="ghost"
-            icon={<MdClose strokeWidth={2} color="#ffbcbc" />}
+            icon={<MdClose strokeWidth={2} color="#ffffff" />}
             {...props}
         />
     );
