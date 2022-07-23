@@ -14,7 +14,7 @@ const ItemContainer = styled(Box)`
 
 const ListContainer = styled(Box)`
     display: grid;
-    gap: 1rem;
+    gap: 2rem;
     background-color: ${STYLE.background};
     margin-top: 1rem;
     grid-template-columns: repeat(1, minmax(0, 1fr));

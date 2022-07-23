@@ -7,7 +7,7 @@ import Menu from "./menu";
 const Wrapper = styled(chakra.header)`
     min-height: 4rem;
     height: 4rem;
-    background: #f1f1f1;
+    background: ${STYLE.background};
     padding: 1rem 2rem;
     align-items: center;
     position: absolute;
@@ -23,7 +23,7 @@ const HeaderWrapper = styled(chakra.header)`
     padding: 1rem;
     border-radius: 0.125rem;
     background: ${STYLE.background};
-    box-shadow: ${STYLE.shadowCard};
+    /* box-shadow: ${STYLE.shadowCard}; */
     align-items: center;
     background: #fff;
     display: flex;

@@ -8,6 +8,8 @@ export const STYLE = {
     errorColor: "#EA5455",
     infoColor: "#00cfe8",
     warningColor: "#ff9f43",
+    textColor: "#39424e",
+    secondaryColor: "#738f93",
 
     shadowBtn: "0 4px 12px #6f9fffa6",
     shadowCard: "0 4px 24px 0 rgba(34, 41, 47, 0.1)",
@@ -35,8 +37,8 @@ export enum BREAKPOINT {
     "2xl" = "96em"
 }
 
-export const TITLE = "TEMPLATE";
+export const TITLE = "KUL DRAGON";
 
 export const SPECIAL_FONT = "special_font";
 
-export const TABLE_HEIGHT = "calc(100vh - 16.5rem)";
+export const TABLE_HEIGHT = "calc(100vh - 16rem)";

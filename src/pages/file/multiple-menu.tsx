@@ -1,7 +1,7 @@
 import { Box, Center, useToast } from "@chakra-ui/react";
 import Button from "component/Button";
 import { notifyError, notifySuccess } from "component/Toast";
-import useModals from "context/modal-provider";
+import usePopup from "context/modal-provider";
 import { File } from "model/File";
 import React from "react";
 import { Row } from "react-table";
@@ -21,7 +21,7 @@ const MultipleSelectedMenu = <T extends object>({
     reload
 }: MultipleSelectedMenuProp<T>) => {
     const toast = useToast({ duration: 3000, position: "top-right" });
-    const { confirm } = useModals();
+    const { confirm } = usePopup();
     // delete single file
     const deleteFile = async (file: File) => {
         try {

@@ -2,7 +2,7 @@ import { Box, HStack, Tooltip, chakra, useToast } from "@chakra-ui/react";
 import IconButton from "component/IconButton";
 import { notifyError, notifySuccess } from "component/Toast";
 import { STYLE } from "config";
-import useModals from "context/modal-provider";
+import usePopup from "context/modal-provider";
 import { File } from "model/File";
 import { MdDelete, MdEdit, MdFileDownload } from "react-icons/md";
 import fileService from "services/file.service";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ActionButtons = ({ file, reload }: Props) => {
-    const { confirm } = useModals();
+    const { confirm } = usePopup();
     const toast = useToast({ duration: 3000, position: "top-right" });
 
     const onDownload = async () => {

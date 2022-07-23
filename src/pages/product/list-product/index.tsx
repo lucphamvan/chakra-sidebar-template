@@ -1,4 +1,5 @@
 import { Box, HStack, Text } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 import Card from "component/Card";
 import { DataTable } from "component/data-table";
 import SearchInput from "component/data-table/search-input";
@@ -13,6 +14,16 @@ import { buildOrderByQuery } from "../helper";
 import { columns } from "./column";
 import Filter from "./filter";
 import MultipleSelectedMenu from "./multiple-menu";
+
+const TableWrapper = styled(Box)`
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: ${TABLE_HEIGHT};
+    td {
+        border: none;
+    }
+`;
 
 const ProductList = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -56,15 +67,15 @@ const ProductList = () => {
     return (
         <>
             <PageHeading>Product management</PageHeading>
-            <Card width={"100%"} p={0} mt={4}>
-                <HStack p={4} justifyContent="space-between">
-                    <HStack spacing={4}>
-                        <Text fontWeight={600}>Search Product</Text>
-                        <SearchInput setSearch={setSearch} triggerSeach={toggleRefresh} />
-                        <Filter />
-                    </HStack>
+            <HStack py={4} justifyContent="space-between">
+                <HStack spacing={4}>
+                    <Text fontWeight={600}>Search Product</Text>
+                    <SearchInput setSearch={setSearch} triggerSeach={toggleRefresh} />
+                    <Filter />
                 </HStack>
-                <Box h={TABLE_HEIGHT} display="flex" flexDir="column" overflow="auto">
+            </HStack>
+            <Card width={"100%"} p={0}>
+                <TableWrapper>
                     <DataTable
                         getData={getProducts}
                         totalPage={pageCount}
@@ -74,7 +85,7 @@ const ProductList = () => {
                         /** this component will inject to DataTable */
                         multipleMenu={renderMultipleMenu}
                     />
-                </Box>
+                </TableWrapper>
             </Card>
         </>
     );

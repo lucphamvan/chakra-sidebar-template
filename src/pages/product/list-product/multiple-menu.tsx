@@ -1,7 +1,7 @@
 import { Box, Center, useToast } from "@chakra-ui/react";
 import Button from "component/Button";
 import { notifyError, notifySuccess } from "component/Toast";
-import useModals from "context/modal-provider";
+import usePopup from "context/modal-provider";
 import { Product } from "model/Product";
 import React from "react";
 import { Row } from "react-table";
@@ -20,7 +20,7 @@ const MultipleSelectedMenu = <T extends object>({
     toggleAllRowsSelected,
     reload
 }: MultipleSelectedMenuProp<T>) => {
-    const { confirm } = useModals();
+    const { confirm } = usePopup();
     const toast = useToast({ duration: 3000, position: "top-right" });
 
     // delete single product

@@ -2,7 +2,7 @@ import { Box, HStack, Tooltip, chakra, useToast } from "@chakra-ui/react";
 import IconButton from "component/IconButton";
 import { notifyError, notifySuccess } from "component/Toast";
 import { STYLE } from "config";
-import useModals from "context/modal-provider";
+import usePopup from "context/modal-provider";
 import { Product } from "model/Product";
 import { MdDelete, MdEdit } from "react-icons/md";
 import productService from "services/product.service";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ActionButtons = ({ product, reload }: Props) => {
-    const { confirm } = useModals();
+    const { confirm } = usePopup();
     const toast = useToast({ duration: 3000, position: "top-right" });
 
     // delete message confirm modal

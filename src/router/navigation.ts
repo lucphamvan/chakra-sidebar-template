@@ -1,5 +1,4 @@
-import { Circle } from "react-feather";
-import { FaFile, FaHome, FaProductHunt, FaShieldAlt, FaUser } from "react-icons/fa";
+import { FaCircle as Circle, FaFile, FaHome, FaProductHunt, FaShieldAlt, FaUser } from "react-icons/fa";
 import { NavigationProp } from "type";
 
 const navigation: NavigationProp[] = [

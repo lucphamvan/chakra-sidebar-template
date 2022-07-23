@@ -53,7 +53,12 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
                 </GridItem>
                 <GridItem alignItems="center">
                     <Flex alignItems="center" width="100%" gap={4}>
-                        <Progress colorScheme="blue" width="100%" rounded="full" value={info.percent} />
+                        <Progress
+                            colorScheme={info.finished ? "green" : "blue"}
+                            width="100%"
+                            rounded="full"
+                            value={info.percent}
+                        />
                         {icon}
                     </Flex>
                 </GridItem>
@@ -69,7 +74,7 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
                 </GridItem>
                 <GridItem alignItems="center">
                     <Flex alignItems="center" width="100%" gap={4}>
-                        <Progress width="100%" rounded="full" value={100} />
+                        <Progress colorScheme="green" width="100%" rounded="full" value={100} />
                         <FinishIcon />
                     </Flex>
                 </GridItem>

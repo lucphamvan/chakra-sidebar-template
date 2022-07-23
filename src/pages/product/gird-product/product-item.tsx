@@ -1,17 +1,17 @@
-import { Avatar, Box, Flex, Grid, GridItem, Image, chakra } from "@chakra-ui/react";
+import { Box, Avatar as ChakraAvatar, Image as ChakraImage, Grid, GridItem } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { STYLE } from "config";
 import { Product } from "model/Product";
 import { useRef } from "react";
 
 const ItemWrapper = styled(Box)`
-    /* box-shadow: ${STYLE.shadowCard}; */
-    cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1.5rem;
+    padding: 1rem;
     border-radius: 0.25rem;
-    /* background-color: #fff; */
+    cursor: pointer;
+    background-color: #fff;
     transition: transform 250ms;
     &:hover {
         transform: translateY(-10px);
@@ -19,12 +19,28 @@ const ItemWrapper = styled(Box)`
     aspect-ratio: 5/4; // important to keep ratio and specify height based on width
 `;
 
-const StyledImage = styled(Image)`
+const Image = styled(ChakraImage)`
     aspect-ratio: 5/3; // important to keep ratio and specify height based on width
     width: 100%;
     object-fit: scale-down;
     user-select: none;
-    background: #39424e;
+    background: ${STYLE.textColor};
+    border-radius: 0.25rem;
+`;
+
+const Avatar = styled(ChakraAvatar)`
+    font-weight: 900;
+    color: #ffffff;
+`;
+
+const Skeleton = styled(Box)`
+    width: 100%;
+    aspect-ratio: 5/3;
+    background-color: ${STYLE.background};
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 interface Props {
@@ -34,26 +50,21 @@ const ProductItem = ({ item }: Props) => {
     const ref = useRef<any>();
     return (
         <ItemWrapper>
-            <StyledImage ref={ref} src={item.imgUrl} />
-            <Grid gridTemplateColumns="4rem minmax(0, 1fr)">
-                <GridItem>
-                    <Avatar fontWeight="black" color="#fff" size="md" name={item.user?.name} />
-                </GridItem>
-                <GridItem>
-                    <Box fontWeight="semibold" noOfLines={1}>
+            <Image ref={ref} src={item.imgUrl} fallback={<Skeleton />} />
+            <Grid gridTemplateColumns="minmax(0, 1fr) 4rem">
+                <GridItem display="flex" gap={2} flexDirection="column">
+                    <Box fontWeight="bold" noOfLines={1}>
                         {item.name}
                     </Box>
-                    <Box color="gray.500" noOfLines={1}>
+                    <Box color={STYLE.secondaryColor} noOfLines={1}>
                         {item.description}
                     </Box>
-                    <Flex>
-                        <Box>
-                            Price:{" "}
-                            <chakra.span fontWeight="semibold" color={STYLE.errorColor}>
-                                {item.price}$
-                            </chakra.span>
-                        </Box>
-                    </Flex>
+                    <Box fontWeight="bold" color={STYLE.primaryColor}>
+                        Price: {item.price} USD
+                    </Box>
+                </GridItem>
+                <GridItem textAlign="end">
+                    <Avatar bg="primary.400" name={item.user?.name} />
                 </GridItem>
             </Grid>
         </ItemWrapper>

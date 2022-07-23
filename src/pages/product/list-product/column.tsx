@@ -16,7 +16,11 @@ export const columns = (reload: () => void): Column<Product>[] => [
         Header: "Name",
         accessor: "name",
         Cell: (props) => {
-            return props.value.toUpperCase();
+            return (
+                <Box fontWeight="bold" textTransform="capitalize">
+                    {props.value}
+                </Box>
+            );
         },
         width: "20%"
     },

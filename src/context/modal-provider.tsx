@@ -117,6 +117,6 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     );
 };
 
-const useModals = () => useContext(Context);
+const usePopup = () => useContext(Context);
 
-export default useModals;
+export default usePopup;

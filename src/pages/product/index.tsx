@@ -7,7 +7,7 @@ import ProductGrid from "./gird-product";
 const ProductPage = () => {
     return (
         <>
-            <PageHeading>Product Page</PageHeading>
+            <PageHeading>List Product</PageHeading>
             <ProductGrid />
         </>
     );

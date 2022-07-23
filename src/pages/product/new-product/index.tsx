@@ -6,7 +6,7 @@ import InputNumber from "component/Form/input-number";
 import { notifyError } from "component/Toast";
 import PageHeading from "component/page-heading";
 import { ERROR } from "config/error";
-import useModals from "context/modal-provider";
+import usePopup from "context/modal-provider";
 import { useCallback, useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
@@ -23,7 +23,7 @@ const NewProductPage = () => {
         handleSubmit,
         reset
     } = useForm();
-    const { alert } = useModals();
+    const { alert } = usePopup();
     const toast = useToast({ duration: 3000 });
 
     const [files, setFiles] = useState<File[]>([]); // state handle list files upload
@@ -138,7 +138,7 @@ const NewProductPage = () => {
     // render
     return (
         <>
-            <PageHeading>New Product Page</PageHeading>
+            <PageHeading>New Product</PageHeading>
             <Card width="100%" mt={4}>
                 <chakra.form onSubmit={handleSubmit(onSubmit)}>
                     <Flex flexDir="row" flexWrap="wrap" gap={4} alignItems="center">

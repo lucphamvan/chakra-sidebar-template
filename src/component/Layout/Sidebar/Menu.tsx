@@ -32,17 +32,25 @@ const LinkItem = styled(NavLink)`
     gap: 0.5rem;
     padding: 0.7rem 1rem;
     font-weight: bold;
+    color: ${STYLE.textColor};
 
-    &:hover {
-        background-color: #d4d5d5;
-        /* box-shadow: 0 0 10px 1px #dae0dd; */
-        border-radius: 0.125rem;
-    }
+    /* &:hover {
+        color: ${STYLE.textColor};
+        svg {
+            color: #428bff;
+        }
+    } */
     &.active {
-        background-color: ${STYLE.primaryColor};
-        box-shadow: 0 0 10px 1px ${STYLE.primaryShadow};
-        color: #fff;
-        border-radius: 0.125rem;
+        color: #428bff;
+        ::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            height: 2.5rem;
+            width: 4px;
+            border-radius: 2px;
+            background-color: #528bff;
+        }
     }
 `;
 
@@ -54,11 +62,16 @@ const NormalItem = styled(chakra.div)`
     padding: 0.7rem 1rem;
     font-weight: bold;
     cursor: pointer;
+    color: ${STYLE.textColor};
 
     &:hover {
-        background-color: #d4d5d5;
-        box-shadow: 0 0 10px 1px #dae0dd;
-        border-radius: 0.125rem;
+        /* color: ${STYLE.textColor};
+        svg {
+            color: #428bff;
+        } */
+        /* background-color: #d4d5d5; */
+        /* box-shadow: 0 0 10px 1px #dae0dd; */
+        /* border-radius: 0.125rem; */
     }
 `;
 

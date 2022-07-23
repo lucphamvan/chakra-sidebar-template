@@ -1,5 +1,4 @@
 import { Box, BoxProps } from "@chakra-ui/react";
-import { STYLE } from "config";
 
 const Card = ({ children, ...props }: BoxProps) => {
     return (
@@ -7,7 +6,7 @@ const Card = ({ children, ...props }: BoxProps) => {
             width="max-content"
             rounded="sm"
             bg="white"
-            boxShadow={STYLE.shadowCard}
+            // boxShadow={STYLE.shadowCard}
             p="4"
             userSelect="none"
             {...props}
