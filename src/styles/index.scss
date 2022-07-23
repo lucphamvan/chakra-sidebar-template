@@ -8,13 +8,13 @@
 .chakra-checkbox__control,
 .chakra-checkbox__control:focus {
     outline: none !important;
-    box-shadow: 0 0 15px #c1c4c4 !important;
+    box-shadow: 0 0px 15px #c1c4c4 !important;
 }
 
-button {
-    border-radius: 0.125rem !important;
-    // font-family: "Source Code Pro", monospace !important;
-}
+// button {
+//     // border-radius: 0.125rem !important;
+//     // font-family: "Source Code Pro", monospace !important;
+// }
 button:focus {
     outline: none !important;
 }
@@ -25,8 +25,8 @@ input {
 }
 input:focus,
 select:focus {
-    box-shadow: 0 0 5px rgba(174, 233, 177, 1) !important;
-    border: 1px solid #1ba94c !important;
+    box-shadow: 0 0 5px #6f9fffa6 !important;
+    border: 1px solid #528bff !important;
 }
 
 // .special-font {

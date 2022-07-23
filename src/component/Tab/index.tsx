@@ -8,9 +8,9 @@ const Tab = ({ children, ...props }: TabProps) => {
                 boxShadow: STYLE.shadowBtn,
                 backgroundColor: STYLE.primaryColor,
                 color: "white",
-                borderRadius: "0.125rem"
+                borderRadius: "0.25rem"
             }}
-            p="0.5rem 1.5rem"
+            p={STYLE.paddingTap}
             {...props}
         >
             {children}

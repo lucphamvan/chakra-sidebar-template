@@ -4,7 +4,7 @@ import { STYLE } from "config";
 import { FaCheckCircle } from "react-icons/fa";
 
 const Container = styled(Box)`
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);

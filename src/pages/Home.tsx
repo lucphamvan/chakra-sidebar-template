@@ -36,11 +36,11 @@ export default function PageHome() {
                 <Box mb={4} fontSize="2rem" fontWeight="bold">
                     Test function
                 </Box>
-                <Flex flexDir="column" gap={4}>
-                    <Button mode="primary" w={48} onClick={generateProducts} isLoading={loadingGenerate}>
+                <Flex gap={4} wrap="wrap">
+                    <Button minW="max-content" onClick={generateProducts} isLoading={loadingGenerate}>
                         Generate Products
                     </Button>
-                    <Button mode="primary" w={48} onClick={deleteAllProducts} isLoading={loadingDelete}>
+                    <Button minW="max-content" onClick={deleteAllProducts} isLoading={loadingDelete}>
                         Delete All Products
                     </Button>
                 </Flex>

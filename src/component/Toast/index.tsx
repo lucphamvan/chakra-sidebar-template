@@ -70,8 +70,9 @@ export const notifySuccess = (toast: any, title: string | JSX.Element | React.Re
                 type="success"
                 title={title}
                 onClose={props.onClose}
-                boxShadow={STYLE.shadowBtn}
+                boxShadow="0 4px 12px green.200"
                 bg={STYLE.bgSuccess}
+                color="green.500"
             />
         )
     });

@@ -1,15 +1,15 @@
 export const STYLE = {
     background: "#F3F7F7",
-    primaryColor: "#1BA94C",
-    primaryBgHover: "#1BA94C",
-    primaryShadow: "#add6bc",
-    primaryActive: "#1BA94C",
+    primaryColor: "#528BFF",
+    primaryBgHover: "#528BFF",
+    primaryShadow: "#6f9fffa6",
+    primaryActive: "#528BFF",
 
     errorColor: "#EA5455",
     infoColor: "#00cfe8",
     warningColor: "#ff9f43",
 
-    shadowBtn: "0 0 10px 1px #add6bc",
+    shadowBtn: "0 4px 12px #6f9fffa6",
     shadowCard: "0 4px 24px 0 rgba(34, 41, 47, 0.1)",
     shadowErr: "0 0 10px 1px #eac2c2",
     shadowInfo: "0 0 10px 1px #c6d9dc",
@@ -21,7 +21,10 @@ export const STYLE = {
     bgWarning: "#FFF3E8",
 
     secondary: "#ffffff",
-    borderRadius: "0.125rem"
+    borderRadius: "0.25rem",
+
+    paddingBtn: "1.2rem 2rem",
+    paddingTap: "0.65rem 2rem"
 };
 
 export enum BREAKPOINT {

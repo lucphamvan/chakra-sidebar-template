@@ -1,4 +1,4 @@
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, HStack, Text } from "@chakra-ui/react";
 import Card from "component/Card";
 import { DataTable } from "component/data-table";
 import SearchInput from "component/data-table/search-input";
@@ -11,6 +11,7 @@ import productService from "services/product.service";
 
 import { buildOrderByQuery } from "../helper";
 import { columns } from "./column";
+import Filter from "./filter";
 import MultipleSelectedMenu from "./multiple-menu";
 
 const ProductList = () => {
@@ -54,10 +55,14 @@ const ProductList = () => {
 
     return (
         <>
-            <PageHeading>Product Management Page</PageHeading>
+            <PageHeading>Product management</PageHeading>
             <Card width={"100%"} p={0} mt={4}>
-                <HStack p={4}>
-                    <SearchInput setSearch={setSearch} triggerSeach={toggleRefresh} />
+                <HStack p={4} justifyContent="space-between">
+                    <HStack spacing={4}>
+                        <Text fontWeight={600}>Search Product</Text>
+                        <SearchInput setSearch={setSearch} triggerSeach={toggleRefresh} />
+                        <Filter />
+                    </HStack>
                 </HStack>
                 <Box h={TABLE_HEIGHT} display="flex" flexDir="column" overflow="auto">
                     <DataTable

@@ -48,7 +48,7 @@ const ListCheckbox = ({ optionData, applyFunc, hideSearch, ...props }: ListCheck
                     key={`option-${index}`}
                     isChecked={checkedValues?.includes(option.value)}
                     value={option.value}
-                    colorScheme="green"
+                    colorScheme="blue"
                     onChange={(e) => handleCheckboxChange(e, option)}
                 >
                     {option.text}

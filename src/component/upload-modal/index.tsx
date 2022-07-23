@@ -18,6 +18,7 @@ import {
     useToast
 } from "@chakra-ui/react";
 import { notifySuccess } from "component/Toast";
+import { STYLE } from "config";
 import { useRef, useState } from "react";
 import { ErrorCode, FileRejection, useDropzone } from "react-dropzone";
 import { FaFolderOpen } from "react-icons/fa";
@@ -202,7 +203,7 @@ const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => 
                                         onClick={onToggle}
                                         variant="ghost"
                                         size="sm"
-                                        color="telegram.500"
+                                        color={STYLE.primaryColor}
                                         _focus={{ outline: "none" }}
                                         aria-label="Minimize popup"
                                         icon={<MinusIcon />}
@@ -213,7 +214,7 @@ const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => 
                                         <IconButton
                                             onClick={abortUpload}
                                             variant="ghost"
-                                            color="telegram.500"
+                                            color={STYLE.primaryColor}
                                             size="sm"
                                             _focus={{ outline: "none" }}
                                             aria-label="Close popup"
@@ -237,7 +238,7 @@ const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => 
                                     opacity={isUploading ? 0.7 : 1}
                                 >
                                     <chakra.input {...getInputProps()} />
-                                    <Icon as={FaFolderOpen} width={24} height={24} color="telegram.500" />
+                                    <Icon as={FaFolderOpen} width={24} height={24} color={STYLE.primaryColor} />
                                     {isDragActive ? (
                                         <Text className="special-font" userSelect="none" fontWeight="bold">
                                             Drop the files here ...
@@ -245,7 +246,7 @@ const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => 
                                     ) : (
                                         <Box userSelect="none" className="special-font" fontWeight="bold">
                                             Drag and drop your files, or
-                                            <chakra.span color="telegram.500" className="special-font">
+                                            <chakra.span color={STYLE.primaryColor} className="special-font">
                                                 {" "}
                                                 Browse
                                             </chakra.span>

@@ -4,14 +4,14 @@ import { Lock, User } from "react-feather";
 
 const TabList = () => {
     return (
-        <ChakraTabList>
-            <Tab>
+        <ChakraTabList gap={4}>
+            <Tab rounded="0.25rem">
                 <HStack>
                     <Icon as={User} w={5} h={5} fontWeight="bold" />
                     <Text>Account</Text>
                 </HStack>
             </Tab>
-            <Tab>
+            <Tab rounded="0.25rem">
                 <HStack>
                     <Icon as={Lock} w={5} h={5} fontWeight="bold" />
                     <Text>Security</Text>

@@ -21,6 +21,10 @@ const ItemWrapper = styled(Box)`
 
 const StyledImage = styled(Image)`
     aspect-ratio: 5/3; // important to keep ratio and specify height based on width
+    width: 100%;
+    object-fit: scale-down;
+    user-select: none;
+    background: #39424e;
 `;
 
 interface Props {
@@ -30,23 +34,16 @@ const ProductItem = ({ item }: Props) => {
     const ref = useRef<any>();
     return (
         <ItemWrapper>
-            <StyledImage
-                ref={ref}
-                src={item.imgUrl}
-                width="100%"
-                bg="gray.900"
-                objectFit="scale-down"
-                userSelect="none"
-            />
+            <StyledImage ref={ref} src={item.imgUrl} />
             <Grid gridTemplateColumns="4rem minmax(0, 1fr)">
                 <GridItem>
                     <Avatar fontWeight="black" color="#fff" size="md" name={item.user?.name} />
                 </GridItem>
                 <GridItem>
-                    <Box fontWeight="semibold" fontSize="1.125rem" noOfLines={1}>
+                    <Box fontWeight="semibold" noOfLines={1}>
                         {item.name}
                     </Box>
-                    <Box fontWeight="14px" color="gray.500" noOfLines={1}>
+                    <Box color="gray.500" noOfLines={1}>
                         {item.description}
                     </Box>
                     <Flex>

@@ -9,7 +9,7 @@ import Menu from "./Menu";
 const SideBar = React.memo(() => {
     const navigate = useNavigate();
     return (
-        <Box bg="white" w="60" pos="fixed" h="100vh" overflow="auto" boxShadow={STYLE.shadowCard}>
+        <Box bg="white" w="72" pos="fixed" h="100vh" overflow="auto" boxShadow={STYLE.shadowCard}>
             {/* // Logo + Brand */}
             <HStack p="1.5rem 1rem">
                 <MoonIcon cursor="pointer" color="#39424E" w="8" h="8" onClick={() => navigate("/")} />

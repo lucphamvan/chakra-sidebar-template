@@ -39,7 +39,7 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
                 onClick={cancelAxios}
                 aria-label="cancel"
                 fontSize="24px"
-                color="blue.400"
+                color={STYLE.primaryColor}
                 icon={<XCircleIcon />}
                 variant="ghost"
                 _focus={{ boxShadow: "none" }}
@@ -53,7 +53,7 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
                 </GridItem>
                 <GridItem alignItems="center">
                     <Flex alignItems="center" width="100%" gap={4}>
-                        <Progress width="100%" rounded="full" value={info.percent} />
+                        <Progress colorScheme="blue" width="100%" rounded="full" value={info.percent} />
                         {icon}
                     </Flex>
                 </GridItem>
@@ -86,7 +86,7 @@ const UploadedFile = ({ processingUploadFiles, allUploadedFiles }: UploadedFileP
             maxH="15rem"
             overflow="auto"
         >
-            <chakra.legend color={STYLE.primaryColor} fontWeight="bold" ml={4} px={4}>
+            <chakra.legend color="green.400" fontWeight="bold" ml={4} px={4}>
                 Uploaded files
             </chakra.legend>
             <Grid templateColumns="minmax(0, 1fr) minmax(0, 1fr)" alignItems="center" columnGap={12} rowGap={4} p={4}>

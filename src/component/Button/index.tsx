@@ -34,18 +34,19 @@ const Button = styled(ChakraButton)(({ mode = "primary", ...props }: Props) => {
             styled = buildStyledButton(STYLE.primaryColor, STYLE.primaryBgHover, STYLE.shadowBtn, "#fff");
             break;
     }
+
     return css`
         background-color: ${styled.bgColor};
         color: ${styled.color};
 
-        font-weight: ${props.fontWeight ?? 600};
+        font-weight: ${props.fontWeight ?? 500};
         /* font-family: "Source Code Pro", monospace; */
-
-        border-radius: 0.125rem;
+        padding: ${STYLE.paddingBtn};
+        border-radius: ${STYLE.borderRadius};
         border: 2px solid ${STYLE.primaryColor};
 
         box-shadow: ${styled.boxShadow};
-
+        min-width: max-content;
         :hover {
             background-color: ${styled.bgHoverColor} !important;
         }

@@ -30,11 +30,12 @@ const LinkItem = styled(NavLink)`
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1rem;
     font-weight: bold;
+
     &:hover {
         background-color: #d4d5d5;
-        box-shadow: 0 0 10px 1px #dae0dd;
+        /* box-shadow: 0 0 10px 1px #dae0dd; */
         border-radius: 0.125rem;
     }
     &.active {
@@ -50,9 +51,10 @@ const NormalItem = styled(chakra.div)`
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1rem;
     font-weight: bold;
     cursor: pointer;
+
     &:hover {
         background-color: #d4d5d5;
         box-shadow: 0 0 10px 1px #dae0dd;

@@ -30,8 +30,8 @@ const Menu = () => {
                         {user?.name}
                     </Box>
                     <Avatar
+                        bg={STYLE.primaryColor}
                         name={user?.name}
-                        backgroundColor="primary"
                         size="sm"
                         color="white"
                         className="special-font"

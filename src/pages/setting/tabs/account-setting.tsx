@@ -24,7 +24,7 @@ const AccountSetting = () => {
         try {
             await usersService.updateUser(data.name);
             await dispatch(fetchUser());
-            notifySuccess(toast, "UPDATE USER INFO SUCCESSFULL");
+            notifySuccess(toast, "Update user information successfull");
         } catch (error: any) {
             console.log("failed to update user data");
         }
@@ -80,7 +80,12 @@ const AccountSetting = () => {
                     </GridItem>
                     <GridItem>
                         <Wrap gap={4} spacing={4}>
-                            <Button isLoading={isSubmitting} type="submit" loadingText="Saving changes...">
+                            <Button
+                                mode="primary"
+                                isLoading={isSubmitting}
+                                type="submit"
+                                loadingText="Saving changes..."
+                            >
                                 Save changes
                             </Button>
                             <Button mode="secondary" onClick={discardChange}>
