@@ -10,9 +10,9 @@ const Wrapper = styled(chakra.header)`
     background: ${STYLE.background};
     padding: 1rem 2rem;
     align-items: center;
-    position: absolute;
-    width: calc(100%);
-    left: 0;
+    position: fixed;
+    width: calc(100% - 18rem);
+    right: 0;
     top: 0;
     z-index: 99;
 `;
