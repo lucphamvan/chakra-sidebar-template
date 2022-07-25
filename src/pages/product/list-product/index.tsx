@@ -7,6 +7,7 @@ import PageHeading from "component/page-heading";
 import { TABLE_HEIGHT } from "config";
 import { Product } from "model/Product";
 import { useCallback, useState } from "react";
+import { Outlet } from "react-router-dom";
 import { Row, SortingRule } from "react-table";
 import productService from "services/product.service";
 

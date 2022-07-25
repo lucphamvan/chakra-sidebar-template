@@ -7,6 +7,7 @@ export interface Product {
     price: number;
     amount?: number;
     sold?: boolean;
+    code?: string;
     description?: string;
     userId?: string;
     imgUrl?: string;

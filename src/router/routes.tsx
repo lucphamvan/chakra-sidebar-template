@@ -5,11 +5,15 @@ const SettingPage = lazy(() => import("pages/setting"));
 const UserPage = lazy(() => import("pages/UserPage"));
 const HomePage = lazy(() => import("pages/Home"));
 const NotFoundPage = lazy(() => import("pages/NotFound"));
+
 const LoginPage = lazy(() => import("pages/login"));
 const SignupPage = lazy(() => import("pages/sign-up"));
+
 const ProductPage = lazy(() => import("pages/product"));
 const NewProductPage = lazy(() => import("pages/product/new-product"));
 const ManageProductPage = lazy(() => import("pages/product/list-product"));
+const DetailProductPage = lazy(() => import("pages/product/product-detail"));
+
 const FilePage = lazy(() => import("pages/file"));
 
 export const authLayoutRoutes: RouteProp[] = [
@@ -32,6 +36,10 @@ export const authLayoutRoutes: RouteProp[] = [
     {
         path: "/products/manage",
         element: <ManageProductPage />
+    },
+    {
+        path: "/products/:id",
+        element: <DetailProductPage />
     },
     {
         path: "/products",

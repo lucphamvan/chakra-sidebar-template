@@ -1,10 +1,12 @@
-import { Box, HStack, Tooltip, chakra, useToast } from "@chakra-ui/react";
+import { Box, HStack, Tooltip, background, chakra, useToast } from "@chakra-ui/react";
 import IconButton from "component/IconButton";
 import { notifyError, notifySuccess } from "component/Toast";
 import { STYLE } from "config";
 import usePopup from "context/modal-provider";
 import { Product } from "model/Product";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
+import { MdDelete, MdEdit, MdPanoramaFishEye } from "react-icons/md";
+import { useLocation, useNavigate } from "react-router-dom";
 import productService from "services/product.service";
 
 interface Props {
@@ -15,6 +17,8 @@ interface Props {
 const ActionButtons = ({ product, reload }: Props) => {
     const { confirm } = usePopup();
     const toast = useToast({ duration: 3000, position: "top-right" });
+    const navigate = useNavigate();
+    const location = useLocation();
 
     // delete message confirm modal
     const deleteModalMessage = (
@@ -53,15 +57,17 @@ const ActionButtons = ({ product, reload }: Props) => {
         }
     };
 
-    const onEdit = () => {};
+    const onView = () => {
+        navigate(`/products/${product.id}`, { state: { background: location } });
+    };
 
     return (
         <HStack spacing={0} padding={0}>
             <Tooltip hasArrow label="Delete" placement="top">
                 <IconButton onClick={onDelete} icon={<MdDelete />} variant="ghost" aria-label="delete" />
             </Tooltip>
-            <Tooltip hasArrow label="Edit" placement="top">
-                <IconButton onClick={onEdit} icon={<MdEdit />} variant="ghost" aria-label="edit" />
+            <Tooltip hasArrow label="Detail" placement="top">
+                <IconButton onClick={onView} icon={<FaEye />} variant="ghost" aria-label="edit" />
             </Tooltip>
         </HStack>
     );

@@ -21,6 +21,10 @@ class ProductService {
         return { items, count: response.data.count };
     }
 
+    public async getProduct(id: string) {
+        return http.get(API.PRODUCT.PRODUCTS + "/" + id);
+    }
+
     public count() {
         return http.get(API.PRODUCT.PRODUCTS + "/count");
     }

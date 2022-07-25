@@ -26,7 +26,7 @@ const MultipleSelectedMenu = <T extends object>({
     const deleteFile = async (file: File) => {
         try {
             await fileService.delete(file);
-            notifySuccess(toast, `Delete file ${file.orginalName} successfull`);
+            // notifySuccess(toast, `Delete file ${file.orginalName} successfull`);
         } catch (error: any) {
             console.log(`Failed to delete file ${file.orginalName}`, error.message);
             notifyError(toast, `Delete file ${file.orginalName} failed`);

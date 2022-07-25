@@ -14,13 +14,13 @@ const navigation: NavigationProp[] = [
         children: [
             {
                 path: "/products",
-                navText: "List",
+                navText: "View",
                 icon: Circle,
                 size: "0.615rem"
             },
             {
                 path: "/products/new",
-                navText: "Create",
+                navText: "New",
                 icon: Circle,
                 size: "0.615rem"
             },

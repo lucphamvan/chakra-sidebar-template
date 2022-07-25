@@ -5,6 +5,7 @@ import { Product } from "model/Product";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { VirtuosoGrid } from "react-virtuoso";
 import productService from "services/product.service";
+import { OrderBy } from "type";
 
 import ProductItem from "./product-item";
 
@@ -47,7 +48,8 @@ const ProductGrid = () => {
 
     const getProductMore = async (page: number, limit: number) => {
         try {
-            const { items } = await productService.getProducts(page, limit);
+            const orderBy: OrderBy[] = [{ createdAt: "desc" }];
+            const { items } = await productService.getProducts(page, limit, orderBy);
             setProducts((value) => [...value, ...items]);
             refPage.current += 1;
         } catch (error: any) {

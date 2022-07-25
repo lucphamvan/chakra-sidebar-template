@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { STYLE } from "config";
 import { Product } from "model/Product";
 import { useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ItemWrapper = styled(Box)`
     display: flex;
@@ -48,8 +49,15 @@ interface Props {
 }
 const ProductItem = ({ item }: Props) => {
     const ref = useRef<any>();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const viewDetail = () => {
+        navigate(`/products/${item.id}`, { state: { background: location } });
+    };
+
     return (
-        <ItemWrapper>
+        <ItemWrapper onClick={viewDetail}>
             <Image ref={ref} src={item.imgUrl} fallback={<Skeleton />} />
             <Grid gridTemplateColumns="minmax(0, 1fr) 4rem">
                 <GridItem display="flex" gap={2} flexDirection="column">

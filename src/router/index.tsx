@@ -1,30 +1,42 @@
 import Layout from "component/Layout/Layout";
 import NoLayout from "component/Layout/NoLayout";
 import useAuthen from "hook/authen.hook";
-import { Route, Routes } from "react-router-dom";
+import { lazy } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import { authLayoutRoutes, authNoLayoutRoutes, noLayoutRoutes } from "./routes";
 
+const DetailProductPage = lazy(() => import("pages/product/product-detail"));
 const Router = () => {
     useAuthen();
+    const location = useLocation();
+    const background = location.state && (location.state as any).background;
     return (
-        <Routes>
-            <Route path="" element={<Layout />}>
-                {authLayoutRoutes.map((route, index) => {
-                    return <Route key={`rl-${index}`} path={route.path} element={route.element} />;
-                })}
-            </Route>
+        <>
+            <Routes location={background || location}>
+                <Route path="" element={<Layout />}>
+                    {authLayoutRoutes.map((route, index) => {
+                        return <Route key={`rl-${index}`} path={route.path} element={route.element} />;
+                    })}
+                </Route>
 
-            <Route path="" element={<NoLayout />}>
-                {authNoLayoutRoutes.map((route, index) => {
-                    return <Route key={`rl-${index}`} path={route.path} element={route.element} />;
-                })}
-            </Route>
+                <Route path="" element={<NoLayout />}>
+                    {authNoLayoutRoutes.map((route, index) => {
+                        return <Route key={`rl-${index}`} path={route.path} element={route.element} />;
+                    })}
+                </Route>
 
-            {noLayoutRoutes.map((route, index) => {
-                return <Route key={`rnl-${index}`} path={route.path} element={route.element} />;
-            })}
-        </Routes>
+                {noLayoutRoutes.map((route, index) => {
+                    return <Route key={`rnl-${index}`} path={route.path} element={route.element} />;
+                })}
+            </Routes>
+
+            {background && (
+                <Routes>
+                    <Route path="/products/:id" element={<DetailProductPage />} />
+                </Routes>
+            )}
+        </>
     );
 };
 
