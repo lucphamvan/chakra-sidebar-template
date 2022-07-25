@@ -1,6 +1,6 @@
 import { Box, Input, InputGroup, InputLeftElement, Stack } from "@chakra-ui/react";
-import { Mail } from "react-feather";
 import { FieldValues, UseFormRegister } from "react-hook-form";
+import { FiMail } from "react-icons/fi";
 import usersService from "services/users.service";
 
 interface InputEmailProp {
@@ -16,7 +16,7 @@ const InputEmail = ({ register, name, required, placeholder, errors, signup }: I
     return (
         <Stack mb={4}>
             <InputGroup size="lg">
-                <InputLeftElement children={<Mail color="#738F93" />} />
+                <InputLeftElement children={<FiMail color="#738F93" />} />
                 <Input
                     fontSize="1rem"
                     bg="#EDF2F7"

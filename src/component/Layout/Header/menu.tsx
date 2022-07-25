@@ -1,7 +1,7 @@
 import { Avatar, Box, Menu as ChakraMenu, HStack, MenuButton, MenuItem, MenuList, chakra } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { STYLE } from "config";
-import { LogOut, Settings } from "react-feather";
+import { FiLogOut as LogOut, FiSettings as Settings } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import { logout } from "redux/slices/authenSlice";
 import { useAppDispatch, useAppSelector } from "redux/store";
