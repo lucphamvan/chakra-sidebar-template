@@ -3,7 +3,7 @@ import { STYLE } from "config";
 import { Fragment } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
-import { ReactComponent as XCircleIcon } from "assets/x-circle.svg";
+import { ReactComponent as XCircleIcon } from "assets/images/x-circle.svg";
 
 import { Status } from "./type";
 
