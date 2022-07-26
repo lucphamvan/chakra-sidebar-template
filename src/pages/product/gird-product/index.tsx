@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import Loading from "component/Loading";
 import { BREAKPOINT, STYLE } from "config";
 import { Product } from "model/Product";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -40,6 +41,7 @@ const ListContainer = styled(Box)`
 const LIMIT = 30;
 const ProductGrid = () => {
     const [products, setProducts] = useState<Product[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const refPage = useRef(0);
 
     const loadMore = () => {
@@ -58,7 +60,7 @@ const ProductGrid = () => {
     };
 
     useEffect(() => {
-        getProductMore(refPage.current, LIMIT);
+        getProductMore(refPage.current, LIMIT).finally(() => setIsLoading(false));
     }, []);
 
     const renderItem = useCallback(
@@ -68,6 +70,10 @@ const ProductGrid = () => {
         },
         [products]
     );
+
+    if (isLoading) {
+        return <Loading w="100%" h="100%" />;
+    }
 
     return (
         <VirtuosoGrid

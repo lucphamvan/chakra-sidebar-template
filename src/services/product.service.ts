@@ -10,9 +10,10 @@ class ProductService {
 
         if (!isEmpty(orderBy)) {
             params.orderBy = orderBy;
-        } else {
-            params.orderBy = [{ createdAt: "desc" }];
         }
+        // else {
+        //     params.orderBy = [{ createdAt: "desc" }];
+        // }
         const response = await http.get(API.PRODUCT.PRODUCTS, {
             params
         });

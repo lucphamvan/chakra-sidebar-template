@@ -1,5 +1,4 @@
 import jwtDecode from "jwt-decode";
-import moment from "moment";
 
 import usersService from "./users.service";
 
@@ -51,10 +50,6 @@ class UtilService {
                 }
             }, timeout);
         }
-    }
-
-    public formatDate(date: Date | string) {
-        return moment(date).format("MMMM Do YYYY, HH:mm:ss");
     }
 }
 

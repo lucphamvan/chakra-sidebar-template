@@ -1,11 +1,11 @@
-import { Box, HStack, Tooltip, background, chakra, useToast } from "@chakra-ui/react";
+import { Box, HStack, Tooltip, chakra, useToast } from "@chakra-ui/react";
 import IconButton from "component/IconButton";
 import { notifyError, notifySuccess } from "component/Toast";
 import { STYLE } from "config";
 import usePopup from "context/modal-provider";
 import { Product } from "model/Product";
 import { FaEye } from "react-icons/fa";
-import { MdDelete, MdEdit, MdPanoramaFishEye } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import productService from "services/product.service";
 

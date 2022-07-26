@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+import { formatPrice } from "common/helper";
 import { Product } from "model/Product";
 import moment from "moment";
 import { Column } from "react-table";
@@ -28,7 +29,7 @@ export const columns = (reload: () => void): Column<Product>[] => [
         Header: "Price",
         accessor: "price",
         Cell: (props) => {
-            return props.value + "$";
+            return formatPrice(props.value);
         },
         width: "10%",
         maxWidth: 80

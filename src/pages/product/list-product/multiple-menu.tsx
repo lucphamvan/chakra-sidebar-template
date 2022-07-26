@@ -27,7 +27,7 @@ const MultipleSelectedMenu = <T extends object>({
     const deleteProduct = async (product: Product) => {
         try {
             await productService.delete(product);
-            notifySuccess(toast, `Delete product ${product.name} successfull`);
+            // notifySuccess(toast, `Delete product ${product.name} successfull`);
         } catch (error: any) {
             console.log(`Failed to delete product ${product.name}`, error.message);
             notifyError(toast, `Delete product ${product.name} failed`);
@@ -47,6 +47,7 @@ const MultipleSelectedMenu = <T extends object>({
             return deleteProduct(row.original as Product);
         });
         await Promise.all(promiseArr);
+        notifySuccess(toast, `Delete products successfull`);
         reload && reload();
         toggleAllRowsSelected(false);
     };
