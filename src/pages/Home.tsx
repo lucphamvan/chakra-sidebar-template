@@ -38,7 +38,7 @@ export default function PageHome() {
     return (
         <>
             <PageHeading>Home Page</PageHeading>
-            <Card width={"initial"} mt={4} height="calc(100% - 5rem)">
+            <Card width={"initial"} mt={4} height="calc(100% - 4rem)">
                 <Box mb={4} fontSize="1.2rem" fontWeight="600">
                     Test function
                 </Box>

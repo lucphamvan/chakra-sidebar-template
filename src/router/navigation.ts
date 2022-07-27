@@ -1,4 +1,4 @@
-import { FaCircle as Circle, FaFile, FaHome, FaProductHunt, FaShieldAlt, FaUser } from "react-icons/fa";
+import { FaCircle as Circle, FaBookDead, FaFile, FaHome, FaProductHunt, FaShieldAlt, FaUser } from "react-icons/fa";
 import { NavigationProp } from "type";
 
 const navigation: NavigationProp[] = [
@@ -47,6 +47,11 @@ const navigation: NavigationProp[] = [
         path: "/setting",
         navText: "Setting",
         icon: FaShieldAlt
+    },
+    {
+        path: "/reader",
+        navText: "PDF reader",
+        icon: FaBookDead
     }
 ];
 

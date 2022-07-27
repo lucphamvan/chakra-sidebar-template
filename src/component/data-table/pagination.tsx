@@ -35,7 +35,7 @@ const Pagination = (props: PaginationProp) => {
     };
 
     return (
-        <Flex m={4} alignItems="center" gap={4} d="inline-flex" flexWrap="wrap">
+        <Flex m={4} alignItems="center" gap={4} display="inline-flex" flexWrap="wrap">
             <Flex>
                 <Tooltip label="First Page">
                     <IconButton
