@@ -4,7 +4,7 @@ import { Product } from "model/Product";
 import { ReactImageGalleryItem } from "react-image-gallery";
 
 const getItemImages = (product?: Product) => {
-    const items = product?.files?.map((file) => {
+    let items = product?.files?.map((file) => {
         const item: ReactImageGalleryItem = {
             original: file.url,
             thumbnail: file.url,
@@ -12,7 +12,11 @@ const getItemImages = (product?: Product) => {
         };
         return item;
     });
-    return items ?? [];
+    items = items ?? [];
+    if (product?.imgUrl) {
+        items = [{ original: product.imgUrl, thumbnail: product.imgUrl, thumbnailAlt: "img" }, ...items];
+    }
+    return items;
 };
 
 interface Props {

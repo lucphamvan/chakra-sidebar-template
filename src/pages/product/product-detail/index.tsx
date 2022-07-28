@@ -69,7 +69,7 @@ const ProductDetailPage = () => {
     return (
         <Wrapper>
             <PageHeading>Product detail</PageHeading>
-            <Card w="100%" mt={4}>
+            <Card w="100%" mt={4} overflow="auto">
                 <Grid
                     gridTemplateColumns={[
                         "minmax(0, 1fr)",
