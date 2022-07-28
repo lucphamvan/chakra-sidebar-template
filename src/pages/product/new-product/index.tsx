@@ -90,7 +90,7 @@ const NewProductPage = () => {
     // handle change product image
     const handleImgChange = (uploadedFileList: File[]) => {
         // limit 10 files
-        if (imgSrcList.length + uploadedFileList.length >= 10) {
+        if (imgSrcList.length + uploadedFileList.length > 10) {
             alert(<Box fontWeight="semibold">Cannot upload more than 10 images</Box>);
             return;
         }
