@@ -1,4 +1,4 @@
-import { Flex, FlexProps, Grid, Text } from "@chakra-ui/react";
+import { Flex, FlexProps, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import Card from "component/Card";
 import Loading from "component/Loading";
@@ -8,9 +8,6 @@ import { Product } from "model/Product";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import productService from "services/product.service";
-
-import ProductDescription from "./product-description";
-import ProductImages from "./product-images";
 
 interface Props extends FlexProps {
     bglocation: any;
@@ -26,8 +23,7 @@ const Wrapper = styled(Flex)<Props>`
     padding: 1.5rem 2rem;
     z-index: 10;
 `;
-
-const ProductDetailPage = () => {
+const ProductEditPage = () => {
     const { id } = useParams();
     const [product, setProduct] = useState<Product>();
     const [isLoading, setIsLoading] = useState(true);
@@ -66,7 +62,7 @@ const ProductDetailPage = () => {
     if (!product) {
         return (
             <>
-                <PageHeading>Product detail</PageHeading>
+                <PageHeading>Edit Product</PageHeading>
                 <Text>This product is nolonger exist</Text>
             </>
         );
@@ -74,22 +70,9 @@ const ProductDetailPage = () => {
 
     return (
         <Wrapper bglocation={bgLocation}>
-            <PageHeading>Product detail</PageHeading>
-            <Card w="100%" mt={4} overflow="auto">
-                <Grid
-                    gridTemplateColumns={[
-                        "minmax(0, 1fr)",
-                        "minmax(0, 1fr)",
-                        "minmax(0, 1fr)",
-                        "minmax(0, 1fr) minmax(0, 1fr)"
-                    ]}
-                    gap={8}
-                >
-                    <ProductImages product={product} />
-                    <ProductDescription product={product} />
-                </Grid>
-            </Card>
+            <PageHeading>Edit Product</PageHeading>
+            <Card w="100%" mt={4} overflow="auto"></Card>
         </Wrapper>
     );
 };
-export default ProductDetailPage;
+export default ProductEditPage;

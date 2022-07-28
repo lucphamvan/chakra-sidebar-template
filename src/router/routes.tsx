@@ -13,6 +13,7 @@ const ProductPage = lazy(() => import("pages/product"));
 const NewProductPage = lazy(() => import("pages/product/new-product"));
 const ManageProductPage = lazy(() => import("pages/product/list-product"));
 const DetailProductPage = lazy(() => import("pages/product/product-detail"));
+const EditProductPage = lazy(() => import("pages/product/product-edit"));
 
 const PdfPage = lazy(() => import("pages/pdf"));
 const FilePage = lazy(() => import("pages/file"));
@@ -37,6 +38,10 @@ export const authLayoutRoutes: RouteProp[] = [
     {
         path: "/products/manage",
         element: <ManageProductPage />
+    },
+    {
+        path: "/products/edit/:id",
+        element: <EditProductPage />
     },
     {
         path: "/products/:id",

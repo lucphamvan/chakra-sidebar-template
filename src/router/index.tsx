@@ -7,6 +7,8 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { authLayoutRoutes, authNoLayoutRoutes, noLayoutRoutes } from "./routes";
 
 const DetailProductPage = lazy(() => import("pages/product/product-detail"));
+const EditProductPage = lazy(() => import("pages/product/product-edit"));
+
 const Router = () => {
     useAuthen();
     const location = useLocation();
@@ -34,6 +36,7 @@ const Router = () => {
             {background && (
                 <Routes>
                     <Route path="/products/:id" element={<DetailProductPage />} />
+                    <Route path="/products/edit/:id" element={<EditProductPage />} />
                 </Routes>
             )}
         </>

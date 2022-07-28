@@ -4,7 +4,7 @@ import { notifyError, notifySuccess } from "component/Toast";
 import { STYLE } from "config";
 import usePopup from "context/modal-provider";
 import { Product } from "model/Product";
-import { FaEye } from "react-icons/fa";
+import { FaEdit, FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import productService from "services/product.service";
@@ -61,13 +61,20 @@ const ActionButtons = ({ product, reload }: Props) => {
         navigate(`/products/${product.id}`, { state: { background: location } });
     };
 
+    const onEdit = () => {
+        navigate(`/products/edit/${product.id}`, { state: { background: location } });
+    };
+
     return (
         <HStack spacing={0} padding={0}>
+            <Tooltip hasArrow label="Detail" placement="top">
+                <IconButton onClick={onView} icon={<FaEye />} variant="ghost" aria-label="view" />
+            </Tooltip>
+            <Tooltip hasArrow label="Edit" placement="top">
+                <IconButton onClick={onEdit} icon={<FaEdit />} variant="ghost" aria-label="edit" />
+            </Tooltip>
             <Tooltip hasArrow label="Delete" placement="top">
                 <IconButton onClick={onDelete} icon={<MdDelete />} variant="ghost" aria-label="delete" />
-            </Tooltip>
-            <Tooltip hasArrow label="Detail" placement="top">
-                <IconButton onClick={onView} icon={<FaEye />} variant="ghost" aria-label="edit" />
             </Tooltip>
         </HStack>
     );
