@@ -31,7 +31,7 @@ const InputNumber = ({
     ...props
 }: InputNumberProp) => {
     return (
-        <Stack mb={4}>
+        <Stack>
             <chakra.label fontSize="sm" htmlFor={name}>
                 {label}
             </chakra.label>
