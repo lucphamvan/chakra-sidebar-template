@@ -55,7 +55,7 @@ const LoginPage = () => {
             navigate("/", { replace: true });
         } catch (error: any) {
             console.log("failed to login", error.message);
-            notifyError(toast, "INVALID USER NAME OR PASSOWRD");
+            notifyError(toast, process.env.REACT_APP_API_ENDPOINT);
         }
     };
 

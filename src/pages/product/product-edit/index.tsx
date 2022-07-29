@@ -1,4 +1,4 @@
-import { Flex, FlexProps, Text } from "@chakra-ui/react";
+import { Flex, FlexProps, GridItem, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import Card from "component/Card";
 import Loading from "component/Loading";
@@ -8,6 +8,9 @@ import { Product } from "model/Product";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import productService from "services/product.service";
+
+import EditSection from "./edit-section";
+import { Grid } from "./index.styled";
 
 interface Props extends FlexProps {
     bglocation: any;
@@ -23,6 +26,7 @@ const Wrapper = styled(Flex)<Props>`
     padding: 1.5rem 2rem;
     z-index: 10;
 `;
+
 const ProductEditPage = () => {
     const { id } = useParams();
     const [product, setProduct] = useState<Product>();
@@ -30,13 +34,6 @@ const ProductEditPage = () => {
 
     const location = useLocation();
     const bgLocation = location.state && (location.state as any).background; // enter from url
-
-    useEffect(() => {
-        document.body.style.overflow = "hidden";
-        return () => {
-            document.body.style.overflow = "initial";
-        };
-    }, []);
 
     const getProduct = async (id: string) => {
         try {
@@ -51,6 +48,13 @@ const ProductEditPage = () => {
     };
 
     useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "initial";
+        };
+    }, []);
+
+    useEffect(() => {
         id && getProduct(id);
         return () => setProduct(undefined);
     }, [id]);
@@ -59,6 +63,7 @@ const ProductEditPage = () => {
         return <Loading w="100%" h="100%" />;
     }
 
+    // render
     if (!product) {
         return (
             <>
@@ -71,7 +76,16 @@ const ProductEditPage = () => {
     return (
         <Wrapper bglocation={bgLocation}>
             <PageHeading>Edit Product</PageHeading>
-            <Card w="100%" mt={4} overflow="auto"></Card>
+            <Grid>
+                <GridItem>
+                    <EditSection product={product} />
+                </GridItem>
+                <GridItem>
+                    <Card w="100%" h="100%">
+                        <Text>Form</Text>
+                    </Card>
+                </GridItem>
+            </Grid>
         </Wrapper>
     );
 };

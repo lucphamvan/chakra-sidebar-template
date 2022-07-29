@@ -1,33 +1,28 @@
-import { FaCircle as Circle, FaBookDead, FaFile, FaHome, FaProductHunt, FaShieldAlt, FaUser } from "react-icons/fa";
+import { FaAward, FaBookDead, FaCircle, FaFile, FaShieldAlt, FaShoppingCart, FaUser } from "react-icons/fa";
 import { NavigationProp } from "type";
 
 const navigation: NavigationProp[] = [
     {
-        path: "/",
-        navText: "Home",
-        icon: FaHome
-    },
-    {
         path: "",
         navText: "Products",
-        icon: FaProductHunt,
+        icon: FaShoppingCart,
         children: [
             {
                 path: "/products",
                 navText: "View",
-                icon: Circle,
+                icon: FaCircle,
                 size: "0.615rem"
             },
             {
                 path: "/products/new",
                 navText: "New",
-                icon: Circle,
+                icon: FaCircle,
                 size: "0.615rem"
             },
             {
                 path: "/products/manage",
                 navText: "Manage",
-                icon: Circle,
+                icon: FaCircle,
                 size: "0.615rem"
             }
         ]
@@ -52,6 +47,11 @@ const navigation: NavigationProp[] = [
         path: "/reader",
         navText: "PDF reader",
         icon: FaBookDead
+    },
+    {
+        path: "/test",
+        navText: "Test",
+        icon: FaAward
     }
 ];
 

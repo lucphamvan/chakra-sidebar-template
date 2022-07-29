@@ -1,9 +1,10 @@
 import { lazy } from "react";
+import { Navigate } from "react-router-dom";
 import { RouteProp } from "type";
 
 const SettingPage = lazy(() => import("pages/setting"));
 const UserPage = lazy(() => import("pages/UserPage"));
-const HomePage = lazy(() => import("pages/Home"));
+const TestPage = lazy(() => import("pages/TestPage"));
 const NotFoundPage = lazy(() => import("pages/NotFound"));
 
 const LoginPage = lazy(() => import("pages/login"));
@@ -21,7 +22,7 @@ const FilePage = lazy(() => import("pages/file"));
 export const authLayoutRoutes: RouteProp[] = [
     {
         path: "/",
-        element: <HomePage />
+        element: <Navigate to={"/products"} />
     },
     {
         path: "/setting",
@@ -58,6 +59,10 @@ export const authLayoutRoutes: RouteProp[] = [
     {
         path: "/reader",
         element: <PdfPage />
+    },
+    {
+        path: "/test",
+        element: <TestPage />
     }
 ];
 

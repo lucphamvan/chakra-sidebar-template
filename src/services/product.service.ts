@@ -1,7 +1,7 @@
 import { API } from "config/api";
 import http from "config/http";
 import { isEmpty } from "lodash";
-import { Product, ProductCreateInput } from "model/Product";
+import { Product, ProductCreateInput, ProductUpdateInput } from "model/Product";
 import { OrderBy, QueryParam } from "type";
 
 class ProductService {
@@ -44,6 +44,10 @@ class ProductService {
 
     public async deleteAllProducts() {
         return http.delete("/products/delete-all");
+    }
+
+    public async updateProduct(id: string, data: ProductUpdateInput) {
+        return http.put(API.PRODUCT.PRODUCTS + "/" + id, data);
     }
 }
 export default new ProductService();

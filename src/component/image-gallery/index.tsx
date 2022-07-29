@@ -74,11 +74,11 @@ const ImageGallery: React.FC<ReactImageGalleryProps> = (props) => {
     }, []);
 
     const renderItem = useCallback((item: ReactImageGalleryItem) => {
-        return <Image src={item.original} fallback={<ImageFallback />} />;
+        return <Image src={item.original} fallback={<ImageFallback bg="black" />} />;
     }, []);
 
     const renderThumnail = useCallback((item: ReactImageGalleryItem) => {
-        return <Image src={item.thumbnail} fallback={<ImageFallback />} />;
+        return <Image src={item.thumbnail} fallback={<ImageFallback bg="black" />} />;
     }, []);
 
     if (!props.items || !props.items.length) {

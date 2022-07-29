@@ -33,7 +33,7 @@ interface UploadModalProp {
     isOpen: boolean;
     onToggle: () => void;
     onClose: () => void;
-    reload: () => void;
+    reload: () => void; // this function will run after upload file successfull
 }
 const UploadModal = ({ isOpen, onToggle, onClose, reload }: UploadModalProp) => {
     const [processingUploadFiles, setProcessingUploadFiles] = useState<Status>({

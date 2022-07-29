@@ -35,6 +35,12 @@ class FileService {
     public async delete(file: OrgFile) {
         return http.delete(API.FILE.FILES + "/" + file.id);
     }
+
+    public async deleteMany(listId: string[]) {
+        return http.delete(API.FILE.FILES, {
+            params: { id: listId }
+        });
+    }
 }
 
 export default new FileService();

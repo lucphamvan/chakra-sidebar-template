@@ -1,6 +1,7 @@
-import { Grid, chakra, useToast } from "@chakra-ui/react";
+import { Flex, Grid, chakra, useToast } from "@chakra-ui/react";
 import Button from "component/Button";
 import Card from "component/Card";
+import InputDescription from "component/Form/input-description";
 import InputFormLabel from "component/Form/input-form-label";
 import InputNumber from "component/Form/input-number";
 import { notifyError } from "component/Toast";
@@ -24,7 +25,7 @@ const NewProductPage = () => {
 
     const [files, setFiles] = useState<File[]>([]); // state handle list files upload
     const [imgSrcList, setImgSrcList] = useState<any[]>([]); // state handle list img src created from upload files
-    const [primaryImgIndex, setPrimaryImgIndex] = useState(0);
+    const [primaryImgIndex, setPrimaryImgIndex] = useState<number | undefined>(0);
 
     // handle submit
     const onSubmit = async (data: any) => {
@@ -42,7 +43,7 @@ const NewProductPage = () => {
                 description: data.desc,
                 amount: Number(data.amount),
                 fileId: fileIdList,
-                imgUrl: responseList.at(primaryImgIndex)?.data.url
+                imgUrl: responseList.at(primaryImgIndex!)?.data.url
             });
 
             setImgSrcList([]);
@@ -61,14 +62,16 @@ const NewProductPage = () => {
             <PageHeading>New Product</PageHeading>
             <Card width="100%" mt={4}>
                 <chakra.form onSubmit={handleSubmit(onSubmit)}>
-                    <UploadImage
-                        files={files}
-                        setFiles={setFiles}
-                        imgSrcList={imgSrcList}
-                        setImgSrcList={setImgSrcList}
-                        primaryImgIndex={primaryImgIndex}
-                        setPrimaryImgIndex={setPrimaryImgIndex}
-                    />
+                    <Flex flexDir="row" flexWrap="wrap" gap={4} alignItems="center">
+                        <UploadImage
+                            files={files}
+                            setFiles={setFiles}
+                            imgSrcList={imgSrcList}
+                            setImgSrcList={setImgSrcList}
+                            primaryImgIndex={primaryImgIndex}
+                            setPrimaryImgIndex={setPrimaryImgIndex}
+                        />
+                    </Flex>
                     <Grid templateColumns="repeat(3, 1fr)" gap={4} my={4}>
                         <InputFormLabel
                             name="name"
@@ -96,7 +99,7 @@ const NewProductPage = () => {
                             min={0}
                             required={ERROR.REQUIRED}
                         />
-                        <InputFormLabel
+                        <InputDescription
                             name="desc"
                             label="Description"
                             errors={errors}

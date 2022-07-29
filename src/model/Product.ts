@@ -20,3 +20,7 @@ export interface Product {
 export interface ProductCreateInput extends Omit<Product, "id"> {
     fileId?: string | string[];
 }
+
+export interface ProductUpdateInput extends Omit<Partial<Product>, "id"> {
+    fileId?: string | string[];
+}

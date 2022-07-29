@@ -5,7 +5,7 @@ import { STYLE } from "config";
 const ImageFallback = styled(Box)`
     width: 100%;
     aspect-ratio: 5/3;
-    background-color: ${STYLE.background};
+    background-color: ${(props) => props.bg ?? STYLE.background};
     border-radius: 0.25rem;
     display: flex;
     align-items: center;

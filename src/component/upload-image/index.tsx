@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import usePopup from "context/modal-provider";
 import { useCallback, useMemo } from "react";
 import { useDropzone } from "react-dropzone";
@@ -6,15 +6,29 @@ import { useDropzone } from "react-dropzone";
 import { CloseBtn, ImgBox, PrimaryBtn } from "./index.styled";
 import UploadBox from "./upload-box";
 
-interface Props {
-    imgSrcList: string[]; // state handle list img src created from upload files
+export interface UploadImageProps {
+    imgSrcList: string[]; // state handle list img src created from upload files => this use to render list image
     setImgSrcList: React.Dispatch<React.SetStateAction<string[]>>;
-    files: File[]; // state handle list files upload
+    files: File[]; // state handle list files upload => this use for API
     setFiles: React.Dispatch<React.SetStateAction<File[]>>;
-    primaryImgIndex: number;
-    setPrimaryImgIndex: React.Dispatch<React.SetStateAction<number>>;
+    primaryImgIndex: number | undefined;
+    setPrimaryImgIndex: React.Dispatch<React.SetStateAction<number | undefined>>;
+    maxUpload?: number;
+    maxUploadNumber?: number;
+    callback?: Function;
 }
-const UploadImage = ({ imgSrcList, setImgSrcList, setFiles, files, primaryImgIndex, setPrimaryImgIndex }: Props) => {
+
+const UploadImage = ({
+    imgSrcList,
+    setImgSrcList,
+    setFiles,
+    files,
+    primaryImgIndex,
+    setPrimaryImgIndex,
+    maxUpload = 10,
+    maxUploadNumber = maxUpload,
+    callback
+}: UploadImageProps) => {
     const { alert } = usePopup();
     // ondrop
     const { getRootProps, getInputProps } = useDropzone({
@@ -29,8 +43,8 @@ const UploadImage = ({ imgSrcList, setImgSrcList, setFiles, files, primaryImgInd
     // handle change product image
     const handleImgChange = (uploadedFileList: File[]) => {
         // limit 10 files
-        if (imgSrcList.length + uploadedFileList.length > 10) {
-            alert(<Box fontWeight="semibold">Cannot upload more than 10 images</Box>);
+        if (imgSrcList.length + uploadedFileList.length > maxUpload) {
+            alert(<Box fontWeight="semibold">Cannot upload more than {maxUploadNumber} images</Box>);
             return;
         }
 
@@ -45,13 +59,6 @@ const UploadImage = ({ imgSrcList, setImgSrcList, setFiles, files, primaryImgInd
         setImgSrcList([...imgSrcList, ..._imgSrcList]);
         setFiles([...files, ..._files]);
     };
-
-    const handleSetPrimaryImg = useCallback(
-        (index: number) => {
-            setPrimaryImgIndex(index);
-        },
-        [setPrimaryImgIndex]
-    );
 
     // remove image
     const handleRemoveImg = useCallback(
@@ -68,13 +75,24 @@ const UploadImage = ({ imgSrcList, setImgSrcList, setFiles, files, primaryImgInd
             });
             // re-calculate primary index
             // if remove index less than current primary index => descrease primary index by 1
+            if (primaryImgIndex === undefined) {
+                return;
+            }
             if (index < primaryImgIndex) {
-                setPrimaryImgIndex((value) => value - 1);
+                setPrimaryImgIndex((value) => value! - 1);
             } else if (index === primaryImgIndex) {
                 setPrimaryImgIndex(0);
             }
         },
         [primaryImgIndex, setFiles, setImgSrcList, setPrimaryImgIndex]
+    );
+
+    const handleSetPrimaryImgIndex = useCallback(
+        (index: number) => {
+            setPrimaryImgIndex(index);
+            callback && callback();
+        },
+        [setPrimaryImgIndex, callback]
     );
 
     // render list image upload
@@ -90,17 +108,17 @@ const UploadImage = ({ imgSrcList, setImgSrcList, setFiles, files, primaryImgInd
                 <PrimaryBtn
                     aria-label="primary product image"
                     style={{ visibility: index === primaryImgIndex ? "visible" : "hidden" }}
-                    onClick={() => handleSetPrimaryImg(index)}
+                    onClick={() => handleSetPrimaryImgIndex(index)}
                 />
             </ImgBox>
         ));
-    }, [imgSrcList, primaryImgIndex, handleRemoveImg, handleSetPrimaryImg]);
+    }, [imgSrcList, primaryImgIndex, handleRemoveImg, handleSetPrimaryImgIndex]);
 
     return (
-        <Flex flexDir="row" flexWrap="wrap" gap={4} alignItems="center">
+        <>
             <UploadBox getInputProps={getInputProps} getRootProps={getRootProps} />
             {ImageList}
-        </Flex>
+        </>
     );
 };
 
