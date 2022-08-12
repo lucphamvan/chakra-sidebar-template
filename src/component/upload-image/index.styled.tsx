@@ -1,6 +1,6 @@
 import { Box, IconButtonProps, Tooltip } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import IconButton from "component/IconButton";
+import IconButton from "component/icon-button";
 import { MdCheck, MdClose } from "react-icons/md";
 
 const StyledCloseIcon = styled(IconButton)`

@@ -10,7 +10,7 @@ import {
     Text,
     Tooltip
 } from "@chakra-ui/react";
-import IconButton from "component/IconButton";
+import IconButton from "component/icon-button";
 import React from "react";
 
 import { SIZE_OPTION } from "./config";

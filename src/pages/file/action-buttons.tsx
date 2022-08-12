@@ -1,5 +1,5 @@
 import { Box, HStack, Tooltip, chakra, useToast } from "@chakra-ui/react";
-import IconButton from "component/IconButton";
+import IconButton from "component/icon-button";
 import { notifyError, notifySuccess } from "component/toast";
 import { STYLE } from "config";
 import usePopup from "context/modal-provider";
