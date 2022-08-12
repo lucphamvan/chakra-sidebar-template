@@ -9,19 +9,19 @@ const navigation: NavigationProp[] = [
         children: [
             {
                 path: "/products",
-                navText: "View",
+                navText: "Categories",
+                icon: FaCircle,
+                size: "0.615rem"
+            },
+            {
+                path: "/products/manage",
+                navText: "Management",
                 icon: FaCircle,
                 size: "0.615rem"
             },
             {
                 path: "/products/new",
                 navText: "New",
-                icon: FaCircle,
-                size: "0.615rem"
-            },
-            {
-                path: "/products/manage",
-                navText: "Manage",
                 icon: FaCircle,
                 size: "0.615rem"
             }

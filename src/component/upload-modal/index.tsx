@@ -17,7 +17,7 @@ import {
     chakra,
     useToast
 } from "@chakra-ui/react";
-import { notifySuccess } from "component/Toast";
+import { notifySuccess } from "component/toast";
 import { STYLE } from "config";
 import { useRef, useState } from "react";
 import { ErrorCode, FileRejection, useDropzone } from "react-dropzone";

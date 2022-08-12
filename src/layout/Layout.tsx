@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import Loading from "component/Loading";
+import Loading from "component/loading";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "redux/store";
 

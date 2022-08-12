@@ -1,6 +1,6 @@
 import { Box, Center, useToast } from "@chakra-ui/react";
-import Button from "component/Button";
-import { notifyError } from "component/Toast";
+import Button from "component/button";
+import { notifyError } from "component/toast";
 import usePopup from "context/modal-provider";
 import { File } from "model/File";
 import React from "react";

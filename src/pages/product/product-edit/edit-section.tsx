@@ -1,6 +1,6 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
-import Button from "component/Button";
-import Card from "component/Card";
+import Button from "component/button";
+import Card from "component/card";
 import UploadImage, { UploadImageProps } from "component/upload-image";
 import { CloseBtn, ImgBox, PrimaryBtn } from "component/upload-image/index.styled";
 import { File as ImgFile } from "model/File";

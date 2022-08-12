@@ -1,7 +1,7 @@
 import { Flex, FlexProps, GridItem, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import Card from "component/Card";
-import Loading from "component/Loading";
+import Card from "component/card";
+import Loading from "component/loading";
 import PageHeading from "component/page-heading";
 import { STYLE } from "config";
 import { Product } from "model/Product";

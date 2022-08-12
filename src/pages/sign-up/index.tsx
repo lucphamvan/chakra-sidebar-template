@@ -1,10 +1,10 @@
 import { Heading, VStack, useToast } from "@chakra-ui/react";
-import Button from "component/Button";
-import Card from "component/Card";
-import InputEmail from "component/Form/input-email";
-import InputForm from "component/Form/input-form";
-import InputPassword from "component/Form/input-password-signup";
-import { notifyError, notifySuccess } from "component/Toast";
+import Button from "component/button";
+import Card from "component/card";
+import InputEmail from "component/form/input-email";
+import InputForm from "component/form/input-form";
+import InputPassword from "component/form/input-password-signup";
+import { notifyError, notifySuccess } from "component/toast";
 import { useForm } from "react-hook-form";
 import { FiUser as User } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";

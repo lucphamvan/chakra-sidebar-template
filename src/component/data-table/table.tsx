@@ -1,6 +1,6 @@
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import { Box, Table, Tbody, Td, Th, Thead, Tr, chakra } from "@chakra-ui/react";
-import Loading from "component/Loading";
+import Loading from "component/loading";
 import { STYLE } from "config";
 import { useRef } from "react";
 import { HeaderGroup, Row, TableBodyPropGetter, TableBodyProps, TablePropGetter, TableProps } from "react-table";

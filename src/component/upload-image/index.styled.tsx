@@ -11,6 +11,7 @@ const StyledCloseIcon = styled(IconButton)`
     height: 2rem;
     border-radius: 100% !important;
     background-color: rgba(10, 10, 10, 0.5);
+    visibility: hidden; // default hide it
     &:hover {
         border-radius: 100% !important;
         background-color: rgba(10, 10, 10, 0.7);

@@ -1,6 +1,6 @@
 import { Box, Flex, GridItem } from "@chakra-ui/react";
 import { formatDate, formatPrice } from "common/helper";
-import Button from "component/Button";
+import Button from "component/button";
 import PageHeading from "component/page-heading";
 import { STYLE } from "config";
 import { Product } from "model/Product";

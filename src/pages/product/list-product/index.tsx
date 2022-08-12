@@ -1,6 +1,6 @@
 import { Box, HStack, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import Card from "component/Card";
+import Card from "component/card";
 import { DataTable } from "component/data-table";
 import SearchInput from "component/data-table/search-input";
 import PageHeading from "component/page-heading";

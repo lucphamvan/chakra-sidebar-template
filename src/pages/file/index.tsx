@@ -1,7 +1,7 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Box, HStack, Input, InputGroup, InputLeftElement, useDisclosure } from "@chakra-ui/react";
-import Button from "component/Button";
-import Card from "component/Card";
+import Button from "component/button";
+import Card from "component/card";
 import { DataTable } from "component/data-table";
 import PageHeading from "component/page-heading";
 import UploadModal from "component/upload-modal";

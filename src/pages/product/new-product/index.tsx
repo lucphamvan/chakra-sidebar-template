@@ -1,11 +1,11 @@
 import { Flex, Grid, chakra, useToast } from "@chakra-ui/react";
-import Button from "component/Button";
-import Card from "component/Card";
-import InputDescription from "component/Form/input-description";
-import InputFormLabel from "component/Form/input-form-label";
-import InputNumber from "component/Form/input-number";
-import { notifyError } from "component/Toast";
+import Button from "component/button";
+import Card from "component/card";
+import InputDescription from "component/form/input-description";
+import InputFormLabel from "component/form/input-form-label";
+import InputNumber from "component/form/input-number";
 import PageHeading from "component/page-heading";
+import { notifyError } from "component/toast";
 import UploadImage from "component/upload-image";
 import { ERROR } from "config/error";
 import { useState } from "react";

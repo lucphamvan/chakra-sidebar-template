@@ -1,10 +1,10 @@
 import { Box, Divider, HStack, Heading, VStack, useToast } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import Button from "component/Button";
-import Card from "component/Card";
-import InputEmail from "component/Form/input-email";
-import InputPassword from "component/Form/input-password";
-import { notifyError } from "component/Toast";
+import Button from "component/button";
+import Card from "component/card";
+import InputEmail from "component/form/input-email";
+import InputPassword from "component/form/input-password";
+import { notifyError } from "component/toast";
 import { SPECIAL_FONT } from "config";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";

@@ -11,11 +11,11 @@ export interface UploadImageProps {
     setImgSrcList: React.Dispatch<React.SetStateAction<string[]>>;
     files: File[]; // state handle list files upload => this use for API
     setFiles: React.Dispatch<React.SetStateAction<File[]>>;
-    primaryImgIndex: number | undefined;
+    primaryImgIndex: number | undefined; // state hande primary image index
     setPrimaryImgIndex: React.Dispatch<React.SetStateAction<number | undefined>>;
-    maxUpload?: number;
-    maxUploadNumber?: number;
-    callback?: Function;
+    maxUpload?: number; // the limited number of uploaded image
+    maxUploadNumber?: number; // property to display limited number text
+    callback?: Function; // this callback will call when set primary index image
 }
 
 const UploadImage = ({

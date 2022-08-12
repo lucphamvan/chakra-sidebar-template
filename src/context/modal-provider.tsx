@@ -6,7 +6,7 @@
  *   const result = await prompt("Enter a URL", "http://")
  */
 import { Box, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Stack } from "@chakra-ui/react";
-import Button from "component/Button";
+import Button from "component/button";
 import { ReactNode, createContext, useCallback, useContext, useRef, useState } from "react";
 
 // TODO: Select field contents when a prompt() loads

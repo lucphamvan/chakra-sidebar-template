@@ -1,6 +1,6 @@
 import { Box, Input } from "@chakra-ui/react";
-import Card from "component/Card";
-import Loading from "component/Loading";
+import Card from "component/card";
+import Loading from "component/loading";
 import PageHeading from "component/page-heading";
 import { useCallback, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";

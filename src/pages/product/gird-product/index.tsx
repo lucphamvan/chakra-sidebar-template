@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import Loading from "component/Loading";
+import Loading from "component/loading";
 import { BREAKPOINT, STYLE } from "config";
 import { Product } from "model/Product";
 import { useCallback, useEffect, useRef, useState } from "react";

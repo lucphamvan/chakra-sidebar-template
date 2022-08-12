@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
-import Button from "component/Button";
-import Card from "component/Card";
+import Button from "component/button";
+import Card from "component/card";
 import PageHeading from "component/page-heading";
 import usePopup from "context/modal-provider";
 import { useState } from "react";

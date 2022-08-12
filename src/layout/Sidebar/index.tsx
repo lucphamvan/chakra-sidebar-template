@@ -3,7 +3,7 @@ import { Box, HStack, Heading } from "@chakra-ui/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { TITLE } from "../../../config";
+import { TITLE } from "../../config";
 import Menu from "./Menu";
 
 const SideBar = React.memo(() => {

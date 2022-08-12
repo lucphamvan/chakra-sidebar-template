@@ -1,7 +1,7 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { OverlayContainer } from "@react-aria/overlays";
 import "animate.css";
-import Loading from "component/Loading";
+import Loading from "component/loading";
 import { STYLE } from "config";
 import { ModalProvider } from "context/modal-provider";
 import { Suspense } from "react";

@@ -1,6 +1,6 @@
-import Layout from "component/Layout/Layout";
-import NoLayout from "component/Layout/NoLayout";
 import useAuthen from "hook/authen.hook";
+import Layout from "layout/Layout";
+import NoLayout from "layout/NoLayout";
 import { lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 

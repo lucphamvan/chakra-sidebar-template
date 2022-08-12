@@ -1,8 +1,8 @@
 import { Divider, Grid, GridItem, Heading, Wrap, chakra, useToast } from "@chakra-ui/react";
-import Button from "component/Button";
-import Card from "component/Card";
-import InputFormLabel from "component/Form/input-form-label";
-import { notifySuccess } from "component/Toast";
+import Button from "component/button";
+import Card from "component/card";
+import InputFormLabel from "component/form/input-form-label";
+import { notifySuccess } from "component/toast";
 import { useForm } from "react-hook-form";
 import { fetchUser } from "redux/slices/authenSlice";
 import { useAppDispatch, useAppSelector } from "redux/store";

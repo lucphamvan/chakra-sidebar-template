@@ -16,6 +16,7 @@ const UploadBox = ({ getInputProps, getRootProps }: Props) => {
             justifyContent="center"
             alignItems="center"
             {...getRootProps()}
+            cursor="pointer"
         >
             <chakra.input {...getInputProps()} />
             <Icon as={MdFileUpload} w="4rem" h="4rem" />

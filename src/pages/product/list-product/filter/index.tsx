@@ -1,5 +1,5 @@
 import { Box, Collapse, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from "@chakra-ui/react";
-import Button from "component/Button";
+import Button from "component/button";
 import { DatePicker } from "date-picker";
 import { MdFilter } from "react-icons/md";
 

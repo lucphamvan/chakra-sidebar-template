@@ -1,7 +1,7 @@
 import { HStack, chakra } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
-import { STYLE } from "../../../config";
+import { STYLE } from "../../config";
 import Menu from "./menu";
 
 const Wrapper = styled(chakra.header)`

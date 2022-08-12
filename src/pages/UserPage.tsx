@@ -1,4 +1,4 @@
-import Card from "component/Card";
+import Card from "component/card";
 import PageHeading from "component/page-heading";
 
 export default function UserPage() {
