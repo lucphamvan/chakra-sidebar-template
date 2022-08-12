@@ -24,7 +24,7 @@ const SearchInput = ({ setSearch, triggerSeach }: Props) => {
     };
 
     return (
-        <InputGroup maxW={60}>
+        <InputGroup maxW={80}>
             <InputLeftElement children={<SearchIcon color={STYLE.primaryColor} />} />
             <Input type="search" value={value} onChange={handleSearchChange} onKeyUp={handleKeyUp} />
         </InputGroup>

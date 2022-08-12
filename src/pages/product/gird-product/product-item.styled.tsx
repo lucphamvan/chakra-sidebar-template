@@ -5,11 +5,11 @@ import { STYLE } from "config";
 export const ItemWrapper = styled(Box)`
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 1rem;
+    gap: 1rem;
+    /* padding: 1rem; */
     border-radius: 0.25rem;
     cursor: pointer;
-    background-color: #fff;
+    /* background-color: #fff; */
     transition: transform 250ms;
     aspect-ratio: 5/4; // important to keep ratio and specify height based on width
 `;
@@ -20,11 +20,8 @@ export const Image = styled(ChakraImage)`
     object-fit: scale-down;
     user-select: none;
     background: ${STYLE.textColor};
-    border-radius: 0.25rem;
+    /* border-radius: 0.25rem; */
     transition: transform 250ms;
-    &:hover {
-        transform: scale3d(1.05, 1.05, 1.05);
-    }
 `;
 
 export const Avatar = styled(ChakraAvatar)`
@@ -35,8 +32,8 @@ export const Avatar = styled(ChakraAvatar)`
 export const Skeleton = styled(Box)`
     width: 100%;
     aspect-ratio: 5/3;
-    background-color: ${STYLE.background};
-    border-radius: 0.25rem;
+    background-color: ${STYLE.textColor};
+    /* border-radius: 0.25rem; */
     display: flex;
     align-items: center;
     justify-content: center;

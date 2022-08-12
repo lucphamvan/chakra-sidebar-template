@@ -29,15 +29,23 @@ export const STYLE = {
     paddingTap: "0.65rem 2rem"
 };
 
-export enum BREAKPOINT {
-    sm = "30em",
-    md = "48em",
-    lg = "62em",
-    xl = "80em",
-    "2xl" = "96em"
-}
+export const BREAKPOINT = {
+    sm: "30em",
+    md: "48em",
+    lg: "62em",
+    xl: "80em",
+    "2xl": "96em"
+};
 
-export const TITLE = "KUL DRAGON";
+export const MEDIA_QUERY = {
+    sm: `@media (min-width: ${BREAKPOINT.sm})`,
+    md: `@media (min-width: ${BREAKPOINT.md})`,
+    lg: `@media (min-width: ${BREAKPOINT.lg})`,
+    xl: `@media (min-width: ${BREAKPOINT.xl})`,
+    "2xl": `@media (min-width: ${BREAKPOINT["2xl"]})`
+};
+
+export const TITLE = "Ivy Storage";
 
 export const SPECIAL_FONT = "special_font";
 

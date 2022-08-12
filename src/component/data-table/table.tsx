@@ -22,7 +22,7 @@ const TableUI = <T extends object>(props: TableUIProps<T>) => {
             <Table variant="simple" {...getTableProps()}>
                 <Thead position="sticky" top={0} zIndex={1}>
                     {headerGroups.map((headerGroup) => (
-                        <Tr {...headerGroup.getHeaderGroupProps()} bg="#F3F7F7">
+                        <Tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
                                 <Th
                                     {...column.getHeaderProps(column.getSortByToggleProps())}
@@ -61,7 +61,7 @@ const TableUI = <T extends object>(props: TableUIProps<T>) => {
                             return (
                                 <Tr {...row.getRowProps()} bg={row.isSelected ? STYLE.background : "initial"}>
                                     {row.cells.map((cell) => (
-                                        <Td {...cell.getCellProps()} isNumeric={(cell.column as any).isNumeric}>
+                                        <Td {...cell.getCellProps()} isNumeric={(cell.column as any).isNumeric} py={2}>
                                             {cell.render("Cell")}
                                         </Td>
                                     ))}

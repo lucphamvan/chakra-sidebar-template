@@ -36,9 +36,11 @@ const Pagination = (props: PaginationProp) => {
 
     return (
         <Flex m={4} alignItems="center" gap={4} display="inline-flex" flexWrap="wrap">
+            {/* first + previous page */}
             <Flex>
                 <Tooltip label="First Page">
                     <IconButton
+                        size={["sm", "sm", "md"]}
                         aria-label="first page"
                         onClick={() => gotoPage(0)}
                         isDisabled={!canPreviousPage}
@@ -48,6 +50,7 @@ const Pagination = (props: PaginationProp) => {
                 </Tooltip>
                 <Tooltip label="Previous Page">
                     <IconButton
+                        size={["sm", "sm", "md"]}
                         aria-label="previous page"
                         onClick={previousPage}
                         isDisabled={!canPreviousPage}
@@ -56,28 +59,31 @@ const Pagination = (props: PaginationProp) => {
                 </Tooltip>
             </Flex>
 
-            <Flex alignItems="center">
-                <Text flexShrink={0} mr={8}>
+            {/* page selection */}
+            <Flex alignItems="center" flexWrap="wrap">
+                <Text display={["none", "none", "initial"]} flexShrink={0} mr={4} size={["sm", "sm", "md"]}>
                     Page{" "}
-                    <Text fontWeight="bold" as="span">
+                    <Text fontWeight="bold" as="span" size={["sm", "sm", "md"]}>
                         {pageIndex + 1}
                     </Text>{" "}
                     of{" "}
-                    <Text fontWeight="bold" as="span">
+                    <Text fontWeight="bold" as="span" size={["sm", "sm", "md"]}>
                         {pageOptions.length}
                     </Text>
                 </Text>
-                <Text flexShrink={0}>Go to page:</Text>{" "}
+                <Text display={["none", "none", "initial"]} flexShrink={0} mr={4} size={["sm", "sm", "md"]}>
+                    Go to page:
+                </Text>{" "}
                 <NumberInput
-                    ml={2}
-                    mr={8}
-                    w={28}
+                    size={["sm", "sm", "md"]}
+                    w={[20, 20, 24]}
                     min={1}
                     max={pageOptions.length}
                     onChange={(value: any) => {
                         const page = value ? value - 1 : 0;
                         gotoPage(page);
                     }}
+                    value={pageIndex + 1}
                     defaultValue={pageIndex + 1}
                 >
                     <NumberInputField />
@@ -86,7 +92,14 @@ const Pagination = (props: PaginationProp) => {
                         <NumberDecrementStepper />
                     </NumberInputStepper>
                 </NumberInput>
-                <Select w={32} value={pageSize} onChange={handlePageSizeChange}>
+                <Select
+                    ml={4}
+                    w={[28, 28, 32]}
+                    display={["none", "none", "initial"]}
+                    size={["sm", "sm", "md"]}
+                    value={pageSize}
+                    onChange={handlePageSizeChange}
+                >
                     {SIZE_OPTION.map((pageSize) => (
                         <option key={pageSize} value={pageSize}>
                             Show {pageSize}
@@ -95,9 +108,11 @@ const Pagination = (props: PaginationProp) => {
                 </Select>
             </Flex>
 
+            {/* next + last page */}
             <Flex>
                 <Tooltip label="Next Page">
                     <IconButton
+                        size={["sm", "sm", "md"]}
                         aria-label="next page"
                         onClick={nextPage}
                         isDisabled={!canNextPage}
@@ -106,6 +121,7 @@ const Pagination = (props: PaginationProp) => {
                 </Tooltip>
                 <Tooltip label="Last Page">
                     <IconButton
+                        size={["sm", "sm", "md"]}
                         aria-label="last page"
                         onClick={() => gotoPage(pageCount - 1)}
                         isDisabled={!canNextPage}

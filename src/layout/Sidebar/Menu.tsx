@@ -76,7 +76,10 @@ const NormalItem = styled(chakra.div)`
 `;
 
 const ListItem = styled(Item)`
-    padding: 0.25rem 1rem;
+    padding: 0rem 1rem;
+    &:hover {
+        background-color: rgba(170, 170, 170, 0.1);
+    }
 `;
 
 interface MenuItemProp {

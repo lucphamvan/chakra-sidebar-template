@@ -1,17 +1,21 @@
 import { Box, IconButtonProps, Tooltip } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import IconButton from "component/icon-button";
+import { STYLE } from "config";
 import { MdCheck, MdClose } from "react-icons/md";
 
-const StyledCloseIcon = styled(IconButton)`
+export const IconWrapper = styled(Box)`
     position: absolute;
     top: 4px;
     right: 4px;
+`;
+
+export const MenuIcon = styled(IconButton)`
     min-width: 2rem;
     height: 2rem;
     border-radius: 100% !important;
     background-color: rgba(10, 10, 10, 0.5);
-    visibility: hidden; // default hide it
+
     &:hover {
         border-radius: 100% !important;
         background-color: rgba(10, 10, 10, 0.7);
@@ -19,6 +23,17 @@ const StyledCloseIcon = styled(IconButton)`
     &:active {
         border-radius: 100% !important;
         background-color: rgba(10, 10, 10, 0.7);
+    }
+`;
+
+export const MenuItem = styled(Box)`
+    cursor: pointer;
+    border-radius: ${STYLE.borderRadius};
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+
+    &:hover {
+        background-color: rgba(100, 100, 100, 0.2);
     }
 `;
 
@@ -39,9 +54,9 @@ const StyledPrimaryIcon = styled(IconButton)`
     }
 `;
 
-export const CloseBtn = ({ ...props }: IconButtonProps) => {
+export const MenuBtn = ({ ...props }: IconButtonProps) => {
     return (
-        <StyledCloseIcon
+        <MenuIcon
             className="primary-img-btn"
             fontSize={16}
             variant="ghost"
@@ -53,7 +68,7 @@ export const CloseBtn = ({ ...props }: IconButtonProps) => {
 
 export const PrimaryBtn = ({ ...props }: IconButtonProps) => {
     return (
-        <Tooltip label="This image will be avatar of product" placement="top" hasArrow>
+        <Tooltip label="This image is avatar of product" placement="top" hasArrow>
             <StyledPrimaryIcon
                 className="primary-img-btn" // important to visible when hover in parent
                 fontSize={16}
@@ -70,6 +85,7 @@ export const ImgBox = styled(Box)`
     justify-content: center;
     align-items: center;
     position: relative;
+    flex-direction: column;
     // visible child component when hover
     &:hover .primary-img-btn {
         visibility: visible !important;

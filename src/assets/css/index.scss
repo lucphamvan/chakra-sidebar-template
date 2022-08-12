@@ -1,5 +1,5 @@
 * {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .chakra-checkbox__control {
@@ -10,7 +10,12 @@
     outline: none !important;
     box-shadow: 0 0px 15px #c1c4c4 !important;
 }
-
+.chakra-popover__popper {
+    min-width: unset !important;
+}
+.custom-class {
+    min-height: unset !important;
+}
 // button {
 //     // border-radius: 0.125rem !important;
 //     // font-family: "Source Code Pro", monospace !important;

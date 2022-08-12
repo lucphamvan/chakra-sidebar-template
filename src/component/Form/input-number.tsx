@@ -1,12 +1,12 @@
 import {
     Box,
+    Flex,
     NumberDecrementStepper,
     NumberIncrementStepper,
     NumberInput,
     NumberInputField,
     NumberInputProps,
     NumberInputStepper,
-    Stack,
     chakra
 } from "@chakra-ui/react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
@@ -31,7 +31,7 @@ const InputNumber = ({
     ...props
 }: InputNumberProp) => {
     return (
-        <Stack>
+        <Flex flexDir="column" gap={2}>
             <chakra.label fontSize="sm" htmlFor={name}>
                 {label}
             </chakra.label>
@@ -62,10 +62,10 @@ const InputNumber = ({
                     <NumberDecrementStepper />
                 </NumberInputStepper>
             </NumberInput>
-            <Box fontWeight={500} color="red.400" fontSize="sm">
+            <Box color="red.400" fontSize="sm">
                 {errors[name]?.message}
             </Box>
-        </Stack>
+        </Flex>
     );
 };
 

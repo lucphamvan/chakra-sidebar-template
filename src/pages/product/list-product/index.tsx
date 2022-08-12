@@ -1,4 +1,4 @@
-import { Box, HStack, Text } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import Card from "component/card";
 import { DataTable } from "component/data-table";
@@ -20,9 +20,6 @@ const TableWrapper = styled(Box)`
     flex-direction: column;
     overflow: auto;
     height: ${TABLE_HEIGHT};
-    td {
-        border: none;
-    }
 `;
 
 const ProductList = () => {
@@ -68,11 +65,11 @@ const ProductList = () => {
         <>
             <PageHeading>Product management</PageHeading>
             <HStack py={4} justifyContent="space-between">
-                <HStack spacing={4}>
-                    <Text fontWeight={600}>Search Product</Text>
+                <Box width="max-content" display="flex" alignItems="center" w="100%" gap="4">
+                    <Box fontWeight={600}>Search Product</Box>
                     <SearchInput setSearch={setSearch} triggerSeach={toggleRefresh} />
                     <Filter />
-                </HStack>
+                </Box>
             </HStack>
             <Card width={"100%"} p={0}>
                 <TableWrapper>

@@ -1,5 +1,6 @@
 import { MoonIcon } from "@chakra-ui/icons";
-import { Box, HStack, Heading } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
+import PageHeading from "component/page-heading";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,11 +12,9 @@ const SideBar = React.memo(() => {
     return (
         <Box bg="white" w="72" pos="fixed" h="100vh" overflow="auto">
             {/* // Logo + Brand */}
-            <HStack p="2rem" justifyContent="center">
-                <MoonIcon cursor="pointer" w={6} h={6} onClick={() => navigate("/")} />
-                <Heading className="special-font" fontSize="2xl" fontWeight="black" userSelect="none">
-                    {TITLE}
-                </Heading>
+            <HStack p="2rem" alignItems="center">
+                <MoonIcon cursor="pointer" w={8} h={8} onClick={() => navigate("/")} />
+                <PageHeading>{TITLE}</PageHeading>
             </HStack>
 
             {/* List Menu Item */}

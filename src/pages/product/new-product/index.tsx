@@ -1,4 +1,4 @@
-import { Flex, Grid, chakra, useToast } from "@chakra-ui/react";
+import { Divider, Flex, GridItem, chakra, useToast } from "@chakra-ui/react";
 import Button from "component/button";
 import Card from "component/card";
 import InputDescription from "component/form/input-description";
@@ -12,6 +12,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import fileService from "services/file.service";
 import productService from "services/product.service";
+
+import { Grid } from "./index.styled";
 
 const NewProductPage = () => {
     const {
@@ -62,51 +64,60 @@ const NewProductPage = () => {
             <PageHeading>New Product</PageHeading>
             <Card width="100%" mt={4}>
                 <chakra.form onSubmit={handleSubmit(onSubmit)}>
-                    <Flex flexDir="row" flexWrap="wrap" gap={4} alignItems="center">
-                        <UploadImage
-                            files={files}
-                            setFiles={setFiles}
-                            imgSrcList={imgSrcList}
-                            setImgSrcList={setImgSrcList}
-                            primaryImgIndex={primaryImgIndex}
-                            setPrimaryImgIndex={setPrimaryImgIndex}
-                        />
-                    </Flex>
-                    <Grid templateColumns="repeat(3, 1fr)" gap={4} my={4}>
-                        <InputFormLabel
-                            name="name"
-                            label="Name"
-                            errors={errors}
-                            register={register}
-                            placeholder="Product name"
-                            required={ERROR.REQUIRED}
-                        />
+                    <Grid templateColumns="1fr 2px 2fr" gap={12} my={4}>
+                        <GridItem>
+                            <Flex flexDir="column" gap={4}>
+                                <InputFormLabel
+                                    name="name"
+                                    label="Name"
+                                    errors={errors}
+                                    register={register}
+                                    placeholder="Product name"
+                                    required={ERROR.REQUIRED}
+                                />
 
-                        <InputNumber
-                            name="price"
-                            label="Price (USD)"
-                            errors={errors}
-                            register={register}
-                            min={0}
-                            required={ERROR.REQUIRED}
-                        />
-                        <InputNumber
-                            name="amount"
-                            label="Amount"
-                            errors={errors}
-                            register={register}
-                            requiredWholeNumber
-                            min={0}
-                            required={ERROR.REQUIRED}
-                        />
-                        <InputDescription
-                            name="desc"
-                            label="Description"
-                            errors={errors}
-                            register={register}
-                            placeholder="Product description"
-                            required={ERROR.REQUIRED}
-                        />
+                                <InputNumber
+                                    name="price"
+                                    label="Price (USD)"
+                                    errors={errors}
+                                    register={register}
+                                    min={0}
+                                    required={ERROR.REQUIRED}
+                                />
+                                <InputNumber
+                                    name="amount"
+                                    label="Amount"
+                                    errors={errors}
+                                    register={register}
+                                    requiredWholeNumber
+                                    min={0}
+                                    required={ERROR.REQUIRED}
+                                />
+                                <InputDescription
+                                    name="desc"
+                                    label="Description"
+                                    errors={errors}
+                                    register={register}
+                                    placeholder="Product description"
+                                    required={ERROR.REQUIRED}
+                                />
+                            </Flex>
+                        </GridItem>
+                        <GridItem>
+                            <Divider orientation="vertical" />
+                        </GridItem>
+                        <GridItem>
+                            <Flex flexDir="row" flexWrap="wrap" gap={4}>
+                                <UploadImage
+                                    files={files}
+                                    setFiles={setFiles}
+                                    imgSrcList={imgSrcList}
+                                    setImgSrcList={setImgSrcList}
+                                    primaryImgIndex={primaryImgIndex}
+                                    setPrimaryImgIndex={setPrimaryImgIndex}
+                                />
+                            </Flex>
+                        </GridItem>
                     </Grid>
                     <Button type="submit" loadingText="Creating..." isLoading={isSubmitting}>
                         Create

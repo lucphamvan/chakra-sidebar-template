@@ -1,9 +1,9 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import usePopup from "context/modal-provider";
 import { useCallback, useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 
-import { CloseBtn, ImgBox, PrimaryBtn } from "./index.styled";
+import ImageItem from "./image-item";
 import UploadBox from "./upload-box";
 
 export interface UploadImageProps {
@@ -30,18 +30,19 @@ const UploadImage = ({
     callback
 }: UploadImageProps) => {
     const { alert } = usePopup();
+
     // ondrop
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
             "image/*": [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".tif", ".tiff"]
         },
         onDrop: (acceptedFiles, rejectFiles, event) => {
-            handleImgChange(acceptedFiles);
+            onImageUpload(acceptedFiles);
         }
     });
 
     // handle change product image
-    const handleImgChange = (uploadedFileList: File[]) => {
+    const onImageUpload = (uploadedFileList: File[]) => {
         // limit 10 files
         if (imgSrcList.length + uploadedFileList.length > maxUpload) {
             alert(<Box fontWeight="semibold">Cannot upload more than {maxUploadNumber} images</Box>);
@@ -62,7 +63,8 @@ const UploadImage = ({
 
     // remove image
     const handleRemoveImg = useCallback(
-        (index: number) => {
+        (index: number, onToggle: any) => {
+            onToggle();
             setImgSrcList((value) => {
                 const copy = [...value];
                 copy.splice(index, 1);
@@ -88,9 +90,10 @@ const UploadImage = ({
     );
 
     const handleSetPrimaryImgIndex = useCallback(
-        (index: number) => {
+        (index: number, onToggle: any) => {
             setPrimaryImgIndex(index);
             callback && callback();
+            onToggle();
         },
         [setPrimaryImgIndex, callback]
     );
@@ -100,19 +103,20 @@ const UploadImage = ({
         if (!imgSrcList?.length) {
             return null;
         }
-
-        return imgSrcList?.map((src, index) => (
-            <ImgBox key={`img-${index}`}>
-                <Image bg="gray.100" src={src} objectFit="scale-down" boxSize="40" />
-                <CloseBtn aria-label="close" onClick={() => handleRemoveImg(index)} />
-                <PrimaryBtn
-                    aria-label="primary product image"
-                    style={{ visibility: index === primaryImgIndex ? "visible" : "hidden" }}
-                    onClick={() => handleSetPrimaryImgIndex(index)}
+        return imgSrcList?.map((src, index) => {
+            // const isPrimary = index === primaryImgIndex;
+            return (
+                <ImageItem
+                    key={`img-${index}`}
+                    src={src}
+                    index={index}
+                    primaryIndex={primaryImgIndex}
+                    handleRemoveImg={handleRemoveImg}
+                    handleSetPrimaryImgIndex={handleSetPrimaryImgIndex}
                 />
-            </ImgBox>
-        ));
-    }, [imgSrcList, primaryImgIndex, handleRemoveImg, handleSetPrimaryImgIndex]);
+            );
+        });
+    }, [imgSrcList, handleRemoveImg, handleSetPrimaryImgIndex, primaryImgIndex]);
 
     return (
         <>

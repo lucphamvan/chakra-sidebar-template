@@ -1,8 +1,8 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import Button from "component/button";
 import Card from "component/card";
 import UploadImage, { UploadImageProps } from "component/upload-image";
-import { CloseBtn, ImgBox, PrimaryBtn } from "component/upload-image/index.styled";
+import ImageItem from "component/upload-image/image-item";
 import { File as ImgFile } from "model/File";
 import { Product, ProductUpdateInput } from "model/Product";
 import { useState } from "react";
@@ -27,7 +27,8 @@ const EditSection = ({ product }: Props) => {
     const [isUpdating, setIsUpdating] = useState(false);
 
     // handle remove current image of product
-    const handleRemoveImg = (index: number) => {
+    const handleRemoveImg = (index: number, onToggle: any) => {
+        onToggle();
         if (!productImgFile) {
             return;
         }
@@ -48,25 +49,24 @@ const EditSection = ({ product }: Props) => {
     };
 
     // handle set primary index of current image
-    const handleSetPrimaryIndex = (index: number) => {
-        console.log("index", index);
+    const handleSetPrimaryIndex = (index: number, onToggle: any) => {
         setPrimaryIndex(index);
         setPrimaryIndexInsert(undefined);
+        onToggle();
     };
 
     // render current image
     const renderProductImg = () => {
         return productImgFile?.map((file, index) => {
             return (
-                <ImgBox key={`img-${index}`}>
-                    <Image bg="gray.100" src={file.url} objectFit="scale-down" boxSize="40" />
-                    <CloseBtn aria-label="close" onClick={() => handleRemoveImg(index)} />
-                    <PrimaryBtn
-                        aria-label="primary product image"
-                        style={{ visibility: index === primaryIndex ? "visible" : "hidden" }}
-                        onClick={() => handleSetPrimaryIndex(index)}
-                    />
-                </ImgBox>
+                <ImageItem
+                    key={`img-${index}`}
+                    src={file.url}
+                    index={index}
+                    primaryIndex={primaryIndex}
+                    handleRemoveImg={handleRemoveImg}
+                    handleSetPrimaryImgIndex={handleSetPrimaryIndex}
+                />
             );
         });
     };

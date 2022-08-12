@@ -22,7 +22,7 @@ const ProductItem = ({ item }: Props) => {
         <ItemWrapper onClick={viewDetail}>
             <Image ref={ref} src={item.imgUrl} fallback={<Skeleton />} />
             <Grid gridTemplateColumns="minmax(0, 1fr) 4rem">
-                <GridItem display="flex" gap={2} flexDirection="column">
+                <GridItem display="flex" flexDirection="column">
                     <Box fontWeight="bold" noOfLines={1}>
                         {item.name}
                     </Box>
