@@ -28,10 +28,11 @@ const NewProductPage = () => {
     const [files, setFiles] = useState<File[]>([]); // state handle list files upload
     const [imgSrcList, setImgSrcList] = useState<any[]>([]); // state handle list img src created from upload files
     const [primaryImgIndex, setPrimaryImgIndex] = useState<number | undefined>(0);
+    const [price, setPrice] = useState<number>();
+    const [amount, setAmount] = useState<number>();
 
     // handle submit
     const onSubmit = async (data: any) => {
-        console.log(data);
         try {
             const promiseList = files?.map((file) => {
                 return fileService.upload(file);
@@ -53,6 +54,8 @@ const NewProductPage = () => {
             setFiles([]);
             setPrimaryImgIndex(0);
             reset();
+            setPrice(0);
+            setAmount(0);
         } catch (error: any) {
             console.log("failed create product", error.message);
             notifyError(toast, "Failed to create product now. Check or try again later");
@@ -84,6 +87,8 @@ const NewProductPage = () => {
                                     register={register}
                                     min={0}
                                     required={ERROR.REQUIRED}
+                                    value={price}
+                                    setValue={setPrice}
                                 />
                                 <InputNumber
                                     name="amount"
@@ -93,6 +98,8 @@ const NewProductPage = () => {
                                     requiredWholeNumber
                                     min={0}
                                     required={ERROR.REQUIRED}
+                                    value={amount}
+                                    setValue={setAmount}
                                 />
                                 <InputDescription
                                     name="desc"

@@ -68,6 +68,8 @@ const FilePage = () => {
                         getData={getFiles}
                         totalPage={totalPage}
                         multipleMenu={multipleMenu}
+                        serverSideRender
+                        enableSelectRow
                     />
                 </Box>
                 <UploadModal reload={toggleRefresh} isOpen={isOpen} onToggle={onToggle} onClose={onClose} />

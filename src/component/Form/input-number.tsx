@@ -19,6 +19,8 @@ interface InputNumberProp extends NumberInputProps {
     name: string;
     label?: string;
     requiredWholeNumber?: boolean;
+    value?: number;
+    setValue: any;
 }
 const InputNumber = ({
     name,
@@ -28,6 +30,8 @@ const InputNumber = ({
     placeholder,
     label,
     requiredWholeNumber = false,
+    value,
+    setValue,
     ...props
 }: InputNumberProp) => {
     return (
@@ -35,7 +39,7 @@ const InputNumber = ({
             <chakra.label fontSize="sm" htmlFor={name}>
                 {label}
             </chakra.label>
-            <NumberInput allowMouseWheel {...props}>
+            <NumberInput value={value} onChange={(val) => setValue(val)} allowMouseWheel {...props}>
                 <NumberInputField
                     {...register(name, {
                         required,

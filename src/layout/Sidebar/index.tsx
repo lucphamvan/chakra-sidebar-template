@@ -1,30 +1,47 @@
 import { MoonIcon } from "@chakra-ui/icons";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, BoxProps, HStack, useDisclosure } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import PageHeading from "component/page-heading";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { MEDIA_QUERY, TITLE } from "../../config";
+import { MEDIA_QUERY, MEDIA_QUERY_STRING, TITLE } from "../../config";
 import Menu from "./Menu";
 
-const SideBarContainer = styled(Box)`
+interface Props {
+    show: boolean;
+}
+const SideBarContainer = styled(Box)<Props & BoxProps>`
     background: white;
-    width: 18rem;
+    width: 100vw;
     position: fixed;
     height: 100vh;
     overflow: auto;
-    display: none;
+    z-index: 999;
+    display: ${(props) => (props.show ? "initial" : "none")};
 
     ${MEDIA_QUERY.md} {
-        display: flex;
+        display: initial;
+        width: 18rem;
     }
 `;
 
 const SideBar = React.memo(() => {
     const navigate = useNavigate();
+    const { isOpen, onToggle, onClose, onOpen } = useDisclosure();
+    const [isLargerMd] = useMediaQuery(MEDIA_QUERY_STRING.md);
+
+    useEffect(() => {
+        if (isLargerMd) {
+            onOpen();
+        } else {
+            onOpen();
+        }
+    }, [isLargerMd, onOpen, onClose]);
+
     return (
-        <SideBarContainer>
+        <SideBarContainer show={isOpen}>
             {/* // Logo + Brand */}
             <HStack p="2rem" alignItems="center">
                 <MoonIcon cursor="pointer" w={8} h={8} onClick={() => navigate("/")} />

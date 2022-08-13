@@ -27,9 +27,15 @@ const ProductList = () => {
     const [pageCount, setPageCount] = useState(0);
     const [isRefresh, setIsRefresh] = useState(false);
     const [search, setSearch] = useState("");
+    const [go1stPage, setGo1stPage] = useState(false);
 
     const toggleRefresh = () => {
         setIsRefresh((value) => !value);
+    };
+
+    const triggerSearch = () => {
+        setGo1stPage((value) => !value);
+        setTimeout(toggleRefresh, 50);
     };
 
     // function get data from server with pagination + sort
@@ -67,7 +73,7 @@ const ProductList = () => {
             <HStack py={4} justifyContent="space-between">
                 <Box width="max-content" display="flex" alignItems="center" w="100%" gap="4">
                     <Box fontWeight={600}>Search Product</Box>
-                    <SearchInput setSearch={setSearch} triggerSeach={toggleRefresh} />
+                    <SearchInput setSearch={setSearch} triggerSeach={triggerSearch} />
                     <Filter />
                 </Box>
             </HStack>
@@ -79,8 +85,10 @@ const ProductList = () => {
                         columns={columns(toggleRefresh)}
                         data={products}
                         isRefresh={isRefresh}
-                        /** this component will inject to DataTable */
-                        multipleMenu={renderMultipleMenu}
+                        goFirstPage={go1stPage}
+                        multipleMenu={renderMultipleMenu} /** this component will inject to DataTable */
+                        serverSideRender
+                        enableSelectRow
                     />
                 </TableWrapper>
             </Card>

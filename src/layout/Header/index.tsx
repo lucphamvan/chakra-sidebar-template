@@ -1,7 +1,7 @@
 import { HStack, chakra } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
-import { STYLE } from "../../config";
+import { MEDIA_QUERY, STYLE } from "../../config";
 import Menu from "./menu";
 
 const Wrapper = styled(chakra.header)`
@@ -11,10 +11,14 @@ const Wrapper = styled(chakra.header)`
     padding: 1rem 2rem;
     align-items: center;
     position: fixed;
-    width: calc(100% - 18rem);
+    width: 100%;
     right: 0;
     top: 0;
     z-index: 99;
+
+    ${MEDIA_QUERY.md} {
+        width: calc(100% - 18rem);
+    }
 `;
 
 const HeaderWrapper = styled(chakra.header)`

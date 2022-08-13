@@ -54,6 +54,7 @@ const ProductGrid = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [loading, setLoading] = useState(true);
+    const [totalProduct, setTotalProduct] = useState(0);
     const refPage = useRef(0);
 
     const loadMore = () => {
@@ -64,8 +65,9 @@ const ProductGrid = () => {
         try {
             setLoading(true);
             const orderBy: OrderBy[] = [{ createdAt: "desc" }];
-            const { items } = await productService.getProducts(page, limit, orderBy);
+            const { items, count } = await productService.getProducts(page, limit, orderBy);
             setProducts((value) => [...value, ...items]);
+            setTotalProduct(count);
             refPage.current += 1;
         } catch (error: any) {
             console.log("error get more product : ", error.message);
@@ -103,7 +105,9 @@ const ProductGrid = () => {
                 }}
                 itemContent={renderItem}
             />
-            <Footer loadMore={loadMore} loading={loading} />
+            {Boolean(products.length) && products.length < totalProduct && (
+                <Footer loadMore={loadMore} loading={loading} />
+            )}
         </>
     );
 };

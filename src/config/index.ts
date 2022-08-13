@@ -45,6 +45,14 @@ export const MEDIA_QUERY = {
     "2xl": `@media (min-width: ${BREAKPOINT["2xl"]})`
 };
 
+export const MEDIA_QUERY_STRING = {
+    sm: `(min-width: ${BREAKPOINT.sm})`,
+    md: `(min-width: ${BREAKPOINT.md})`,
+    lg: `(min-width: ${BREAKPOINT.lg})`,
+    xl: `(min-width: ${BREAKPOINT.xl})`,
+    "2xl": `(min-width: ${BREAKPOINT["2xl"]})`
+};
+
 export const TITLE = "Ivy Storage";
 
 export const SPECIAL_FONT = "special_font";

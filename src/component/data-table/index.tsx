@@ -1,7 +1,7 @@
 import { Checkbox, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import React from "react";
-import { Column, usePagination, useRowSelect, useSortBy, useTable } from "react-table";
+import { Column, TableOptions, usePagination, useRowSelect, useSortBy, useTable } from "react-table";
 
 import { SIZE_OPTION } from "./config";
 import Pagination from "./pagination";
@@ -22,10 +22,13 @@ const IndeterminateCheckbox = React.forwardRef(({ indeterminate, checked, ...res
 export type DataTableProps<T extends object> = {
     data: T[];
     columns: Column<T>[];
-    getData: Function;
-    totalPage: number;
+    getData?: Function;
+    totalPage?: number;
     multipleMenu?: (...params: any) => React.ReactNode;
     isRefresh?: boolean;
+    serverSideRender?: boolean;
+    enableSelectRow?: boolean;
+    goFirstPage?: boolean;
 };
 
 export const DataTable = <T extends object>({
@@ -34,8 +37,30 @@ export const DataTable = <T extends object>({
     getData,
     totalPage,
     multipleMenu,
-    isRefresh
+    isRefresh,
+    serverSideRender = false,
+    enableSelectRow = false,
+    goFirstPage
 }: DataTableProps<T>) => {
+    // define table option
+    let tableOption: TableOptions<T> = {
+        columns,
+        data,
+        initialState: { pageIndex: 0, pageSize: SIZE_OPTION[0] }, // Pass our hoisted table state,
+        autoResetPage: false,
+        autoResetSortBy: false,
+        autoResetRowState: false
+    };
+    // if server side render => add more option
+    if (serverSideRender) {
+        tableOption = {
+            ...tableOption,
+            manualPagination: true, // Tell the usePagination
+            manualSortBy: true, // Tell the sortby
+            pageCount: totalPage
+        };
+    }
+
     const {
         getTableProps,
         getTableBodyProps,
@@ -53,22 +78,8 @@ export const DataTable = <T extends object>({
         selectedFlatRows,
         toggleAllRowsSelected,
         state: { pageIndex, pageSize, sortBy }
-    } = useTable(
-        {
-            columns,
-            data,
-            initialState: { pageIndex: 0, pageSize: SIZE_OPTION[0] }, // Pass our hoisted table state
-            manualPagination: true, // Tell the usePagination
-            manualSortBy: true, // Tell the sortby
-            autoResetPage: false,
-            autoResetSortBy: false,
-            autoResetRowState: false,
-            pageCount: totalPage
-        },
-        useSortBy,
-        usePagination,
-        useRowSelect,
-        (hooks) => {
+    } = useTable(tableOption, useSortBy, usePagination, useRowSelect, (hooks) => {
+        if (enableSelectRow) {
             hooks.visibleColumns.push((columns) => [
                 {
                     id: "selection",
@@ -83,7 +94,7 @@ export const DataTable = <T extends object>({
                 ...columns
             ]);
         }
-    );
+    });
 
     const [loading, setLoading] = useState(true);
 
@@ -110,16 +121,24 @@ export const DataTable = <T extends object>({
     };
 
     useEffect(() => {
+        if (!serverSideRender) {
+            setLoading(false);
+            return;
+        }
         setLoading(true);
-        getData(pageIndex, pageSize, sortBy).finally(() => setLoading(false));
+        getData && getData(pageIndex, pageSize, sortBy).finally(() => setLoading(false));
         // eslint-disable-next-line
     }, [pageIndex, pageSize, sortBy, isRefresh]);
+
+    useEffect(() => {
+        gotoPage(0);
+    }, [goFirstPage, gotoPage]);
 
     return (
         <>
             <TableUI {...tableUIProps} />
             <Flex alignItems="center" justifyContent="space-between" flexWrap="wrap" mt={4}>
-                <Pagination {...paginationProps} />
+                {!!data?.length && <Pagination {...paginationProps} />}
                 {multipleMenu && multipleMenu(selectedFlatRows, toggleAllRowsSelected)}
             </Flex>
         </>

@@ -1,18 +1,24 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useToast } from "@chakra-ui/react";
 import Button from "component/button";
 import Card from "component/card";
 import InputDescription from "component/form/input-description";
 import InputFormLabel from "component/form/input-form-label";
 import InputNumber from "component/form/input-number";
+import { notifyError, notifySuccess } from "component/toast";
 import { ERROR } from "config/error";
-import { Product } from "model/Product";
-import { useEffect } from "react";
+import { Product, ProductUpdateInput } from "model/Product";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import productService from "services/product.service";
 
 interface InfoEditProp {
     product: Product;
 }
 const InfoEdit = ({ product }: InfoEditProp) => {
+    const toast = useToast({ position: "top-right" });
+    const [price, setPrice] = useState(product.price);
+    const [amount, setAmount] = useState(product.amount);
+
     const {
         register,
         handleSubmit,
@@ -29,8 +35,21 @@ const InfoEdit = ({ product }: InfoEditProp) => {
         });
     }, [product, reset]);
 
-    const onSubmit = (data: any) => {
-        console.log(data);
+    const onSubmit = async (data: any) => {
+        try {
+            const updatedData: ProductUpdateInput = {
+                name: data.name,
+                amount: +data.amount,
+                description: data.desc,
+                price: +data.price
+            };
+            await productService.updateProduct(product.id, updatedData);
+            notifySuccess(toast, "Update product successfull");
+            // reload && reload();
+        } catch (error) {
+            console.log("Failed to update product information");
+            notifyError(toast, "Update product failed");
+        }
     };
     return (
         <>
@@ -53,6 +72,8 @@ const InfoEdit = ({ product }: InfoEditProp) => {
                             register={register}
                             min={0}
                             required={ERROR.REQUIRED}
+                            value={price}
+                            setValue={setPrice}
                         />
                         <InputNumber
                             name="amount"
@@ -62,6 +83,8 @@ const InfoEdit = ({ product }: InfoEditProp) => {
                             requiredWholeNumber
                             min={0}
                             required={ERROR.REQUIRED}
+                            value={amount}
+                            setValue={setAmount}
                         />
                         <InputDescription
                             name="desc"
