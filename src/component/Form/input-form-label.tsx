@@ -25,7 +25,7 @@ export const InputFormLabel = ({
 }: InputFormProp) => {
     return (
         <FormControl isInvalid={errors[name]}>
-            <FormLabel fontSize="sm" display="grid" alignItems="center" htmlFor={name}>
+            <FormLabel fontSize="sm" fontWeight={400} htmlFor={name}>
                 {label}
             </FormLabel>
             <Input

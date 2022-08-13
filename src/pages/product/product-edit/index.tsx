@@ -1,6 +1,5 @@
-import { Flex, FlexProps, GridItem, Text } from "@chakra-ui/react";
+import { Divider, Flex, FlexProps, GridItem, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import Card from "component/card";
 import Loading from "component/loading";
 import PageHeading from "component/page-heading";
 import { STYLE } from "config";
@@ -9,8 +8,9 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import productService from "services/product.service";
 
-import EditSection from "./edit-section";
+import ImageEdit from "./image-edit";
 import { Grid } from "./index.styled";
+import InfoEdit from "./info-edit";
 
 interface Props extends FlexProps {
     bglocation: any;
@@ -25,6 +25,7 @@ const Wrapper = styled(Flex)<Props>`
     top: 5rem;
     padding: 1.5rem 2rem;
     z-index: 10;
+    overflow: auto;
 `;
 
 const ProductEditPage = () => {
@@ -76,14 +77,15 @@ const ProductEditPage = () => {
     return (
         <Wrapper bglocation={bgLocation}>
             <PageHeading>Edit Product</PageHeading>
-            <Grid>
+            <Grid mt={4}>
                 <GridItem>
-                    <EditSection product={product} />
+                    <InfoEdit product={product} />
                 </GridItem>
                 <GridItem>
-                    <Card w="100%" h="100%">
-                        <Text>Form</Text>
-                    </Card>
+                    <Divider orientation="vertical" />
+                </GridItem>
+                <GridItem>
+                    <ImageEdit product={product} />
                 </GridItem>
             </Grid>
         </Wrapper>

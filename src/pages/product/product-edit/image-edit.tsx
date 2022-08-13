@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import Button from "component/button";
 import Card from "component/card";
 import UploadImage, { UploadImageProps } from "component/upload-image";
@@ -15,7 +15,7 @@ const getPrimaryIndex = (product: Product) => {
 interface Props {
     product: Product;
 }
-const EditSection = ({ product }: Props) => {
+const ImageEdit = ({ product }: Props) => {
     // state handle add new image
     const [imgSrcInsert, setImgSrcInsert] = useState<string[]>([]);
     const [fileInsert, setFileInsert] = useState<File[]>([]);
@@ -84,6 +84,7 @@ const EditSection = ({ product }: Props) => {
             const listRemoveFileId = product.files
                 ?.filter((file) => !listProductImgId?.includes(file.id))
                 .map((file) => file.id);
+
             if (listRemoveFileId && listRemoveFileId.length) {
                 await fileService.deleteMany(listRemoveFileId);
             }
@@ -128,22 +129,26 @@ const EditSection = ({ product }: Props) => {
         callback: () => setPrimaryIndex(undefined)
     };
     return (
-        <Card w="100%" overflow="auto" h="100%">
-            <Text mb={4} fontWeight="bold">
-                Update Image
-            </Text>
-            <Flex flexDir="row" flexWrap="wrap" gap={4} alignItems="center">
-                {/* component upload new image */}
-                <UploadImage {...uploadImgProps} />
+        <>
+            <Card w="100%" overflowX="hidden" h="100%" justifyContent="space-between" display="flex" flexDir="column">
+                <Box>
+                    <Text mb={4} fontWeight="bold">
+                        Update Image
+                    </Text>
+                    <Flex flexDir="row" flexWrap="wrap" gap={4} alignItems="center">
+                        {/* component upload new image */}
+                        <UploadImage {...uploadImgProps} />
 
-                {/* component render current image of product */}
-                {renderProductImg()}
-            </Flex>
-            <Button mt={4} onClick={updateProductImage} isLoading={isUpdating}>
-                Update
-            </Button>
-        </Card>
+                        {/* component render current image of product */}
+                        {renderProductImg()}
+                    </Flex>
+                </Box>
+                <Button mt={4} onClick={updateProductImage} isLoading={isUpdating}>
+                    Update
+                </Button>
+            </Card>
+        </>
     );
 };
 
-export default EditSection;
+export default ImageEdit;

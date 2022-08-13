@@ -1,4 +1,4 @@
-import { Divider, Flex, GridItem, chakra, useToast } from "@chakra-ui/react";
+import { Box, Divider, Flex, GridItem, chakra, useToast } from "@chakra-ui/react";
 import Button from "component/button";
 import Card from "component/card";
 import InputDescription from "component/form/input-description";
@@ -31,6 +31,7 @@ const NewProductPage = () => {
 
     // handle submit
     const onSubmit = async (data: any) => {
+        console.log(data);
         try {
             const promiseList = files?.map((file) => {
                 return fileService.upload(file);
@@ -107,6 +108,9 @@ const NewProductPage = () => {
                             <Divider orientation="vertical" />
                         </GridItem>
                         <GridItem>
+                            <Box fontSize="sm" mb={2}>
+                                Product images
+                            </Box>
                             <Flex flexDir="row" flexWrap="wrap" gap={4}>
                                 <UploadImage
                                     files={files}

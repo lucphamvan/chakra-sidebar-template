@@ -1,5 +1,6 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import Button from "component/button";
 import Loading from "component/loading";
 import { BREAKPOINT, STYLE } from "config";
 import { Product } from "model/Product";
@@ -38,10 +39,21 @@ const ListContainer = styled(Box)`
     }
 `;
 
+const Footer = ({ loading, loadMore }: { loading: boolean; loadMore: any }) => {
+    return (
+        <Center>
+            <Button mt={8} isLoading={loading} onClick={loadMore}>
+                Load more
+            </Button>
+        </Center>
+    );
+};
+
 const LIMIT = 30;
 const ProductGrid = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const refPage = useRef(0);
 
     const loadMore = () => {
@@ -50,12 +62,15 @@ const ProductGrid = () => {
 
     const getProductMore = async (page: number, limit: number) => {
         try {
+            setLoading(true);
             const orderBy: OrderBy[] = [{ createdAt: "desc" }];
             const { items } = await productService.getProducts(page, limit, orderBy);
             setProducts((value) => [...value, ...items]);
             refPage.current += 1;
         } catch (error: any) {
             console.log("error get more product : ", error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -76,17 +91,20 @@ const ProductGrid = () => {
     }
 
     return (
-        <VirtuosoGrid
-            totalCount={products.length}
-            useWindowScroll //
-            overscan={0}
-            endReached={loadMore}
-            components={{
-                Item: ItemContainer,
-                List: ListContainer as any
-            }}
-            itemContent={renderItem}
-        />
+        <>
+            <VirtuosoGrid
+                totalCount={products.length}
+                useWindowScroll //
+                overscan={0}
+                // endReached={loadMore}
+                components={{
+                    Item: ItemContainer,
+                    List: ListContainer as any
+                }}
+                itemContent={renderItem}
+            />
+            <Footer loadMore={loadMore} loading={loading} />
+        </>
     );
 };
 export default ProductGrid;

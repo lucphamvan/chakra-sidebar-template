@@ -1,10 +1,13 @@
 import { Box } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import { MEDIA_QUERY } from "config";
 
 import Header from "../Header";
 
 const Flex = styled(Box)`
-    margin-left: 18rem;
+    ${MEDIA_QUERY.md} {
+        margin-left: 18rem;
+    }
     padding: 1rem 2rem;
     flex: 1;
     display: flex;
