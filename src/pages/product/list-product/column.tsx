@@ -1,10 +1,20 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Image as ChakraImage } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 import { formatPrice } from "common/helper";
+import ImageFallback from "component/image-fallback";
+import { STYLE } from "config";
 import { Product } from "model/Product";
 import moment from "moment";
 import { Column } from "react-table";
 
 import ActionButtons from "./action-buttons";
+
+const Image = styled(ChakraImage)`
+    object-fit: scale-down;
+    aspect-ratio: 5/3;
+    width: 100%;
+    background: ${STYLE.textColor};
+`;
 
 export const columns = (reload: () => void): Column<Product>[] => [
     {
@@ -14,22 +24,33 @@ export const columns = (reload: () => void): Column<Product>[] => [
         disableSortBy: true
     },
     {
+        Header: "Image",
+        accessor: "imgUrl",
+        Cell: (props) => {
+            return <Image src={props.value} fallback={<ImageFallback />} />;
+        }
+    },
+    {
         Header: "Name",
         accessor: "name",
         Cell: (props) => {
             return (
-                <Box fontWeight="bold" textTransform="capitalize">
+                <Box fontWeight="black" color={STYLE.primaryColor}>
                     {props.value}
                 </Box>
             );
         },
-        width: "20%"
+        width: "14%"
     },
     {
         Header: "Price",
         accessor: "price",
         Cell: (props) => {
-            return formatPrice(props.value);
+            return (
+                <Box color="orangered" fontWeight="bold">
+                    {formatPrice(props.value)}
+                </Box>
+            );
         },
         width: "10%",
         maxWidth: 80
@@ -37,8 +58,7 @@ export const columns = (reload: () => void): Column<Product>[] => [
     {
         Header: "Created By",
         accessor: "user",
-        Cell: (row) => row.value?.name,
-        width: "20%"
+        Cell: (row) => row.value?.name
     },
     {
         Header: "Created At",

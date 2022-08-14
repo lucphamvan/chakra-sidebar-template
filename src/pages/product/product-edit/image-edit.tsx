@@ -5,13 +5,26 @@ import UploadImage, { UploadImageProps } from "component/upload-image";
 import ImageItem from "component/upload-image/image-item";
 import { File as ImgFile } from "model/File";
 import { Product, ProductUpdateInput } from "model/Product";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import fileService from "services/file.service";
 import productService from "services/product.service";
 
 const getPrimaryIndex = (product: Product) => {
-    return product.files?.findIndex((file) => file.url === product.imgUrl);
+    const index = product.files?.findIndex((file) => file.url === product.imgUrl);
+    if (index === -1) {
+        return undefined;
+    }
+    return index;
 };
+
+const getDefaultPrimaryInsertIndex = (product: Product) => {
+    const primaryIndex = getPrimaryIndex(product);
+    if (!primaryIndex) {
+        return 0;
+    }
+    return undefined;
+};
+
 interface Props {
     product: Product;
 }
@@ -19,7 +32,9 @@ const ImageEdit = ({ product }: Props) => {
     // state handle add new image
     const [imgSrcInsert, setImgSrcInsert] = useState<string[]>([]);
     const [fileInsert, setFileInsert] = useState<File[]>([]);
-    const [primaryIndexInsert, setPrimaryIndexInsert] = useState<number | undefined>();
+    const [primaryIndexInsert, setPrimaryIndexInsert] = useState<number | undefined>(
+        getDefaultPrimaryInsertIndex(product)
+    );
 
     // state handle remove current image
     const [productImgFile, setProductImgFile] = useState<ImgFile[] | undefined>(product.files);
@@ -98,7 +113,6 @@ const ImageEdit = ({ product }: Props) => {
             let imgUrl;
             if (primaryIndex !== undefined) {
                 imgUrl = productImgFile?.at(primaryIndex)?.url;
-                console.log("img url", imgUrl);
             } else if (primaryIndexInsert !== undefined) {
                 imgUrl = responseList.at(primaryIndexInsert)?.data.url;
             } else {

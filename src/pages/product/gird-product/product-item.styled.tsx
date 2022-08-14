@@ -22,6 +22,9 @@ export const Image = styled(ChakraImage)`
     background: ${STYLE.textColor};
     /* border-radius: 0.25rem; */
     transition: transform 250ms;
+    &:hover {
+        transform: translateY(-12px);
+    }
 `;
 
 export const Avatar = styled(ChakraAvatar)`

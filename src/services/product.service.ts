@@ -6,14 +6,13 @@ import { OrderBy, QueryParam } from "type";
 
 class ProductService {
     public async getProducts(page: number, limit: number, orderBy?: OrderBy[], search?: string) {
-        const params: QueryParam = { page, limit, search };
+        const params: QueryParam = { page, limit };
 
         if (!isEmpty(orderBy)) {
             params.orderBy = orderBy;
+        } else {
+            params.orderBy = [{ createdAt: "desc" }];
         }
-        // else {
-        //     params.orderBy = [{ createdAt: "desc" }];
-        // }
         const response = await http.get(API.PRODUCT.PRODUCTS, {
             params
         });

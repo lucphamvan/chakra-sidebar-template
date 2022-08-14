@@ -1,5 +1,6 @@
 import { Box, HStack } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import Button from "component/button";
 import Card from "component/card";
 import { DataTable } from "component/data-table";
 import SearchInput from "component/data-table/search-input";
@@ -7,6 +8,7 @@ import PageHeading from "component/page-heading";
 import { TABLE_HEIGHT } from "config";
 import { Product } from "model/Product";
 import { useCallback, useState } from "react";
+import { MdRefresh } from "react-icons/md";
 import { Row, SortingRule } from "react-table";
 import productService from "services/product.service";
 
@@ -75,6 +77,9 @@ const ProductList = () => {
                     <Box fontWeight={600}>Search Product</Box>
                     <SearchInput setSearch={setSearch} triggerSeach={triggerSearch} />
                     <Filter />
+                    <Button leftIcon={<MdRefresh />} onClick={toggleRefresh}>
+                        Refresh
+                    </Button>
                 </Box>
             </HStack>
             <Card width={"100%"} p={0}>
