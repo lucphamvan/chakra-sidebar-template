@@ -1,66 +1,124 @@
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import { Box, HStack, Icon } from "@chakra-ui/react";
-import { Color } from "config";
-import { FaCheckCircle } from "react-icons/fa";
+import { STYLE } from "config";
+import React from "react";
+import { FaCheckCircle, FaInfoCircle } from "react-icons/fa";
 
 interface ToastProp {
-    title: string;
+    title: string | JSX.Element | React.ReactNode;
     onClose: React.MouseEventHandler<SVGElement> | undefined;
+    type?: "success" | "error" | "warning" | "info";
     bg: string;
+    boxShadow?: string;
+    color?: string;
 }
-const Toast = ({ title, onClose, bg }: ToastProp) => {
+const Toast = ({
+    title,
+    type = "info",
+    onClose,
+    bg,
+    boxShadow = STYLE.shadowCard,
+    color = STYLE.primaryColor
+}: ToastProp) => {
+    let IconToast;
+    switch (type) {
+        case "success":
+            IconToast = FaCheckCircle;
+            break;
+        case "error":
+            IconToast = FaInfoCircle;
+            break;
+        default:
+            IconToast = FaInfoCircle;
+            break;
+    }
+
     return (
         <HStack
             bg={bg}
-            spacing={2}
-            padding="0.75rem 1rem"
+            spacing={4}
+            padding="0.875rem 1rem"
             borderRadius="0.125rem"
             position="relative"
             alignItems="center"
-            paddingRight="1.5rem"
-            boxShadow={`0 0 10px 1px ${Color.primaryShadow}`}
+            paddingRight="2rem"
+            boxShadow={boxShadow}
         >
-            <Icon as={FaCheckCircle} color="white" w={"1.125rem"} h={"1.125rem"} />
-            <Box color="white" fontWeight={500} fontSize="sm" className="special-font">
+            <Icon as={IconToast} color={color} w={"1.25rem"} h={"1.25rem"} />
+            <Box fontWeight={600} color={color}>
                 {title}
             </Box>
             <Icon
                 position="absolute"
                 top={1}
                 right={1}
+                color={color}
                 as={SmallCloseIcon}
                 onClick={onClose}
-                w={"1.125rem"}
-                h={"1.125rem"}
-                color="white"
+                w={"1.25rem"}
+                h={"1.25rem"}
                 cursor="pointer"
             />
         </HStack>
     );
 };
 
-export const notifySuccess = (toast: any, title: string) => {
+export const notifySuccess = (toast: any, title: string | JSX.Element | React.ReactNode) => {
     toast({
-        render: (props: any) => <Toast title={title} onClose={props.onClose} bg={Color.primary} />,
+        render: (props: any) => (
+            <Toast
+                type="success"
+                title={title}
+                onClose={props.onClose}
+                boxShadow="0 4px 12px green.200"
+                bg={STYLE.bgSuccess}
+                color="green.500"
+            />
+        )
     });
 };
 
-export const notifyError = (toast: any, title: string) => {
+export const notifyError = (toast: any, title: string | JSX.Element | React.ReactNode) => {
     toast({
-        render: (props: any) => <Toast title={title} onClose={props.onClose} bg={Color.errorColor} />,
+        render: (props: any) => (
+            <Toast
+                type="error"
+                title={title}
+                onClose={props.onClose}
+                boxShadow={STYLE.shadowErr}
+                bg={STYLE.bgError}
+                color={STYLE.errorColor}
+            />
+        )
     });
 };
 
-export const notifyInfo = (toast: any, title: string) => {
+export const notifyInfo = (toast: any, title: string | JSX.Element | React.ReactNode) => {
     toast({
-        status: "info",
-        title,
+        render: (props: any) => (
+            <Toast
+                type="info"
+                title={title}
+                onClose={props.onClose}
+                boxShadow={STYLE.shadowInfo}
+                bg={STYLE.bgInfo}
+                color={STYLE.infoColor}
+            />
+        )
     });
 };
 
-export const notifyWarning = (toast: any, title: string) => {
+export const notifyWarning = (toast: any, title: string | JSX.Element | React.ReactNode) => {
     toast({
-        status: "warning",
-        title,
+        render: (props: any) => (
+            <Toast
+                type="warning"
+                title={title}
+                onClose={props.onClose}
+                boxShadow={STYLE.shadowWarning}
+                bg={STYLE.bgWarning}
+                color={STYLE.warningColor}
+            />
+        )
     });
 };

@@ -1,9 +1,17 @@
-import { Spinner, VStack } from "@chakra-ui/react";
+import { Spinner, StackProps, VStack } from "@chakra-ui/react";
+import { STYLE } from "config";
 
-const Loading = ({ ...props }) => {
+const Loading = ({ ...props }: StackProps) => {
     return (
         <VStack justifyContent="center" alignItems="center" {...props}>
-            <Spinner size="xl" />
+            <Spinner
+                width={40}
+                height={40}
+                thickness="8px"
+                speed="0.45s"
+                emptyColor="gray.200"
+                color={STYLE.primaryColor}
+            />
         </VStack>
     );
 };

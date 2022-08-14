@@ -1,11 +1,10 @@
 import React from "react";
-import { Icon } from "react-feather";
 import { IconType } from "react-icons";
 
 export type NavigationProp = {
     path: string;
     navText: string;
-    icon?: IconType | Icon;
+    icon?: IconType;
     children?: NavigationProp[];
     size?: string | number;
 };
@@ -20,7 +19,8 @@ export type RouteProp = {
 export type OrderBy = Record<string, "desc" | "asc">;
 
 export interface QueryParam {
-    limit: number;
-    page: number;
+    limit?: number;
+    page?: number;
+    search?: string;
     orderBy?: OrderBy[];
 }

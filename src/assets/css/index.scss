@@ -1,0 +1,64 @@
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+.chakra-checkbox__control {
+    border: none !important;
+}
+.chakra-checkbox__control,
+.chakra-checkbox__control:focus {
+    outline: none !important;
+    box-shadow: 0 0px 15px #c1c4c4 !important;
+}
+.chakra-popover__popper {
+    min-width: unset !important;
+}
+.custom-class {
+    min-height: unset !important;
+}
+// button {
+//     // border-radius: 0.125rem !important;
+//     // font-family: "Source Code Pro", monospace !important;
+// }
+button:focus {
+    outline: none !important;
+}
+
+input {
+    border-radius: 0.125rem !important;
+    outline: none !important;
+}
+input:focus,
+select:focus {
+    box-shadow: 0 0 5px #6f9fffa6 !important;
+    border: 1px solid #528bff !important;
+}
+
+th {
+    font-family: "Roboto", sans-serif !important;
+    font-size: 13.25px !important;
+}
+
+// .special-font {
+//     // font-family: "Source Code Pro", monospace !important;
+// }
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}

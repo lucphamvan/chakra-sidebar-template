@@ -1,7 +1,7 @@
 import { Box, Input, InputGroup, InputLeftElement, InputRightElement, Stack } from "@chakra-ui/react";
 import { useState } from "react";
-import { Eye, EyeOff, Key } from "react-feather";
 import { FieldValues, UseFormRegister } from "react-hook-form";
+import { FiEye as Eye, FiEyeOff as EyeOff, FiKey as Key } from "react-icons/fi";
 
 interface InputPasswordProp {
     register: UseFormRegister<FieldValues>;
@@ -30,7 +30,7 @@ const InputPassword = ({ register, name, required, placeholder, errors }: InputP
                         required,
                         validate: (value) => {
                             return undefined;
-                        },
+                        }
                     })}
                     type={show ? "text" : "password"}
                     placeholder={placeholder}

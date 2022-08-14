@@ -10,7 +10,7 @@ type AuthenState = {
 const initialState: AuthenState = {
     fetching: true,
     isAuthen: false,
-    user: undefined,
+    user: undefined
 };
 
 export const fetchUser = createAsyncThunk("users/fetch", async () => {
@@ -43,7 +43,7 @@ const authenSlice = createSlice({
                 state.isAuthen = false;
                 state.user = undefined;
             });
-    },
+    }
 });
 
 export default authenSlice.reducer;

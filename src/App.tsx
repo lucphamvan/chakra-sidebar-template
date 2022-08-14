@@ -1,15 +1,21 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { OverlayContainer } from "@react-aria/overlays";
+import "animate.css";
+import Loading from "component/loading";
+import { STYLE } from "config";
+import { ModalProvider } from "context/modal-provider";
 import { Suspense } from "react";
 import { Provider } from "react-redux";
 import store from "redux/store";
+
+import "assets/css/index.scss";
+
 import Router from "./router";
-import "styles/index.scss";
-import Loading from "component/Loading";
 
 console.log("hello every body");
 const theme = extendTheme({
     colors: {
-        primary: {
+        "green.primary": {
             50: "#e1fdf0",
             100: "#b9f5d8",
             200: "#90edbd",
@@ -19,17 +25,46 @@ const theme = extendTheme({
             600: "#1BA94C",
             700: "#0f6e37",
             800: "#044224",
-            900: "#001809",
+            900: "#001809"
         },
+        primary: {
+            50: "#EBF8FF",
+            100: "#BEE3F8",
+            200: "#90CDF4",
+            300: "#698BFF",
+            400: "#608BFF",
+            500: "#528BFF",
+            600: "#318BFF",
+            700: "#218BFF",
+            800: "#2e649e",
+            900: "#1A365D"
+        }
     },
+    styles: {
+        global: {
+            "html, body": {
+                height: "100%",
+                color: "#39424e",
+                fontSize: "15px",
+                background: STYLE.background
+            },
+            "#app-root": {
+                height: "100%"
+            }
+        }
+    }
 });
 
 export const App = () => (
     <Provider store={store}>
         <ChakraProvider theme={theme}>
-            <Suspense fallback={<Loading w="100vw" h="100vh" />}>
-                <Router />
-            </Suspense>
+            <OverlayContainer id="app-root">
+                <Suspense fallback={<Loading w="100vw" h="100vh" />}>
+                    <ModalProvider>
+                        <Router />
+                    </ModalProvider>
+                </Suspense>
+            </OverlayContainer>
         </ChakraProvider>
     </Provider>
 );

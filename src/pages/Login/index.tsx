@@ -1,17 +1,18 @@
-import { useForm } from "react-hook-form";
-import { Divider, Heading, HStack, VStack, Box, useToast } from "@chakra-ui/react";
-import Card from "component/Card";
-import Button from "component/Button";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Box, Divider, HStack, Heading, VStack, useToast } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import usersService from "services/users.service";
-import { useAppDispatch, useAppSelector } from "redux/store";
-import { fetchUser } from "redux/slices/authenSlice";
+import Button from "component/button";
+import Card from "component/card";
+import InputEmail from "component/form/input-email";
+import InputPassword from "component/form/input-password";
+import { notifyError } from "component/toast";
+import { SPECIAL_FONT } from "config";
 import { useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { NavLink, useNavigate } from "react-router-dom";
+import { fetchUser } from "redux/slices/authenSlice";
+import { useAppDispatch, useAppSelector } from "redux/store";
+import usersService from "services/users.service";
 import utilService from "services/util.service";
-import InputEmailForm from "component/Form/input-email";
-import InputPassword from "component/Form/input-password";
-import { notifyError } from "component/Toast";
 
 const Link = styled(NavLink)`
     color: #097bbf;
@@ -23,7 +24,7 @@ const LoginPage = () => {
     const {
         handleSubmit,
         register,
-        formState: { errors, isSubmitting },
+        formState: { errors, isSubmitting }
     } = useForm();
 
     const dispatch = useAppDispatch();
@@ -32,7 +33,7 @@ const LoginPage = () => {
     const timeoutRefresh = useRef();
     const toast = useToast({
         duration: 3000,
-        position: "top-right",
+        position: "top-right"
     });
 
     useEffect(() => {
@@ -54,21 +55,21 @@ const LoginPage = () => {
             navigate("/", { replace: true });
         } catch (error: any) {
             console.log("failed to login", error.message);
-            notifyError(toast, "INVALID USER NAME OR PASSOWRD");
+            notifyError(toast, process.env.REACT_APP_API_ENDPOINT);
         }
     };
 
     return (
         <VStack height="100%" justifyContent="center" spacing={8}>
-            <Heading fontFamily={`"Source Code Pro", monospace`} fontSize="3rem" fontWeight="black">
+            <Heading className={SPECIAL_FONT} fontSize="3rem" fontWeight="black">
                 Template
             </Heading>
             <Card p="8" minWidth={{ sm: "20rem", md: "25rem" }}>
-                <Heading fontFamily={`"Source Code Pro", monospace`} fontSize="2rem" fontWeight="bold" mb={4}>
+                <Heading className={SPECIAL_FONT} fontSize="2rem" fontWeight="bold" mb={4}>
                     Login
                 </Heading>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <InputEmailForm
+                    <InputEmail
                         name="email"
                         register={register}
                         errors={errors}

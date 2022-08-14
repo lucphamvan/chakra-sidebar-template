@@ -1,0 +1,23 @@
+{
+    "name": "aria-date-picker",
+    "version": "1.0.0",
+    "description": "",
+    "main": "DatePicker.tsx",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "@internationalized/date": "^3.0.0",
+        "@react-aria/button": "^3.5.1",
+        "@react-aria/calendar": "^3.0.0",
+        "@react-aria/datepicker": "^3.0.0",
+        "@react-aria/dialog": "^3.2.1",
+        "@react-aria/i18n": "^3.4.1",
+        "@react-aria/overlays": "^3.9.1",
+        "@react-stately/calendar": "^3.0.0",
+        "@react-stately/datepicker": "^3.0.0"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

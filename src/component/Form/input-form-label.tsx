@@ -1,5 +1,5 @@
-import { FormControl, FormLabel, Input, FormErrorMessage } from "@chakra-ui/react";
-import { UseFormRegister, FieldValues } from "react-hook-form";
+import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputFormProp {
     name: string;
@@ -21,11 +21,11 @@ export const InputFormLabel = ({
     register,
     type,
     disabled = false,
-    defaultValue = "",
+    defaultValue = ""
 }: InputFormProp) => {
     return (
         <FormControl isInvalid={errors[name]}>
-            <FormLabel fontSize="sm" display="grid" alignItems="center" htmlFor={name}>
+            <FormLabel fontSize="sm" fontWeight={400} htmlFor={name}>
                 {label}
             </FormLabel>
             <Input
@@ -42,7 +42,7 @@ export const InputFormLabel = ({
                             return regex.test(value) || "Incorrect email format";
                         }
                         return undefined;
-                    },
+                    }
                 })}
             />
             <FormErrorMessage>{errors[name] && errors[name].message}</FormErrorMessage>

@@ -1,12 +1,12 @@
-import { Heading, useToast, VStack } from "@chakra-ui/react";
-import Card from "component/Card";
-import InputEmailForm from "component/Form/input-email";
-import InputForm from "component/Form/input-form";
-import InputPassword from "component/Form/input-password-signup";
-import { notifyError, notifySuccess } from "component/Toast";
-import Button from "component/Button";
-import { User } from "react-feather";
+import { Heading, VStack, useToast } from "@chakra-ui/react";
+import Button from "component/button";
+import Card from "component/card";
+import InputEmail from "component/form/input-email";
+import InputForm from "component/form/input-form";
+import InputPassword from "component/form/input-password-signup";
+import { notifyError, notifySuccess } from "component/toast";
 import { useForm } from "react-hook-form";
+import { FiUser as User } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import usersService from "services/users.service";
 
@@ -15,12 +15,12 @@ const SignupPage = () => {
         handleSubmit,
         register,
         formState: { errors, isSubmitting },
-        watch,
+        watch
     } = useForm();
 
     const toast = useToast({
         duration: 3000,
-        position: "top-right",
+        position: "top-right"
     });
     const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const SignupPage = () => {
                         required="This field is required"
                         leftIcon={<User color="#738F93" />}
                     />
-                    <InputEmailForm
+                    <InputEmail
                         name="email"
                         errors={errors}
                         placeholder="Email"

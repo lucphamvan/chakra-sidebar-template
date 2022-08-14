@@ -28,7 +28,7 @@ const InputForm = ({ register, name, required, placeholder, errors, leftIcon, ty
                                 return regex.test(value) || "Incorrect email format";
                             }
                             return undefined;
-                        },
+                        }
                     })}
                     placeholder={placeholder}
                 />

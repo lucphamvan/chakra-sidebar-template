@@ -1,0 +1,20 @@
+{
+    "trailingComma": "none",
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": false,
+    "bracketSameLine": false,
+    "printWidth": 120,
+    "importOrder": [
+        "^(next/(.*)$)|^(next$)",
+        "<THIRD_PARTY_MODULES>",
+        "next-seo.config",
+        "^components/(.*)$",
+        "^utils/(.*)$",
+        "^assets/(.*)$",
+        "^@fontsource/(.*)$",
+        "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
+}

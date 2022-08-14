@@ -1,20 +1,19 @@
-import { Heading, Divider, chakra, GridItem, Wrap, Grid, useToast } from "@chakra-ui/react";
+import { Divider, Grid, GridItem, Heading, Wrap, chakra, useToast } from "@chakra-ui/react";
+import Button from "component/button";
+import Card from "component/card";
+import InputFormLabel from "component/form/input-form-label";
+import { notifySuccess } from "component/toast";
 import { useForm } from "react-hook-form";
-import Card from "component/Card";
-import Button from "component/Button";
-import InputFormLabel from "component/Form/input-form-label";
-import { useAppDispatch, useAppSelector } from "redux/store";
 import { fetchUser } from "redux/slices/authenSlice";
-
+import { useAppDispatch, useAppSelector } from "redux/store";
 import usersService from "services/users.service";
-import { notifySuccess } from "component/Toast";
 
 const AccountSetting = () => {
     const {
         handleSubmit,
         register,
         formState: { errors, isSubmitting },
-        reset,
+        reset
     } = useForm();
     const { user } = useAppSelector((state) => state.authen);
     const dispatch = useAppDispatch();
@@ -25,7 +24,7 @@ const AccountSetting = () => {
         try {
             await usersService.updateUser(data.name);
             await dispatch(fetchUser());
-            notifySuccess(toast, "UPDATE USER INFO SUCCESSFULL");
+            notifySuccess(toast, "Update user information successfull");
         } catch (error: any) {
             console.log("failed to update user data");
         }
@@ -36,7 +35,7 @@ const AccountSetting = () => {
         reset({
             name: user?.name,
             phone: "",
-            address: "",
+            address: ""
         });
     };
 
@@ -81,7 +80,12 @@ const AccountSetting = () => {
                     </GridItem>
                     <GridItem>
                         <Wrap gap={4} spacing={4}>
-                            <Button isLoading={isSubmitting} type="submit" loadingText="Saving changes...">
+                            <Button
+                                mode="primary"
+                                isLoading={isSubmitting}
+                                type="submit"
+                                loadingText="Saving changes..."
+                            >
                                 Save changes
                             </Button>
                             <Button mode="secondary" onClick={discardChange}>

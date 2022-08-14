@@ -1,16 +1,19 @@
-import { ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import {
     Flex,
-    Tooltip,
-    IconButton,
+    NumberDecrementStepper,
+    NumberIncrementStepper,
     NumberInput,
     NumberInputField,
     NumberInputStepper,
-    NumberIncrementStepper,
-    NumberDecrementStepper,
     Select,
     Text,
+    Tooltip
 } from "@chakra-ui/react";
+import IconButton from "component/icon-button";
+import React from "react";
+
+import { SIZE_OPTION } from "./config";
 import { PaginationProp } from "./type";
 
 const Pagination = (props: PaginationProp) => {
@@ -24,14 +27,21 @@ const Pagination = (props: PaginationProp) => {
         previousPage,
         setPageSize,
         pageIndex,
-        pageSize,
+        pageSize
     } = props;
+
+    const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setPageSize(Number(e.target.value));
+    };
+
     return (
-        <Flex m={4} alignItems="center" gap={4} d="inline-flex" flexWrap="wrap">
+        <Flex m={4} alignItems="center" gap={4} display="inline-flex" flexWrap="wrap">
+            {/* first + previous page */}
             <Flex>
                 <Tooltip label="First Page">
                     <IconButton
-                        aria-label=""
+                        size={["sm", "sm", "md"]}
+                        aria-label="first page"
                         onClick={() => gotoPage(0)}
                         isDisabled={!canPreviousPage}
                         icon={<ArrowLeftIcon h={3} w={3} />}
@@ -40,7 +50,8 @@ const Pagination = (props: PaginationProp) => {
                 </Tooltip>
                 <Tooltip label="Previous Page">
                     <IconButton
-                        aria-label=""
+                        size={["sm", "sm", "md"]}
+                        aria-label="previous page"
                         onClick={previousPage}
                         isDisabled={!canPreviousPage}
                         icon={<ChevronLeftIcon h={6} w={6} />}
@@ -48,28 +59,31 @@ const Pagination = (props: PaginationProp) => {
                 </Tooltip>
             </Flex>
 
-            <Flex alignItems="center">
-                <Text flexShrink={0} mr={8}>
+            {/* page selection */}
+            <Flex alignItems="center" flexWrap="wrap">
+                <Text display={["none", "none", "initial"]} flexShrink={0} mr={4} size={["sm", "sm", "md"]}>
                     Page{" "}
-                    <Text fontWeight="bold" as="span">
+                    <Text fontWeight="bold" as="span" size={["sm", "sm", "md"]}>
                         {pageIndex + 1}
                     </Text>{" "}
                     of{" "}
-                    <Text fontWeight="bold" as="span">
+                    <Text fontWeight="bold" as="span" size={["sm", "sm", "md"]}>
                         {pageOptions.length}
                     </Text>
                 </Text>
-                <Text flexShrink={0}>Go to page:</Text>{" "}
+                <Text display={["none", "none", "initial"]} flexShrink={0} mr={4} size={["sm", "sm", "md"]}>
+                    Go to page:
+                </Text>{" "}
                 <NumberInput
-                    ml={2}
-                    mr={8}
-                    w={28}
+                    size={["sm", "sm", "md"]}
+                    w={[20, 20, 24]}
                     min={1}
                     max={pageOptions.length}
                     onChange={(value: any) => {
                         const page = value ? value - 1 : 0;
                         gotoPage(page);
                     }}
+                    value={pageIndex + 1}
                     defaultValue={pageIndex + 1}
                 >
                     <NumberInputField />
@@ -79,13 +93,14 @@ const Pagination = (props: PaginationProp) => {
                     </NumberInputStepper>
                 </NumberInput>
                 <Select
-                    w={32}
+                    ml={4}
+                    w={[28, 28, 32]}
+                    display={["none", "none", "initial"]}
+                    size={["sm", "sm", "md"]}
                     value={pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
-                    }}
+                    onChange={handlePageSizeChange}
                 >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
+                    {SIZE_OPTION.map((pageSize) => (
                         <option key={pageSize} value={pageSize}>
                             Show {pageSize}
                         </option>
@@ -93,10 +108,12 @@ const Pagination = (props: PaginationProp) => {
                 </Select>
             </Flex>
 
+            {/* next + last page */}
             <Flex>
                 <Tooltip label="Next Page">
                     <IconButton
-                        aria-label=""
+                        size={["sm", "sm", "md"]}
+                        aria-label="next page"
                         onClick={nextPage}
                         isDisabled={!canNextPage}
                         icon={<ChevronRightIcon h={6} w={6} />}
@@ -104,7 +121,8 @@ const Pagination = (props: PaginationProp) => {
                 </Tooltip>
                 <Tooltip label="Last Page">
                     <IconButton
-                        aria-label=""
+                        size={["sm", "sm", "md"]}
+                        aria-label="last page"
                         onClick={() => gotoPage(pageCount - 1)}
                         isDisabled={!canNextPage}
                         icon={<ArrowRightIcon h={3} w={3} />}

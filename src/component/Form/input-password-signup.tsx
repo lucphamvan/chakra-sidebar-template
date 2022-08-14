@@ -1,7 +1,7 @@
 import { Box, Input, InputGroup, InputLeftElement, InputRightElement, Stack } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import { Eye, EyeOff, Key } from "react-feather";
 import { FieldValues, UseFormRegister, UseFormWatch } from "react-hook-form";
+import { FiEye, FiEyeOff, FiKey } from "react-icons/fi";
 
 interface InputPasswordProp {
     register: UseFormRegister<FieldValues>;
@@ -29,7 +29,7 @@ const InputPassword = ({ register, name, required, placeholder, errors, watch }:
     return (
         <Stack mb={4}>
             <InputGroup size="lg">
-                <InputLeftElement children={<Key color="#738F93" />} />
+                <InputLeftElement children={<FiKey color="#738F93" />} />
                 <Input
                     fontSize="1rem"
                     bg="#EDF2F7"
@@ -43,7 +43,7 @@ const InputPassword = ({ register, name, required, placeholder, errors, watch }:
                                 regex.test(value) ||
                                 "Minimum eight characters, at least one upercase, one lowercase and one number"
                             );
-                        },
+                        }
                     })}
                     type={show ? "text" : "password"}
                     placeholder={placeholder}
@@ -51,7 +51,7 @@ const InputPassword = ({ register, name, required, placeholder, errors, watch }:
                 <InputRightElement
                     onClick={toggleShow}
                     cursor="pointer"
-                    children={show ? <EyeOff size="1rem" color="#738F93" /> : <Eye size="1rem" color="#738F93" />}
+                    children={show ? <FiEyeOff size="1rem" color="#738F93" /> : <FiEye size="1rem" color="#738F93" />}
                 />
             </InputGroup>
             <Box color="red.400" fontSize="sm">
@@ -59,7 +59,7 @@ const InputPassword = ({ register, name, required, placeholder, errors, watch }:
             </Box>
 
             <InputGroup size="lg">
-                <InputLeftElement children={<Key color="#738F93" />} />
+                <InputLeftElement children={<FiKey color="#738F93" />} />
                 <Input
                     fontSize="1rem"
                     bg="#EDF2F7"
@@ -69,7 +69,7 @@ const InputPassword = ({ register, name, required, placeholder, errors, watch }:
                         required,
                         validate: (value) => {
                             return value === password.current || "The password does not match";
-                        },
+                        }
                     })}
                     type={showRepeat ? "text" : "password"}
                     placeholder={`${placeholder} confirm`}
@@ -77,7 +77,9 @@ const InputPassword = ({ register, name, required, placeholder, errors, watch }:
                 <InputRightElement
                     onClick={toggleShowRepeat}
                     cursor="pointer"
-                    children={showRepeat ? <EyeOff size="1rem" color="#738F93" /> : <Eye size="1rem" color="#738F93" />}
+                    children={
+                        showRepeat ? <FiEyeOff size="1rem" color="#738F93" /> : <FiEye size="1rem" color="#738F93" />
+                    }
                 />
             </InputGroup>
             <Box color="red.400" fontSize="sm">

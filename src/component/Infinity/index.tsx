@@ -1,4 +1,4 @@
-import { ListItem, List } from "@chakra-ui/react";
+import { List, ListItem } from "@chakra-ui/react";
 
 const InfinityLevel = ({ data, level }: any) => {
     if (!data.children || !data.children.length) {

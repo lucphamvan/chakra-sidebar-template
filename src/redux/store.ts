@@ -3,11 +3,11 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import authenReducer from "redux/slices/authenSlice";
 
 const rootReducer = combineReducers({
-    authen: authenReducer,
+    authen: authenReducer
 });
 
 const store = configureStore({
-    reducer: rootReducer,
+    reducer: rootReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
