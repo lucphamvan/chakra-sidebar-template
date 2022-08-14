@@ -1,25 +1,39 @@
 import { MoonIcon } from "@chakra-ui/icons";
-import { Box, BoxProps, HStack, useDisclosure } from "@chakra-ui/react";
+import { Box, BoxProps, HStack, Icon } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import shouldForwardProp from "@styled-system/should-forward-prop";
 import PageHeading from "component/page-heading";
 import React, { useEffect } from "react";
+import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-import { MEDIA_QUERY, MEDIA_QUERY_STRING, TITLE } from "../../config";
+import { MEDIA_QUERY, MEDIA_QUERY_STRING, STYLE, TITLE } from "../../config";
 import Menu from "./Menu";
 
-interface Props {
-    open: boolean;
+// icon only appear in mobile mode | media-query < medium
+const MobileCloseSidebarIcon = styled(Icon)`
+    font-size: 1.8rem;
+    color: ${STYLE.primaryColor};
+    cursor: pointer;
+
+    ${MEDIA_QUERY.md} {
+        font-size: 2rem;
+        display: none;
+    }
+`;
+
+interface SideBarContainerProps extends BoxProps {
+    isOpen: boolean;
 }
-const SideBarContainer = styled(Box)<Props & BoxProps>`
+const SideBarContainer = styled(Box, { shouldForwardProp })<SideBarContainerProps>`
     background: white;
     width: 100vw;
     position: fixed;
     height: 100vh;
     overflow: auto;
     z-index: 999;
-    display: ${(props) => (props.open ? "initial" : "none")};
+    display: ${(props) => (props.isOpen ? "initial" : "none")};
 
     ${MEDIA_QUERY.md} {
         display: initial;
@@ -27,29 +41,39 @@ const SideBarContainer = styled(Box)<Props & BoxProps>`
     }
 `;
 
-const SideBar = React.memo(() => {
+interface SideBarProp {
+    isOpen: boolean;
+    onClose: () => void;
+    onOpen: () => void;
+}
+const SideBar = React.memo(({ isOpen, onClose, onOpen }: SideBarProp) => {
     const navigate = useNavigate();
-    const { isOpen, onToggle, onClose, onOpen } = useDisclosure();
-    const [isLargerMd] = useMediaQuery(MEDIA_QUERY_STRING.md);
+
+    const [screenLargerThanMedium] = useMediaQuery(MEDIA_QUERY_STRING.md);
 
     useEffect(() => {
-        if (isLargerMd) {
+        // auto show sidebar when screen resize larger than medium screen
+        if (screenLargerThanMedium) {
             onOpen();
         } else {
-            onOpen();
+            // auto hide sidebar when screen resize less than medium screen
+            onClose();
         }
-    }, [isLargerMd, onOpen, onClose]);
+    }, [screenLargerThanMedium, onOpen, onClose]);
 
     return (
-        <SideBarContainer open={isOpen}>
+        <SideBarContainer isOpen={isOpen}>
             {/* // Logo + Brand */}
-            <HStack p="2rem" alignItems="center">
-                <MoonIcon cursor="pointer" w={8} h={8} onClick={() => navigate("/")} />
-                <PageHeading>{TITLE}</PageHeading>
+            <HStack p={{ base: "1rem", md: "1rem 2rem" }} alignItems="center" justifyContent="space-between">
+                <HStack alignItems="center">
+                    <MoonIcon cursor="pointer" w={8} h={8} onClick={() => navigate("/")} />
+                    <PageHeading>{TITLE}</PageHeading>
+                </HStack>
+                <MobileCloseSidebarIcon as={FaTimes} onClick={onClose} />
             </HStack>
 
             {/* List Menu Item */}
-            <Menu />
+            <Menu onClose={onClose} />
         </SideBarContainer>
     );
 });

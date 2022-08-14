@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
 import Loading from "component/loading";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "redux/store";
@@ -8,7 +8,7 @@ import SideBar from "./Sidebar";
 
 const Layout = () => {
     const { isAuthen, fetching } = useAppSelector((state) => state.authen);
-
+    const { isOpen, onClose, onOpen, onToggle } = useDisclosure();
     if (fetching) {
         return <Loading w="100vw" h="100vh" />;
     }
@@ -19,8 +19,8 @@ const Layout = () => {
 
     return (
         <Box height="100%" display="flex" flexDir="column">
-            <SideBar />
-            <Content>
+            <SideBar isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+            <Content onToggle={onToggle}>
                 <Outlet />
             </Content>
         </Box>

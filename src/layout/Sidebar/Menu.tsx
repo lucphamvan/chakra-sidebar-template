@@ -10,7 +10,7 @@ import {
     useId
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { STYLE } from "config";
+import { MEDIA_QUERY, STYLE } from "config";
 import { useRef } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
@@ -76,7 +76,10 @@ const NormalItem = styled(chakra.div)`
 `;
 
 const ListItem = styled(Item)`
-    padding: 0rem 1rem;
+    padding: 0rem;
+    ${MEDIA_QUERY.md} {
+        padding: 0rem 1rem;
+    }
     &:hover {
         background-color: rgba(170, 170, 170, 0.1);
     }
@@ -85,10 +88,11 @@ const ListItem = styled(Item)`
 interface MenuItemProp {
     level: number;
     nav: NavigationProp;
+    onClose: () => void;
 }
-const MenuItem = ({ nav, level }: MenuItemProp) => {
+const MenuItem = ({ nav, level, onClose }: MenuItemProp) => {
     return (
-        <ListItem>
+        <ListItem onClick={onClose}>
             <LinkItem style={{ marginLeft: `${level}rem` }} to={nav.path} end>
                 {nav.icon ? (
                     <ListIcon as={nav.icon} style={nav.size ? { width: nav.size, height: nav.size } : {}} />
@@ -102,8 +106,9 @@ const MenuItem = ({ nav, level }: MenuItemProp) => {
 interface MenuItemWithChildProp {
     nav: NavigationProp;
     level: number;
+    onClose: () => void;
 }
-const MenuItemWithChildren = ({ nav, level }: MenuItemWithChildProp) => {
+const MenuItemWithChildren = ({ nav, level, onClose }: MenuItemWithChildProp) => {
     const menuKey = useId();
     const { isOpen, onToggle } = useDisclosure();
     const ref = useRef<any>();
@@ -138,9 +143,16 @@ const MenuItemWithChildren = ({ nav, level }: MenuItemWithChildProp) => {
                 <List>
                     {nav?.children?.map((n, index) => {
                         if (!n.children || !n.children.length) {
-                            return <MenuItem level={level + 1} key={`ns-${index}`} nav={n} />;
+                            return <MenuItem level={level + 1} key={`ns-${index}`} nav={n} onClose={onClose} />;
                         }
-                        return <MenuItemWithChildren key={`${menuKey}-${index}`} nav={n} level={level + 1} />;
+                        return (
+                            <MenuItemWithChildren
+                                key={`${menuKey}-${index}`}
+                                nav={n}
+                                level={level + 1}
+                                onClose={onClose}
+                            />
+                        );
                     })}
                 </List>
             </Collapse>
@@ -148,16 +160,21 @@ const MenuItemWithChildren = ({ nav, level }: MenuItemWithChildProp) => {
     );
 };
 
-const Menu = () => {
+interface MenuProp {
+    onClose: () => void;
+}
+const Menu = ({ onClose }: MenuProp) => {
     const itemKey = useId();
     const itemWithChildKey = useId();
     return (
         <List>
             {navigation.map((nav, index) => {
                 if (!nav.children || !nav.children.length) {
-                    return <MenuItem level={0} key={`${itemKey}-${index}`} nav={nav} />;
+                    return <MenuItem level={0} key={`${itemKey}-${index}`} nav={nav} onClose={onClose} />;
                 }
-                return <MenuItemWithChildren key={`${itemWithChildKey}-${index}`} nav={nav} level={0} />;
+                return (
+                    <MenuItemWithChildren key={`${itemWithChildKey}-${index}`} nav={nav} level={0} onClose={onClose} />
+                );
             })}
         </List>
     );
