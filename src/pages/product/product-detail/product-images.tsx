@@ -1,4 +1,5 @@
 import { GridItem } from "@chakra-ui/react";
+import { getImgUrl } from "common/helper";
 import ImageGallery from "component/image-gallery";
 import { Product } from "model/Product";
 import { ReactImageGalleryItem } from "react-image-gallery";
@@ -9,8 +10,8 @@ const getItemImages = (product?: Product) => {
     // generate list image gallery item based on files
     let items = files?.map((file) => {
         const item: ReactImageGalleryItem = {
-            original: file.url,
-            thumbnail: file.url,
+            original: getImgUrl(file.url),
+            thumbnail: getImgUrl(file.url),
             thumbnailAlt: "img"
         };
         return item;
@@ -18,7 +19,10 @@ const getItemImages = (product?: Product) => {
     items = items ?? [];
     // if have primary img => add it to the head of list => render this image first
     if (product?.imgUrl) {
-        items = [{ original: product.imgUrl, thumbnail: product.imgUrl, thumbnailAlt: "img" }, ...items];
+        items = [
+            { original: getImgUrl(product.imgUrl), thumbnail: getImgUrl(product.imgUrl), thumbnailAlt: "img" },
+            ...items
+        ];
     }
     return items;
 };
