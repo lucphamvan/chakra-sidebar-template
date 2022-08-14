@@ -20,23 +20,23 @@ const ListContainer = styled(Box)`
     gap: 1rem;
     background-color: ${STYLE.background};
     margin-top: 1rem;
-    grid-template-columns: repeat(1, minmax(20rem, 1fr));
+    grid-template-columns: repeat(1, minmax(10rem, 1fr));
     overflow-x: auto;
 
     @media (min-width: ${BREAKPOINT.sm}) {
-        grid-template-columns: repeat(1, minmax(20rem, 1fr));
+        grid-template-columns: repeat(1, minmax(10rem, 1fr));
     }
 
     @media (min-width: ${BREAKPOINT.md}) {
-        grid-template-columns: repeat(2, minmax(15rem, 1fr));
+        grid-template-columns: repeat(2, minmax(10rem, 1fr));
     }
 
     @media (min-width: ${BREAKPOINT.lg}) {
-        grid-template-columns: repeat(3, minmax(16rem, 1fr));
+        grid-template-columns: repeat(3, minmax(10rem, 1fr));
     }
 
     @media (min-width: ${BREAKPOINT.xl}) {
-        grid-template-columns: repeat(5, minmax(20rem, 1fr));
+        grid-template-columns: repeat(5, minmax(10rem, 1fr));
     }
 `;
 

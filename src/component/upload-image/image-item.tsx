@@ -1,4 +1,5 @@
 import { Box, Image, useDisclosure } from "@chakra-ui/react";
+import ImageFallback from "component/image-fallback";
 import { Popover, PopoverContent, PopoverTrigger } from "component/popover";
 import { MdEdit } from "react-icons/md";
 import { LeftRibbon, RibbonContainer } from "react-ribbons";
@@ -18,7 +19,13 @@ const ImageItem = ({ src, index, primaryIndex, handleRemoveImg, handleSetPrimary
     return (
         <RibbonContainer className="custom-class">
             <ImgBox>
-                <Image bg="gray.100" src={src} objectFit="scale-down" boxSize="40" />
+                <Image
+                    bg="gray.100"
+                    fallback={<ImageFallback width="40" defaultAspect />}
+                    src={src}
+                    objectFit="scale-down"
+                    boxSize="40"
+                />
                 <IconWrapper>
                     <Popover placement="bottom-start" isOpen={isOpen} onClose={onClose}>
                         <PopoverTrigger>

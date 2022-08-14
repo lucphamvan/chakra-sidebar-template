@@ -1,6 +1,6 @@
 import { Box, Image as ChakraImage } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { formatPrice } from "common/helper";
+import { formatPrice, getImgUrl } from "common/helper";
 import ImageFallback from "component/image-fallback";
 import { STYLE } from "config";
 import { Product } from "model/Product";
@@ -27,7 +27,7 @@ export const columns = (reload: () => void): Column<Product>[] => [
         Header: "Image",
         accessor: "imgUrl",
         Cell: (props) => {
-            return <Image src={props.value} fallback={<ImageFallback />} />;
+            return <Image src={getImgUrl(props.value)} fallback={<ImageFallback />} />;
         }
     },
     {

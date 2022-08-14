@@ -21,3 +21,5 @@ export const API = {
         DOWNLOAD: "files/download/"
     }
 };
+
+export const IMG_DOMAIN = `${process.env.REACT_APP_API_ENDPOINT}`;

@@ -1,4 +1,5 @@
 import { Box, Flex, Text, useToast } from "@chakra-ui/react";
+import { getImgUrl } from "common/helper";
 import Button from "component/button";
 import Card from "component/card";
 import { notifyError, notifySuccess } from "component/toast";
@@ -81,7 +82,7 @@ const ImageEdit = ({ product }: Props) => {
             return (
                 <ImageItem
                     key={`img-${index}`}
-                    src={file.url}
+                    src={getImgUrl(file.url)}
                     index={index}
                     primaryIndex={primaryIndex}
                     handleRemoveImg={handleRemoveImg}

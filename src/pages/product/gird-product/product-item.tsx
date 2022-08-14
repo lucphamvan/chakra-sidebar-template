@@ -1,4 +1,5 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { getImgUrl } from "common/helper";
 import { STYLE } from "config";
 import { Product } from "model/Product";
 import { useRef } from "react";
@@ -20,7 +21,7 @@ const ProductItem = ({ item }: Props) => {
 
     return (
         <ItemWrapper onClick={viewDetail}>
-            <Image ref={ref} src={item.imgUrl} fallback={<Skeleton />} />
+            <Image ref={ref} src={getImgUrl(item.imgUrl)} fallback={<Skeleton />} />
             <Grid gridTemplateColumns="minmax(0, 1fr) 4rem">
                 <GridItem display="flex" flexDirection="column">
                     <Box fontWeight="bold" noOfLines={1}>
