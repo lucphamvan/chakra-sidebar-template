@@ -10,7 +10,7 @@ import { MEDIA_QUERY, MEDIA_QUERY_STRING, TITLE } from "../../config";
 import Menu from "./Menu";
 
 interface Props {
-    show: boolean;
+    open: boolean;
 }
 const SideBarContainer = styled(Box)<Props & BoxProps>`
     background: white;
@@ -19,7 +19,7 @@ const SideBarContainer = styled(Box)<Props & BoxProps>`
     height: 100vh;
     overflow: auto;
     z-index: 999;
-    display: ${(props) => (props.show ? "initial" : "none")};
+    display: ${(props) => (props.open ? "initial" : "none")};
 
     ${MEDIA_QUERY.md} {
         display: initial;
@@ -41,7 +41,7 @@ const SideBar = React.memo(() => {
     }, [isLargerMd, onOpen, onClose]);
 
     return (
-        <SideBarContainer show={isOpen}>
+        <SideBarContainer open={isOpen}>
             {/* // Logo + Brand */}
             <HStack p="2rem" alignItems="center">
                 <MoonIcon cursor="pointer" w={8} h={8} onClick={() => navigate("/")} />

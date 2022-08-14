@@ -1,16 +1,18 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, useToast } from "@chakra-ui/react";
 import Button from "component/button";
 import Card from "component/card";
+import { notifyError, notifySuccess } from "component/toast";
 import UploadImage, { UploadImageProps } from "component/upload-image";
 import ImageItem from "component/upload-image/image-item";
 import { File as ImgFile } from "model/File";
 import { Product, ProductUpdateInput } from "model/Product";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import fileService from "services/file.service";
 import productService from "services/product.service";
 
 const getPrimaryIndex = (product: Product) => {
     const index = product.files?.findIndex((file) => file.url === product.imgUrl);
+    // note here : -1 meaning not found
     if (index === -1) {
         return undefined;
     }
@@ -19,7 +21,8 @@ const getPrimaryIndex = (product: Product) => {
 
 const getDefaultPrimaryInsertIndex = (product: Product) => {
     const primaryIndex = getPrimaryIndex(product);
-    if (!primaryIndex) {
+    // note here : check undefined because primaryIndex can equal 0
+    if (primaryIndex === undefined) {
         return 0;
     }
     return undefined;
@@ -35,6 +38,8 @@ const ImageEdit = ({ product }: Props) => {
     const [primaryIndexInsert, setPrimaryIndexInsert] = useState<number | undefined>(
         getDefaultPrimaryInsertIndex(product)
     );
+
+    const toast = useToast({ position: "top-right" });
 
     // state handle remove current image
     const [productImgFile, setProductImgFile] = useState<ImgFile[] | undefined>(product.files);
@@ -124,8 +129,10 @@ const ImageEdit = ({ product }: Props) => {
                 imgUrl
             };
             await productService.updateProduct(product.id, data);
+            notifySuccess(toast, "Upload product images successfull");
         } catch (error: any) {
             console.log(`failed to update product`, error.message);
+            notifyError(toast, "Upload product images failed. Please re-check or try again later");
         } finally {
             setIsUpdating(false);
         }
@@ -143,11 +150,18 @@ const ImageEdit = ({ product }: Props) => {
         callback: () => setPrimaryIndex(undefined)
     };
     return (
-        <>
-            <Card w="100%" overflowX="hidden" h="100%" justifyContent="space-between" display="flex" flexDir="column">
+        <Flex h="100%" flexDir="column">
+            <Card
+                w="100%"
+                flexGrow={1}
+                overflowX="hidden"
+                justifyContent="space-between"
+                display="flex"
+                flexDir="column"
+            >
                 <Box>
-                    <Text mb={4} fontWeight="bold">
-                        Update Image
+                    <Text mb={4} fontSize="sm">
+                        Product images
                     </Text>
                     <Flex flexDir="row" flexWrap="wrap" gap={4} alignItems="center">
                         {/* component upload new image */}
@@ -157,11 +171,13 @@ const ImageEdit = ({ product }: Props) => {
                         {renderProductImg()}
                     </Flex>
                 </Box>
-                <Button mt={4} onClick={updateProductImage} isLoading={isUpdating}>
-                    Update
-                </Button>
             </Card>
-        </>
+            <Box>
+                <Button mt={4} onClick={updateProductImage} isLoading={isUpdating}>
+                    Update Image
+                </Button>
+            </Box>
+        </Flex>
     );
 };
 

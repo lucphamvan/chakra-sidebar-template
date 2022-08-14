@@ -1,4 +1,4 @@
-import { Flex, useToast } from "@chakra-ui/react";
+import { Flex, chakra, useToast } from "@chakra-ui/react";
 import Button from "component/button";
 import Card from "component/card";
 import InputDescription from "component/form/input-description";
@@ -9,6 +9,7 @@ import { ERROR } from "config/error";
 import { Product, ProductUpdateInput } from "model/Product";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import productService from "services/product.service";
 
 interface InfoEditProp {
@@ -18,6 +19,7 @@ const InfoEdit = ({ product }: InfoEditProp) => {
     const toast = useToast({ position: "top-right" });
     const [price, setPrice] = useState(product.price);
     const [amount, setAmount] = useState(product.amount);
+    const navigate = useNavigate();
 
     const {
         register,
@@ -35,6 +37,8 @@ const InfoEdit = ({ product }: InfoEditProp) => {
         });
     }, [product, reset]);
 
+    const goBack = () => navigate(-1);
+
     const onSubmit = async (data: any) => {
         try {
             const updatedData: ProductUpdateInput = {
@@ -44,7 +48,7 @@ const InfoEdit = ({ product }: InfoEditProp) => {
                 price: +data.price
             };
             await productService.updateProduct(product.id, updatedData);
-            notifySuccess(toast, "Update product successfull");
+            notifySuccess(toast, "Update product information successfull");
             // reload && reload();
         } catch (error) {
             console.log("Failed to update product information");
@@ -53,8 +57,8 @@ const InfoEdit = ({ product }: InfoEditProp) => {
     };
     return (
         <>
-            <Card w="100%" h="100%">
-                <form onSubmit={handleSubmit(onSubmit)}>
+            <chakra.form h="100%" onSubmit={handleSubmit(onSubmit)}>
+                <Card w="100%">
                     <Flex flexDir="column" gap={4}>
                         <InputFormLabel
                             name="name"
@@ -94,13 +98,17 @@ const InfoEdit = ({ product }: InfoEditProp) => {
                             placeholder="Product description"
                             required={ERROR.REQUIRED}
                         />
-
-                        <Button type="submit" isLoading={isSubmitting}>
-                            Update
-                        </Button>
                     </Flex>
-                </form>
-            </Card>
+                </Card>
+                <Flex gap={6}>
+                    <Button mt="4" type="submit" isLoading={isSubmitting}>
+                        Update Information
+                    </Button>
+                    <Button mt="4" mode="secondary" onClick={goBack}>
+                        Back
+                    </Button>
+                </Flex>
+            </chakra.form>
         </>
     );
 };
