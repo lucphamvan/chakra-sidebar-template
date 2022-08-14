@@ -7,9 +7,10 @@ import { useState } from "react";
 interface Props {
     setSearch: Function;
     triggerSeach: Function;
+    placeholder?: string;
 }
 
-const SearchInput = ({ setSearch, triggerSeach }: Props) => {
+const SearchInput = ({ setSearch, triggerSeach, placeholder }: Props) => {
     const [value, setValue] = useState("");
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +27,14 @@ const SearchInput = ({ setSearch, triggerSeach }: Props) => {
     return (
         <InputGroup maxW={80}>
             <InputLeftElement children={<SearchIcon color={STYLE.primaryColor} />} />
-            <Input type="search" value={value} onChange={handleSearchChange} onKeyUp={handleKeyUp} />
+            <Input
+                placeholder={placeholder}
+                type="search"
+                value={value}
+                onChange={handleSearchChange}
+                onKeyUp={handleKeyUp}
+                bg="white"
+            />
         </InputGroup>
     );
 };

@@ -14,7 +14,7 @@ import productService from "services/product.service";
 
 import { buildOrderByQuery } from "../helper";
 import { columns } from "./column";
-import Filter from "./filter";
+// import Filter from "./filter";
 import MultipleSelectedMenu from "./multiple-menu";
 
 const TableWrapper = styled(Box)`
@@ -73,10 +73,16 @@ const ProductList = () => {
         <>
             <PageHeading>Product management</PageHeading>
             <HStack py={4} justifyContent="space-between">
-                <Box width="max-content" display="flex" alignItems="center" w="100%" gap="4">
-                    <Box fontWeight={600}>Search Product</Box>
-                    <SearchInput setSearch={setSearch} triggerSeach={triggerSearch} />
-                    <Filter />
+                <Box
+                    width="max-content"
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    w="100%"
+                    gap="4"
+                >
+                    <SearchInput placeholder="Enter product name" setSearch={setSearch} triggerSeach={triggerSearch} />
+                    {/* <Filter /> */}
                     <Button leftIcon={<MdRefresh />} onClick={toggleRefresh}>
                         Refresh
                     </Button>
