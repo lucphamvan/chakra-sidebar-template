@@ -20,8 +20,8 @@ import MultipleSelectedMenu from "./multiple-menu";
 const TableWrapper = styled(Box)`
     display: flex;
     flex-direction: column;
-    overflow: auto;
-    height: ${TABLE_HEIGHT};
+    /* overflow: auto; */
+    /* height: ${TABLE_HEIGHT}; */
 `;
 
 const ProductList = () => {

@@ -102,7 +102,7 @@ const InfoEdit = ({ product }: InfoEditProp) => {
                 </Card>
                 <Flex gap={6}>
                     <Button mt="4" type="submit" isLoading={isSubmitting}>
-                        Update Information
+                        Update
                     </Button>
                     <Button mt="4" mode="secondary" onClick={goBack}>
                         Back

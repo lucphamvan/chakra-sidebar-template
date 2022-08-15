@@ -175,7 +175,7 @@ const ImageEdit = ({ product }: Props) => {
             </Card>
             <Box>
                 <Button mt={4} onClick={updateProductImage} isLoading={isUpdating}>
-                    Update Image
+                    Update
                 </Button>
             </Box>
         </Flex>

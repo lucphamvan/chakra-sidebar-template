@@ -53,7 +53,7 @@ export const MEDIA_QUERY_STRING = {
     "2xl": `(min-width: ${BREAKPOINT["2xl"]})`
 };
 
-export const TITLE = "Ivy Storage";
+export const TITLE = "Iluministrate";
 
 export const SPECIAL_FONT = "special_font";
 

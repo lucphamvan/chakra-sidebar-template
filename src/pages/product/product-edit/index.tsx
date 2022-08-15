@@ -2,7 +2,7 @@ import { Divider, Flex, FlexProps, GridItem, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import Loading from "component/loading";
 import PageHeading from "component/page-heading";
-import { STYLE } from "config";
+import { MEDIA_QUERY, STYLE } from "config";
 import { Product } from "model/Product";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -15,17 +15,26 @@ import InfoEdit from "./info-edit";
 interface Props extends FlexProps {
     bglocation: any;
 }
+
 const Wrapper = styled(Flex)<Props>`
-    flex-direction: column;
-    width: calc(100% - 18rem);
-    height: calc(100% - 5rem);
     background: ${STYLE.background};
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+
+    height: calc(100% - 5rem);
     position: fixed;
-    margin-left: ${(props) => (props.bglocation ? `18rem` : "-2rem")}; // magic here
     top: 5rem;
-    padding: 1.5rem 2rem;
     z-index: 10;
+
+    width: 100%;
+    margin-left: 0; // magic here
     overflow: auto;
+
+    ${MEDIA_QUERY.md} {
+        padding: 1.5rem 2rem;
+        width: calc(100% - 18rem);
+        margin-left: ${(props) => (props.bglocation ? `18rem` : "-2rem")}; // magic here
+    }
 `;
 
 const ProductEditPage = () => {

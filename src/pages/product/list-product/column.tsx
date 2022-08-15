@@ -28,14 +28,15 @@ export const columns = (reload: () => void): Column<Product>[] => [
         accessor: "imgUrl",
         Cell: (props) => {
             return <Image src={getImgUrl(props.value)} fallback={<ImageFallback />} />;
-        }
+        },
+        disableSortBy: true
     },
     {
         Header: "Name",
         accessor: "name",
         Cell: (props) => {
             return (
-                <Box fontWeight="black" color={STYLE.primaryColor}>
+                <Box fontWeight="black" color={STYLE.primaryColor} noOfLines={1}>
                     {props.value}
                 </Box>
             );
@@ -77,6 +78,7 @@ export const columns = (reload: () => void): Column<Product>[] => [
         accessor: (row) => row,
         Cell: ({ value }: { value: Product }) => {
             return <ActionButtons product={value} reload={reload} />;
-        }
+        },
+        disableSortBy: true
     }
 ];

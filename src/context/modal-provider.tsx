@@ -79,7 +79,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
                             initialFocusRef={type === ModalType.Prompt ? input : ok}
                         >
                             <ModalOverlay />
-                            <ModalContent>
+                            <ModalContent width={{ base: "calc(100% - 2rem)", sm: "100%" }}>
                                 <ModalBody mt={5}>
                                     <Stack spacing={5}>
                                         <Box>{message}</Box>
